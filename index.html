@@ -8,11 +8,10 @@
     <style>
         :root {
             --bg: #0f172a;
-            --card-bg: rgba(30, 41, 59, 0.7);
+            --card-bg: rgba(30, 41, 59, 0.8);
             --primary: #38bdf8;
             --text-main: #f8fafc;
             --text-dim: #94a3b8;
-            --error: #ef4444;
         }
 
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -23,54 +22,59 @@
             background-color: var(--bg);
             color: var(--text-main);
             display: flex; flex-direction: column;
-            min-height: 100vh;
-        }
-
-        /* Layout Sections */
-        .ad-section {
-            width: 100%;
-            display: flex; align-items: center; justify-content: center;
-            padding: 10px;
-            background: rgba(0,0,0,0.2);
-            min-height: 150px; /* Space for Top Ads */
-        }
-
-        .main-content {
-            flex: 1; /* This takes the middle space */
-            display: flex; align-items: center; justify-content: center;
-            padding: 20px;
-        }
-
-        /* Center Card */
-        .card {
-            width: 100%; max-width: 360px;
-            background: var(--card-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 24px;
-            padding: 30px 20px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-            text-align: center;
-        }
-
-        /* Adsterra Placeholder Boxes */
-        .ad-box {
-            width: 100%;
-            border: 1px dashed #444;
-            border-radius: 12px;
-            display: flex; align-items: center; justify-content: center;
-            color: #64748b; font-size: 12px;
+            height: 100vh; /* Fixed height to force layout */
             overflow: hidden;
         }
 
-        /* Timer UI */
-        #timer-text { font-size: 1.2rem; font-weight: 700; margin-bottom: 12px; }
+        /* LARGE AD SECTIONS (Top & Bottom) */
+        .ad-section {
+            width: 100%;
+            flex: 2; /* Gives more weight to ads */
+            display: flex; align-items: center; justify-content: center;
+            padding: 10px;
+            background: rgba(0,0,0,0.3);
+        }
+
+        .ad-box {
+            width: 100%; height: 100%;
+            border: 1px dashed #444;
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            color: #475569; font-size: 11px;
+            overflow: hidden;
+        }
+
+        /* SLIM MIDDLE SECTION */
+        .main-content {
+            flex: 1; /* Half the size of ad sections */
+            display: flex; align-items: center; justify-content: center;
+            padding: 10px;
+            z-index: 10;
+        }
+
+        .card {
+            width: 100%; max-width: 340px;
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 15px 20px; /* Reduced padding for half-size look */
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Slimmer Timer UI */
+        #timer-text { 
+            font-size: 0.95rem; 
+            font-weight: 600; 
+            margin-bottom: 8px; 
+            color: var(--primary); 
+        }
         
         .progress-bar {
-            width: 100%; height: 8px;
+            width: 100%; height: 4px; /* Thinner bar */
             background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px; margin-bottom: 25px;
+            border-radius: 4px; margin-bottom: 12px;
             overflow: hidden;
         }
         #progress-fill {
@@ -79,17 +83,16 @@
             transition: width 1s linear;
         }
 
-        /* Button */
+        /* Slimmer Button */
         .btn {
-            width: 100%; padding: 18px; border-radius: 16px; border: none;
-            font-size: 1rem; font-weight: 800; text-transform: uppercase;
-            transition: all 0.3s ease;
+            width: 100%; padding: 12px; border-radius: 10px; border: none;
+            font-size: 0.9rem; font-weight: 700; text-transform: uppercase;
+            transition: 0.3s;
         }
         .btn-disabled { background: #334155; color: #64748b; }
         .btn-active { 
             background: var(--primary); color: #000; 
-            box-shadow: 0 10px 20px rgba(56, 189, 248, 0.4);
-            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(56, 189, 248, 0.3);
         }
 
         #error-view { display: none; }
@@ -97,18 +100,18 @@
 </head>
 <body>
 
-    <!-- TOP AD SECTION -->
+    <!-- TOP AD SECTION (Larger) -->
     <div class="ad-section">
-        <div class="ad-box" style="height: 120px;">
-            <!-- PASTE TOP AD SCRIPT HERE -->
-            TOP ADVERTISEMENT
+        <div class="ad-box">
+            <!-- PASTE ADSTERRA TOP SCRIPT HERE -->
+            TOP ADVERTISEMENT SPACE
         </div>
     </div>
 
-    <!-- MIDDLE TIMER SECTION -->
+    <!-- SLIM MIDDLE COUNTER -->
     <div class="main-content">
         <div id="main-view" class="card">
-            <div id="timer-text">Initializing...</div>
+            <div id="timer-text">Wait...</div>
             <div class="progress-bar">
                 <div id="progress-fill"></div>
             </div>
@@ -118,18 +121,17 @@
             </button>
         </div>
 
-        <!-- Error View -->
         <div id="error-view" class="card">
-            <h2 style="color:var(--error); margin:0;">Invalid Link</h2>
-            <p style="color:var(--text-dim); margin: 10px 0;">Please get a new link from the bot.</p>
+            <div style="color:#ef4444; font-weight:bold;">Invalid Link</div>
+            <div style="font-size: 12px; color:var(--text-dim);">Get a new link from bot</div>
         </div>
     </div>
 
-    <!-- BOTTOM AD SECTION -->
+    <!-- BOTTOM AD SECTION (Larger) -->
     <div class="ad-section">
-        <div class="ad-box" style="height: 120px;">
-            <!-- PASTE BOTTOM AD SCRIPT HERE -->
-            BOTTOM ADVERTISEMENT
+        <div class="ad-box">
+            <!-- PASTE ADSTERRA BOTTOM SCRIPT HERE -->
+            BOTTOM ADVERTISEMENT SPACE
         </div>
     </div>
 
@@ -152,12 +154,12 @@
             
             const countdown = setInterval(() => {
                 timeLeft--;
-                timerTxt.innerText = `Please wait ${timeLeft}s`;
+                timerTxt.innerText = `Preparing Link: ${timeLeft}s`;
                 progress.style.width = (timeLeft / WAIT_TIME) * 100 + "%";
 
                 if (timeLeft <= 0) {
                     clearInterval(countdown);
-                    timerTxt.innerText = "Ready to proceed!";
+                    timerTxt.innerText = "Link is Ready!";
                     progress.style.width = "0%";
                     btn.disabled = false;
                     btn.classList.replace('btn-disabled', 'btn-active');
