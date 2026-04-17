@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#0f172a">
-    <title>JSTAR Gateway</title>
+    <title>Gateway - JSTAR</title>
     <style>
         :root {
             --bg: #0f172a;
-            --card-bg: rgba(30, 41, 59, 0.8);
+            --card-bg: rgba(30, 41, 59, 0.85);
             --primary: #38bdf8;
             --text-main: #f8fafc;
             --text-dim: #94a3b8;
@@ -18,154 +18,171 @@
 
         body {
             margin: 0; padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             background-color: var(--bg);
             color: var(--text-main);
             display: flex; flex-direction: column;
-            height: 100vh; /* Fixed height to force layout */
+            height: 100vh;
             overflow: hidden;
         }
 
-        /* LARGE AD SECTIONS (Top & Bottom) */
+        /* Large Ad Sections (Top & Bottom) */
         .ad-section {
             width: 100%;
-            flex: 2; /* Gives more weight to ads */
+            flex: 2; /* Occupies more screen space for ads */
             display: flex; align-items: center; justify-content: center;
             padding: 10px;
-            background: rgba(0,0,0,0.3);
+            background: rgba(0,0,0,0.2);
         }
 
-        .ad-box {
+        .ad-container {
             width: 100%; height: 100%;
-            border: 1px dashed #444;
-            border-radius: 8px;
+            border: 1px dashed #334155;
+            border-radius: 12px;
             display: flex; align-items: center; justify-content: center;
-            color: #475569; font-size: 11px;
+            color: #475569; font-size: 12px;
+            text-align: center;
             overflow: hidden;
         }
 
-        /* SLIM MIDDLE SECTION */
+        /* Small Middle Section (The Counter) */
         .main-content {
-            flex: 1; /* Half the size of ad sections */
+            flex: 1.2; /* Smaller middle area */
             display: flex; align-items: center; justify-content: center;
             padding: 10px;
             z-index: 10;
         }
 
         .card {
-            width: 100%; max-width: 340px;
+            width: 100%; max-width: 320px;
             background: var(--card-bg);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            padding: 15px 20px; /* Reduced padding for half-size look */
+            border-radius: 20px;
+            padding: 15px 20px;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
         }
 
-        /* Slimmer Timer UI */
-        #timer-text { 
-            font-size: 0.95rem; 
-            font-weight: 600; 
+        #timer-label { 
+            font-size: 0.9rem; 
+            font-weight: 700; 
             margin-bottom: 8px; 
-            color: var(--primary); 
+            color: var(--primary);
+            text-transform: uppercase;
         }
         
-        .progress-bar {
-            width: 100%; height: 4px; /* Thinner bar */
+        .progress-wrapper {
+            width: 100%; height: 5px;
             background: rgba(255, 255, 255, 0.1);
-            border-radius: 4px; margin-bottom: 12px;
+            border-radius: 10px; margin-bottom: 15px;
             overflow: hidden;
         }
-        #progress-fill {
+
+        #progress-bar {
             width: 100%; height: 100%;
             background: var(--primary);
             transition: width 1s linear;
         }
 
-        /* Slimmer Button */
         .btn {
-            width: 100%; padding: 12px; border-radius: 10px; border: none;
-            font-size: 0.9rem; font-weight: 700; text-transform: uppercase;
-            transition: 0.3s;
-        }
-        .btn-disabled { background: #334155; color: #64748b; }
-        .btn-active { 
-            background: var(--primary); color: #000; 
-            box-shadow: 0 4px 12px rgba(56, 189, 248, 0.3);
+            width: 100%; padding: 14px; border-radius: 12px; border: none;
+            font-size: 0.95rem; font-weight: 800; text-transform: uppercase;
+            letter-spacing: 1px; transition: 0.3s;
         }
 
-        #error-view { display: none; }
+        .btn-disabled { background: #1e293b; color: #475569; cursor: not-allowed; }
+        
+        .btn-active { 
+            background: var(--primary); color: #000; 
+            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.4);
+            cursor: pointer;
+        }
+
+        #error-view { display: none; color: #ef4444; font-weight: bold; font-size: 0.8rem; }
     </style>
 </head>
 <body>
 
-    <!-- TOP AD SECTION (Larger) -->
+    <!-- TOP AD SECTION -->
     <div class="ad-section">
-        <div class="ad-box">
-            <!-- PASTE ADSTERRA TOP SCRIPT HERE -->
-            TOP ADVERTISEMENT SPACE
+        <div class="ad-container">
+            <!-- PASTE TOP ADSTERRA SCRIPT HERE -->
+            ADVERTISEMENT SPACE (TOP)
         </div>
     </div>
 
-    <!-- SLIM MIDDLE COUNTER -->
+    <!-- MIDDLE COUNTER (SMALLER) -->
     <div class="main-content">
-        <div id="main-view" class="card">
-            <div id="timer-text">Wait...</div>
-            <div class="progress-bar">
-                <div id="progress-fill"></div>
+        <div id="status-card" class="card">
+            <div id="timer-label">Checking Token...</div>
+            
+            <div class="progress-wrapper">
+                <div id="progress-bar"></div>
             </div>
 
             <button id="action-btn" class="btn btn-disabled" disabled>
-                Waiting...
+                Please Wait
             </button>
-        </div>
 
-        <div id="error-view" class="card">
-            <div style="color:#ef4444; font-weight:bold;">Invalid Link</div>
-            <div style="font-size: 12px; color:var(--text-dim);">Get a new link from bot</div>
+            <div id="error-view">❌ INVALID OR EXPIRED LINK</div>
         </div>
     </div>
 
-    <!-- BOTTOM AD SECTION (Larger) -->
+    <!-- BOTTOM AD SECTION -->
     <div class="ad-section">
-        <div class="ad-box">
-            <!-- PASTE ADSTERRA BOTTOM SCRIPT HERE -->
-            BOTTOM ADVERTISEMENT SPACE
+        <div class="ad-container">
+            <!-- PASTE BOTTOM ADSTERRA SCRIPT HERE -->
+            ADVERTISEMENT SPACE (BOTTOM)
         </div>
     </div>
 
     <script>
+        /* --- BOT CONFIG --- */
         const BOT_USERNAME = 'Filebot69_bot'; 
-        const WAIT_TIME = 15;
+        const WAIT_TIME = 15; 
 
-        const urlParams = new URLSearchParams(window.location.search);
-        const token = urlParams.get('token');
-
-        const timerTxt = document.getElementById('timer-text');
-        const progress = document.getElementById('progress-fill');
+        /* --- LOGIC --- */
+        const params = new URLSearchParams(window.location.search);
+        const token = params.get('token');
+        
+        const label = document.getElementById('timer-label');
+        const progress = document.getElementById('progress-bar');
         const btn = document.getElementById('action-btn');
+        const error = document.getElementById('error-view');
 
-        if (!token) {
-            document.getElementById('main-view').style.display = 'none';
-            document.getElementById('error-view').style.display = 'block';
+        // Verify Token exists
+        if (!token || token.length < 3) {
+            label.style.display = 'none';
+            document.querySelector('.progress-wrapper').style.display = 'none';
+            btn.style.display = 'none';
+            error.style.display = 'block';
         } else {
             let timeLeft = WAIT_TIME;
             
             const countdown = setInterval(() => {
                 timeLeft--;
-                timerTxt.innerText = `Preparing Link: ${timeLeft}s`;
-                progress.style.width = (timeLeft / WAIT_TIME) * 100 + "%";
+                label.innerText = `Ready in ${timeLeft}s`;
+                
+                // Update Progress Bar
+                const percent = (timeLeft / WAIT_TIME) * 100;
+                progress.style.width = percent + "%";
 
                 if (timeLeft <= 0) {
                     clearInterval(countdown);
-                    timerTxt.innerText = "Link is Ready!";
+                    label.innerText = "Link is Ready!";
                     progress.style.width = "0%";
-                    btn.disabled = false;
-                    btn.classList.replace('btn-disabled', 'btn-active');
-                    btn.innerText = "Open Telegram Bot";
                     
+                    // Enable Button
+                    btn.disabled = false;
+                    btn.classList.remove('btn-disabled');
+                    btn.classList.add('btn-active');
+                    btn.innerText = "Get File Now";
+                    
+                    // Handle Click
                     btn.onclick = () => {
+                        // Direct deep link redirect to Bot 1
                         window.location.href = `https://t.me/${BOT_USERNAME}?start=${token}`;
                     };
                 }
