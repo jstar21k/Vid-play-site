@@ -4,191 +4,201 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#0f172a">
-    <title>JSTAR - Link Gateway</title>
+    <title>JSTAR - File Gateway</title>
     <style>
         :root {
             --bg: #0f172a;
             --card-bg: rgba(30, 41, 59, 0.9);
             --primary: #38bdf8;
             --text-main: #f8fafc;
+            --text-dim: #94a3b8;
         }
 
+        /* Prevent scrolling and zoom on mobile */
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-
-        body {
-            margin: 0; padding: 0;
+        body, html { 
+            margin: 0; padding: 0; height: 100%; 
+            background-color: var(--bg); color: var(--text-main);
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background-color: var(--bg);
-            color: var(--text-main);
-            display: flex; flex-direction: column;
-            height: 100vh;
             overflow: hidden;
         }
 
-        /* Large Ad Sections (Top & Bottom) */
-        .ad-section {
+        /* Layout Structure */
+        .page-wrapper {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
             width: 100%;
-            flex: 2.5; 
-            display: flex; align-items: center; justify-content: center;
-            padding: 10px;
-            background: rgba(0,0,0,0.2);
         }
 
-        .ad-box {
+        /* Large Ad Spaces (Top & Bottom) */
+        .ad-area {
+            flex: 2; /* Occupies more space for ads */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            background: rgba(0,0,0,0.1);
+        }
+
+        .ad-placeholder {
             width: 100%; height: 100%;
             border: 1px dashed #334155;
             border-radius: 12px;
             display: flex; align-items: center; justify-content: center;
-            color: #475569; font-size: 12px; text-align: center;
-            overflow: hidden;
+            text-align: center; color: #475569; font-size: 14px;
         }
 
-        /* Slim Middle Section */
-        .main-content {
-            flex: 1.2; 
-            display: flex; align-items: center; justify-content: center;
-            padding: 10px;
-            z-index: 10;
+        /* Compact Middle Section */
+        .middle-section {
+            flex: 1.2; /* Slimmer middle area */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 20px;
         }
 
         .card {
-            width: 100%; max-width: 320px;
+            width: 100%;
+            max-width: 340px;
             background: var(--card-bg);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 20px;
-            padding: 15px 20px;
+            padding: 20px;
             text-align: center;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
         }
 
-        #timer-text { 
-            font-size: 0.9rem; font-weight: 700; 
-            margin-bottom: 8px; color: var(--primary);
+        #timer-status { 
+            font-size: 1rem; font-weight: 700; 
+            margin-bottom: 10px; color: var(--primary);
         }
-        
-        .progress-container {
-            width: 100%; height: 5px;
+
+        .progress-box {
+            width: 100%; height: 6px;
             background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px; margin-bottom: 15px;
+            border-radius: 10px; margin-bottom: 20px;
             overflow: hidden;
         }
 
-        #progress-bar {
+        #bar-fill {
             width: 100%; height: 100%;
             background: var(--primary);
             transition: width 1s linear;
         }
 
+        /* The Button */
         .btn {
-            width: 100%; padding: 14px; border-radius: 12px; border: none;
-            font-size: 0.9rem; font-weight: 900; text-transform: uppercase;
+            width: 100%; padding: 16px; border: none;
+            border-radius: 14px; font-size: 1rem;
+            font-weight: 900; text-transform: uppercase;
             letter-spacing: 1px; transition: 0.3s;
         }
 
-        .btn-disabled { background: #1e293b; color: #475569; cursor: not-allowed; }
+        .btn-waiting { background: #1e293b; color: #475569; cursor: not-allowed; }
         
-        .btn-active { 
+        .btn-ready { 
             background: var(--primary); color: #000; 
-            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.4);
+            box-shadow: 0 5px 20px rgba(56, 189, 248, 0.4);
             cursor: pointer;
         }
 
-        #error-view { display: none; color: #ef4444; font-weight: bold; font-size: 0.8rem; }
+        #error-msg { display: none; color: #ef4444; font-weight: bold; margin-top: 10px; }
     </style>
 </head>
 <body>
 
-    <!-- TOP AD AREA -->
-    <div class="ad-section">
-        <div class="ad-box">
-            <!-- PASTE TOP ADSTERRA SCRIPT HERE -->
-            ADVERTISEMENT TOP
-        </div>
-    </div>
-
-    <!-- CENTER GATEWAY -->
-    <div class="main-content">
-        <div id="content-card" class="card">
-            <div id="timer-text">Validating Link...</div>
-            
-            <div class="progress-container">
-                <div id="progress-bar"></div>
+    <div class="page-wrapper">
+        <!-- TOP AD -->
+        <div class="ad-area">
+            <div class="ad-placeholder">
+                <!-- REPLACE THIS WITH YOUR TOP ADSTERRA SCRIPT -->
+                ADVERTISEMENT TOP
             </div>
-
-            <button id="main-btn" class="btn btn-disabled" disabled>
-                Please Wait
-            </button>
-
-            <div id="error-view">❌ ERROR: INVALID TOKEN</div>
         </div>
-    </div>
 
-    <!-- BOTTOM AD AREA -->
-    <div class="ad-section">
-        <div class="ad-box">
-            <!-- PASTE BOTTOM ADSTERRA SCRIPT HERE -->
-            ADVERTISEMENT BOTTOM
+        <!-- CENTER COUNTER -->
+        <div class="middle-section">
+            <div class="card" id="main-card">
+                <div id="timer-status">Verifying Request...</div>
+                
+                <div class="progress-box">
+                    <div id="bar-fill"></div>
+                </div>
+
+                <button id="get-file-btn" class="btn btn-waiting" disabled>
+                    Please Wait
+                </button>
+
+                <div id="error-msg">❌ INVALID TOKEN - ACCESS DENIED</div>
+            </div>
+        </div>
+
+        <!-- BOTTOM AD -->
+        <div class="ad-area">
+            <div class="ad-placeholder">
+                <!-- REPLACE THIS WITH YOUR BOTTOM ADSTERRA SCRIPT -->
+                ADVERTISEMENT BOTTOM
+            </div>
         </div>
     </div>
 
     <script>
-        /* CONFIG */
+        /* --- CONFIG --- */
         const BOT_USERNAME = 'Filebot69_bot'; 
-        const WAIT_SECONDS = 15;
+        const TIMER_SECONDS = 15;
 
-        /* LOGIC */
-        const urlParams = new URLSearchParams(window.location.search);
-        const token = urlParams.get('token');
+        /* --- REDIRECT LOGIC --- */
+        const queryParams = new URLSearchParams(window.location.search);
+        const tokenValue = queryParams.get('token');
         
-        const timerText = document.getElementById('timer-text');
-        const progressBar = document.getElementById('progress-bar');
-        const mainBtn = document.getElementById('main-btn');
-        const errorView = document.getElementById('error-view');
+        const statusLabel = document.getElementById('timer-status');
+        const barFill = document.getElementById('bar-fill');
+        const actionBtn = document.getElementById('get-file-btn');
+        const errorLabel = document.getElementById('error-msg');
 
-        // Check if token exists
-        if (!token) {
-            timerText.style.display = 'none';
-            document.querySelector('.progress-container').style.display = 'none';
-            mainBtn.style.display = 'none';
-            errorView.style.display = 'block';
+        // Initial check for Token
+        if (!tokenValue || tokenValue.length < 3) {
+            statusLabel.style.display = 'none';
+            document.querySelector('.progress-box').style.display = 'none';
+            actionBtn.style.display = 'none';
+            errorLabel.style.display = 'block';
         } else {
-            let timeLeft = WAIT_SECONDS;
+            let timeRemaining = TIMER_SECONDS;
             
-            const countdown = setInterval(() => {
-                timeLeft--;
-                timerText.innerText = `File ready in ${timeLeft}s`;
+            const timerInterval = setInterval(() => {
+                timeRemaining--;
+                statusLabel.innerText = `Preparing File: ${timeRemaining}s`;
                 
-                // Update Progress Bar (Shrink)
-                const width = (timeLeft / WAIT_SECONDS) * 100;
-                progressBar.style.width = width + "%";
+                // Update Bar (Shrinking)
+                const percentage = (timeRemaining / TIMER_SECONDS) * 100;
+                barFill.style.width = percentage + "%";
 
-                if (timeLeft <= 0) {
-                    clearInterval(countdown);
-                    timerText.innerText = "Link Processed!";
-                    progressBar.style.width = "0%";
+                if (timeRemaining <= 0) {
+                    clearInterval(timerInterval);
+                    statusLabel.innerText = "Link Ready!";
+                    barFill.style.width = "0%";
                     
-                    // Enable the "Get File Now" Button
-                    mainBtn.disabled = false;
-                    mainBtn.classList.replace('btn-disabled', 'btn-active');
-                    mainBtn.innerText = "Get File Now";
+                    // Enable "Get File Now"
+                    actionBtn.disabled = false;
+                    actionBtn.classList.replace('btn-waiting', 'btn-ready');
+                    actionBtn.innerText = "Get File Now";
                     
-                    // HANDLE REDIRECT
-                    mainBtn.onclick = () => {
-                        // Deep link opens Telegram directly
-                        const tgAppUrl = `tg://resolve?domain=${BOT_USERNAME}&start=${token}`;
-                        const tgWebUrl = `https://t.me/${BOT_USERNAME}?start=${token}`;
+                    // ON CLICK: Redirect to Bot
+                    actionBtn.onclick = () => {
+                        const botLink = `https://t.me/${BOT_USERNAME}?start=${tokenValue}`;
                         
-                        // Try opening App
-                        window.location.href = tgAppUrl;
+                        // Use replace for a clean redirect
+                        window.location.replace(botLink);
                         
-                        // Fallback to Web link
+                        // Safety fallback for some browsers
                         setTimeout(() => {
-                            window.location.href = tgWebUrl;
-                        }, 600);
-                        
-                        mainBtn.innerText = "OPENING TELEGRAM...";
+                            window.location.href = botLink;
+                        }, 500);
+
+                        actionBtn.innerText = "Redirecting...";
                     };
                 }
             }, 1000);
