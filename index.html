@@ -4,21 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#0f172a">
-    <title>Gateway - JSTAR</title>
+    <title>JSTAR - Link Gateway</title>
     <style>
         :root {
             --bg: #0f172a;
-            --card-bg: rgba(30, 41, 59, 0.85);
+            --card-bg: rgba(30, 41, 59, 0.9);
             --primary: #38bdf8;
             --text-main: #f8fafc;
-            --text-dim: #94a3b8;
         }
 
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
         body {
             margin: 0; padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             background-color: var(--bg);
             color: var(--text-main);
             display: flex; flex-direction: column;
@@ -29,25 +28,24 @@
         /* Large Ad Sections (Top & Bottom) */
         .ad-section {
             width: 100%;
-            flex: 2; /* Occupies more screen space for ads */
+            flex: 2.5; 
             display: flex; align-items: center; justify-content: center;
             padding: 10px;
             background: rgba(0,0,0,0.2);
         }
 
-        .ad-container {
+        .ad-box {
             width: 100%; height: 100%;
             border: 1px dashed #334155;
             border-radius: 12px;
             display: flex; align-items: center; justify-content: center;
-            color: #475569; font-size: 12px;
-            text-align: center;
+            color: #475569; font-size: 12px; text-align: center;
             overflow: hidden;
         }
 
-        /* Small Middle Section (The Counter) */
+        /* Slim Middle Section */
         .main-content {
-            flex: 1.2; /* Smaller middle area */
+            flex: 1.2; 
             display: flex; align-items: center; justify-content: center;
             padding: 10px;
             z-index: 10;
@@ -56,24 +54,21 @@
         .card {
             width: 100%; max-width: 320px;
             background: var(--card-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 20px;
             padding: 15px 20px;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
         }
 
-        #timer-label { 
-            font-size: 0.9rem; 
-            font-weight: 700; 
-            margin-bottom: 8px; 
-            color: var(--primary);
-            text-transform: uppercase;
+        #timer-text { 
+            font-size: 0.9rem; font-weight: 700; 
+            margin-bottom: 8px; color: var(--primary);
         }
         
-        .progress-wrapper {
+        .progress-container {
             width: 100%; height: 5px;
             background: rgba(255, 255, 255, 0.1);
             border-radius: 10px; margin-bottom: 15px;
@@ -88,7 +83,7 @@
 
         .btn {
             width: 100%; padding: 14px; border-radius: 12px; border: none;
-            font-size: 0.95rem; font-weight: 800; text-transform: uppercase;
+            font-size: 0.9rem; font-weight: 900; text-transform: uppercase;
             letter-spacing: 1px; transition: 0.3s;
         }
 
@@ -105,85 +100,95 @@
 </head>
 <body>
 
-    <!-- TOP AD SECTION -->
+    <!-- TOP AD AREA -->
     <div class="ad-section">
-        <div class="ad-container">
+        <div class="ad-box">
             <!-- PASTE TOP ADSTERRA SCRIPT HERE -->
-            ADVERTISEMENT SPACE (TOP)
+            ADVERTISEMENT TOP
         </div>
     </div>
 
-    <!-- MIDDLE COUNTER (SMALLER) -->
+    <!-- CENTER GATEWAY -->
     <div class="main-content">
-        <div id="status-card" class="card">
-            <div id="timer-label">Checking Token...</div>
+        <div id="content-card" class="card">
+            <div id="timer-text">Validating Link...</div>
             
-            <div class="progress-wrapper">
+            <div class="progress-container">
                 <div id="progress-bar"></div>
             </div>
 
-            <button id="action-btn" class="btn btn-disabled" disabled>
+            <button id="main-btn" class="btn btn-disabled" disabled>
                 Please Wait
             </button>
 
-            <div id="error-view">❌ INVALID OR EXPIRED LINK</div>
+            <div id="error-view">❌ ERROR: INVALID TOKEN</div>
         </div>
     </div>
 
-    <!-- BOTTOM AD SECTION -->
+    <!-- BOTTOM AD AREA -->
     <div class="ad-section">
-        <div class="ad-container">
+        <div class="ad-box">
             <!-- PASTE BOTTOM ADSTERRA SCRIPT HERE -->
-            ADVERTISEMENT SPACE (BOTTOM)
+            ADVERTISEMENT BOTTOM
         </div>
     </div>
 
     <script>
-        /* --- BOT CONFIG --- */
+        /* CONFIG */
         const BOT_USERNAME = 'Filebot69_bot'; 
-        const WAIT_TIME = 15; 
+        const WAIT_SECONDS = 15;
 
-        /* --- LOGIC --- */
-        const params = new URLSearchParams(window.location.search);
-        const token = params.get('token');
+        /* LOGIC */
+        const urlParams = new URLSearchParams(window.location.search);
+        const token = urlParams.get('token');
         
-        const label = document.getElementById('timer-label');
-        const progress = document.getElementById('progress-bar');
-        const btn = document.getElementById('action-btn');
-        const error = document.getElementById('error-view');
+        const timerText = document.getElementById('timer-text');
+        const progressBar = document.getElementById('progress-bar');
+        const mainBtn = document.getElementById('main-btn');
+        const errorView = document.getElementById('error-view');
 
-        // Verify Token exists
-        if (!token || token.length < 3) {
-            label.style.display = 'none';
-            document.querySelector('.progress-wrapper').style.display = 'none';
-            btn.style.display = 'none';
-            error.style.display = 'block';
+        // Check if token exists
+        if (!token) {
+            timerText.style.display = 'none';
+            document.querySelector('.progress-container').style.display = 'none';
+            mainBtn.style.display = 'none';
+            errorView.style.display = 'block';
         } else {
-            let timeLeft = WAIT_TIME;
+            let timeLeft = WAIT_SECONDS;
             
             const countdown = setInterval(() => {
                 timeLeft--;
-                label.innerText = `Ready in ${timeLeft}s`;
+                timerText.innerText = `File ready in ${timeLeft}s`;
                 
-                // Update Progress Bar
-                const percent = (timeLeft / WAIT_TIME) * 100;
-                progress.style.width = percent + "%";
+                // Update Progress Bar (Shrink)
+                const width = (timeLeft / WAIT_SECONDS) * 100;
+                progressBar.style.width = width + "%";
 
                 if (timeLeft <= 0) {
                     clearInterval(countdown);
-                    label.innerText = "Link is Ready!";
-                    progress.style.width = "0%";
+                    timerText.innerText = "Link Processed!";
+                    progressBar.style.width = "0%";
                     
-                    // Enable Button
-                    btn.disabled = false;
-                    btn.classList.remove('btn-disabled');
-                    btn.classList.add('btn-active');
-                    btn.innerText = "Get File Now";
+                    // Enable the "Get File Now" Button
+                    mainBtn.disabled = false;
+                    mainBtn.classList.replace('btn-disabled', 'btn-active');
+                    mainBtn.innerText = "Get File Now";
                     
-                    // Handle Click
-                    btn.onclick = () => {
-                        // Direct deep link redirect to Bot 1
-                        window.location.href = `https://t.me/${BOT_USERNAME}?start=${token}`;
+                    // HANDLE REDIRECT
+                    mainBtn.onclick = () => {
+                        // Deep link opens Telegram directly
+                        const tgAppUrl = `tg://resolve?domain=${BOT_USERNAME}&start=${token}`;
+                        const tgWebUrl = `https://t.me/${BOT_USERNAME}?start=${token}`;
+                        
+                        // Try opening App
+                        window.location.href = tgAppUrl;
+                        
+                        // Fallback to Web link
+                        setTimeout(() => {
+                            window.location.href = tgWebUrl;
+                        }, 600);
+                        
+                        mainBtn.innerText = "OPENING TELEGRAM...";
                     };
                 }
             }, 1000);
