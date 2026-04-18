@@ -3,85 +3,164 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Secure Media Gateway - VidPlays</title>
+    <title>VidPlays - Secure Access</title>
+    <meta name="robots" content="noindex, nofollow">
     <style>
         :root { --bg: #0f172a; --card: #1e293b; --primary: #38bdf8; --text: #f8fafc; }
-        body { margin: 0; font-family: 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+        body { margin: 0; font-family: 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); line-height: 1.8; }
         
-        /* Sticky Timer Bar */
-        .timer-bar { position: fixed; top: 0; width: 100%; background: #000; padding: 10px; border-bottom: 2px solid var(--primary); z-index: 1000; text-align: center; font-weight: bold; }
+        .timer-bar { 
+            position: fixed; top: 0; width: 100%; 
+            background: #0f172a; padding: 12px; 
+            border-bottom: 2px solid var(--primary); 
+            z-index: 1000; text-align: center; 
+        }
+        .timer-bar .progress { 
+            height: 3px; background: var(--primary); 
+            transition: width 1s linear; 
+            margin-top: 8px;
+        }
         
-        .container { max-width: 700px; margin: 60px auto; padding: 20px; }
-        .ad-slot { width: 100%; min-height: 250px; background: rgba(0,0,0,0.5); margin: 30px 0; border: 1px solid #334155; display: flex; align-items: center; justify-content: center; color: #444; }
+        .container { max-width: 700px; margin: 70px auto 50px; padding: 20px; }
+        .ad-slot { width: 100%; min-height: 250px; margin: 30px auto; background: rgba(0,0,0,0.3); border: 1px solid #1e293b; }
         
-        /* Article Styling */
-        .article-title { color: var(--primary); font-size: 1.8rem; margin-bottom: 20px; }
-        .article-content p { color: #94a3b8; margin-bottom: 20px; }
-
-        /* Final Button */
-        #final-btn-container { display: none; text-align: center; margin-top: 50px; padding-bottom: 50px; }
-        .btn-go { background: var(--primary); color: #000; padding: 20px 50px; border: none; border-radius: 50px; font-weight: 800; font-size: 1.2rem; cursor: pointer; text-transform: uppercase; box-shadow: 0 0 20px rgba(56, 189, 248, 0.5); }
+        h1 { color: var(--primary); font-size: 1.6rem; margin-bottom: 15px; }
+        .article-content p { color: #94a3b8; margin-bottom: 18px; font-size: 0.95rem; }
         
-        .scroll-note { color: var(--primary); font-size: 0.8rem; animation: blink 1s infinite; }
-        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+        .scroll-prompt { 
+            color: var(--primary); font-size: 0.85rem; 
+            animation: pulse 1.5s ease-in-out infinite; 
+            margin-top: 8px;
+        }
+        @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.4; } }
+        
+        #final-section { text-align: center; padding: 40px 0 60px; }
+        .final-btn { 
+            background: linear-gradient(135deg, #38bdf8, #818cf8); 
+            color: #000; border: none; padding: 18px 50px; 
+            border-radius: 50px; font-weight: 800; font-size: 1.1rem; 
+            cursor: pointer; text-transform: uppercase;
+            box-shadow: 0 0 30px rgba(56, 189, 248, 0.3);
+            transition: 0.2s;
+        }
+        .final-btn:hover { transform: scale(1.05); }
     </style>
 </head>
 <body>
 
     <div class="timer-bar">
-        <span id="timer-txt">Generating link: 20s</span>
-        <div id="scroll-prompt" class="scroll-note" style="display:none;">↓ SCROLL DOWN TO BOTTOM ↓</div>
+        <span id="timer-text">Please wait: 20s</span>
+        <div class="progress" id="progress-bar" style="width:0%"></div>
+        <div id="scroll-prompt" class="scroll-prompt" style="display:none;">
+            ↓ Scroll down to continue ↓
+        </div>
     </div>
 
     <div class="container">
-        <h1 class="article-title">The Evolution of Digital Media Content in 2024</h1>
+        <h1>The Future of Secure Digital Content Distribution</h1>
         
-        <div class="ad-slot">ADSTERRA BANNER 3</div>
+        <div class="ad-slot"><!-- ADSTERRA BANNER 3 --></div>
 
         <div class="article-content">
-            <p>Digital media has undergone a massive transformation over the past decade. With the rise of high-speed internet and the proliferation of smartphones, users are consuming content faster than ever before. This shift has forced creators and distributors to find new ways to protect their assets while ensuring a smooth user experience.</p>
+            <p>The digital landscape has evolved dramatically over the past decade, transforming how we access and consume media content. With platforms like Telegram becoming central hubs for file sharing and community building, the need for secure access mechanisms has never been greater.</p>
             
-            <p>Security is now at the forefront of the digital conversation. From end-to-end encryption in messaging apps like Telegram to secure gateways used by media platforms, the goal is always to verify the human behind the screen.</p>
+            <p>Modern content distribution faces two primary challenges: protecting shared resources from automated bots and ensuring that legitimate users can access content without unnecessary friction. This balance is the foundation of any reliable gateway system.</p>
             
-            <div class="ad-slot">ADSTERRA BANNER 4</div>
+            <div class="ad-slot"><!-- ADSTERRA BANNER 4 --></div>
 
-            <p>Why do we use timers? Timers serve a dual purpose. First, they allow the underlying server to verify the request and generate a unique session token. Second, they prevent automated scrapers and bots from overwhelming the system, ensuring that real users get the bandwidth they deserve.</p>
+            <p>Security verification serves multiple purposes in the content delivery chain. It prevents automated scraping tools from overwhelming servers, reduces bandwidth waste on non-human traffic, and creates a measurable window where advertisers can present relevant content to verified users.</p>
 
-            <p>When you access content through VidPlays, you are participating in a secure ecosystem designed for safety. We never store personal data, and our only goal is to provide a clean path to your destination.</p>
+            <p>The technology behind human verification has advanced significantly. Early systems relied on simple text captchas, which were quickly defeated by OCR algorithms. Today's approaches focus on behavioral analysis, interaction patterns, and timing-based verification that are significantly more difficult to circumvent.</p>
+            
+            <div class="ad-slot"><!-- ADSTERRA BANNER 5 --></div>
 
-            <div class="ad-slot">ADSTERRA BANNER 5</div>
+            <p>For content creators and channel administrators, implementing a gateway layer provides valuable analytics about audience engagement. Understanding how users interact with verification steps can inform decisions about content strategy and platform improvements.</p>
 
-            <p>As we move into the future, we expect to see even more advanced methods of content delivery. For now, human verification remains the most reliable way to maintain a high-quality community. Thank you for your patience during the generation process.</p>
+            <p>Privacy-conscious users often express concern about verification systems. Transparent gateways that clearly communicate their purpose and data handling practices tend to achieve higher completion rates while maintaining user trust. The key is making the process feel like a natural part of the content access flow rather than an arbitrary obstacle.</p>
+            
+            <div class="ad-slot"><!-- ADSTERRA BANNER 6 --></div>
+
+            <p>Looking ahead, we can expect continued innovation in content protection mechanisms. Biometric verification, device fingerprinting, and AI-powered behavior analysis are all emerging technologies that may shape the next generation of secure content gateways.</p>
         </div>
 
-        <div class="ad-slot">ADSTERRA BANNER 6</div>
-
-        <div id="final-btn-container">
-            <h2 style="color:white;">Your Link is Ready!</h2>
-            <button class="btn-go" onclick="redirectToBot()">Get File Now</button>
+        <div id="final-section" style="display:none;">
+            <h2 style="margin-bottom:20px;">Your Link is Ready</h2>
+            <button class="final-btn" onclick="goToDestination()">
+                Continue to Telegram
+            </button>
         </div>
     </div>
 
     <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        const token = urlParams.get('token');
-        const BOT_USERNAME = "Filebot69_bot"; // Your sharing bot
+        // ========== VALIDATION ==========
+        const token = sessionStorage.getItem('vp_token');
+        const verifiedAt = sessionStorage.getItem('vp_verified');
+        
+        // Must have completed verify.html
+        if (!token || !verifiedAt || (Date.now() - verifiedAt) > 120000) {
+            window.location.href = '/verify.html';
+            throw new Error('Flow invalid');
+        }
 
-        let timeLeft = 20;
-        const timer = setInterval(() => {
-            timeLeft--;
-            document.getElementById('timer-txt').innerText = `Generating link: ${timeLeft}s`;
+        // Bot detection - show article only, no button ever appears
+        const isBot = /bot|crawl|spider|headless|phantom/i.test(navigator.userAgent);
+        if (isBot) {
+            document.getElementById('final-section').remove();
+            document.querySelector('.timer-bar').remove();
+        }
 
-            if (timeLeft <= 0) {
-                clearInterval(timer);
-                document.getElementById('timer-txt').innerText = "Link Generated!";
-                document.getElementById('scroll-prompt').style.display = "block";
-                document.getElementById('final-btn-container').style.display = "block";
+        // ========== TIMER (Cannot be cheated by changing variable) ==========
+        const TIMER_DURATION = 20;
+        const endTime = Date.now() + (TIMER_DURATION * 1000);
+        let timerComplete = false;
+
+        const timerInterval = setInterval(() => {
+            const remaining = Math.max(0, Math.ceil((endTime - Date.now()) / 1000));
+            const progress = ((TIMER_DURATION - remaining) / TIMER_DURATION) * 100;
+            
+            document.getElementById('timer-text').textContent = 
+                remaining > 0 ? `Please wait: ${remaining}s` : 'Link ready!';
+            document.getElementById('progress-bar').style.width = progress + '%';
+
+            if (remaining <= 0) {
+                clearInterval(timerInterval);
+                timerComplete = true;
+                document.getElementById('scroll-prompt').style.display = 'block';
+                checkUnlock();
             }
-        }, 1000);
+        }, 250);
 
-        function redirectToBot() {
-            window.location.href = `https://t.me/${BOT_USERNAME}?start=${token}`;
+        // ========== SCROLL REQUIREMENT ==========
+        let scrollComplete = false;
+
+        window.addEventListener('scroll', function() {
+            if (!scrollComplete) {
+                const scrolled = window.scrollY;
+                const total = document.body.scrollHeight - window.innerHeight;
+                const percent = (scrolled / total) * 100;
+                
+                if (percent > 80) {
+                    scrollComplete = true;
+                    checkUnlock();
+                }
+            }
+        });
+
+        function checkUnlock() {
+            if (timerComplete && scrollComplete) {
+                document.getElementById('final-section').style.display = 'block';
+                document.getElementById('scroll-prompt').style.display = 'none';
+            }
+        }
+
+        // ========== FINAL REDIRECT (Obfuscated) ==========
+        function goToDestination() {
+            // Bot username hidden - decode at runtime
+            const _0x = [70,105,108,101,98,111,116,54,57,95,98,111,116];
+            const bot = _0x.map(c => String.fromCharCode(c)).join('');
+            
+            // No referrer leak
+            window.open(`https://t.me/${bot}?start=${token}`, '_blank', 'noopener,noreferrer');
         }
     </script>
 </body>
