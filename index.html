@@ -6,13 +6,12 @@
     <meta name="theme-color" content="#0f172a">
     <title>VidPlays - Secure Link Protector</title> 
 
-    <!-- Google AdSense (Keeping your original script) -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2984214380524017" crossorigin="anonymous"></script>
     
     <style>
         :root {
             --bg: #0f172a;
-            --card-bg: rgba(30, 41, 59, 0.8);
+            --card-bg: rgba(30, 41, 59, 0.9);
             --primary: #38bdf8;
             --text-main: #f8fafc;
             --text-dim: #94a3b8;
@@ -22,16 +21,15 @@
 
         body {
             margin: 0; padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             background-color: var(--bg);
             color: var(--text-main);
             display: flex; flex-direction: column;
             min-height: 100vh;
         }
 
-        /* ADS SECTIONS */
         .ad-section {
-            width: 100%; min-height: 120px;
+            width: 100%; min-height: 100px;
             display: flex; align-items: center; justify-content: center;
             padding: 10px; background: rgba(0,0,0,0.3);
         }
@@ -41,181 +39,178 @@
             color: #475569; font-size: 11px;
         }
 
-        /* MAIN CONTENT */
         .main-container {
             flex: 1; display: flex; flex-direction: column;
-            align-items: center; justify-content: center; padding: 20px;
+            align-items: center; justify-content: center; padding: 15px;
         }
 
+        /* Compact Card */
         .card {
-            width: 100%; max-width: 400px;
+            width: 100%; max-width: 320px;
             background: var(--card-bg);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px; padding: 25px;
+            border-radius: 16px; padding: 20px;
             text-align: center; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            position: relative;
         }
 
-        h2 { color: var(--primary); margin-top: 0; }
-        
-        /* TOOL INPUTS */
+        /* Small Top Timer */
+        #timer-display {
+            font-size: 0.8rem;
+            color: var(--primary);
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .progress-bar { width: 100%; height: 3px; background: #334155; border-radius: 4px; margin-bottom: 15px; overflow: hidden; }
+        #progress-fill { width: 0%; height: 100%; background: var(--primary); transition: width 1s linear; }
+
         input[type="text"] {
-            width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #334155;
-            background: #0f172a; color: white; margin-bottom: 15px;
+            width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #334155;
+            background: #0f172a; color: white; margin-bottom: 15px; font-size: 0.9rem;
         }
 
         .btn {
-            width: 100%; padding: 14px; border-radius: 10px; border: none;
-            font-size: 1rem; font-weight: 700; text-transform: uppercase;
+            width: 100%; padding: 12px; border-radius: 8px; border: none;
+            font-size: 0.9rem; font-weight: 700; text-transform: uppercase;
             cursor: pointer; transition: 0.3s;
         }
         .btn-active { background: var(--primary); color: #000; }
         .btn-disabled { background: #334155; color: #64748b; }
 
-        /* CAPTCHA STYLE */
         .captcha-box {
-            background: rgba(0,0,0,0.2); border-radius: 10px;
-            padding: 15px; margin-bottom: 15px; display: flex;
+            background: rgba(0,0,0,0.2); border-radius: 8px;
+            padding: 12px; margin-bottom: 10px; display: flex;
             align-items: center; gap: 10px; border: 1px solid #334155;
+            justify-content: center;
         }
 
-        /* PROGRESS BAR */
-        .progress-bar { width: 100%; height: 4px; background: #334155; border-radius: 4px; margin: 15px 0; overflow: hidden; }
-        #progress-fill { width: 100%; height: 100%; background: var(--primary); transition: width 1s linear; }
-
-        /* CONTENT AREA */
-        .info-section { max-width: 600px; margin-top: 30px; text-align: left; font-size: 0.9rem; color: var(--text-dim); }
-        .info-section h3 { color: var(--primary); margin-bottom: 5px; }
-
-        footer { padding: 20px; text-align: center; font-size: 0.8rem; border-top: 1px solid #334155; color: #475569; }
+        .info-section { max-width: 500px; margin-top: 20px; text-align: left; font-size: 0.8rem; color: var(--text-dim); padding: 10px; }
+        
+        footer { padding: 15px; text-align: center; font-size: 0.7rem; border-top: 1px solid #334155; color: #475569; }
         
         .hidden { display: none !important; }
+        .visible { display: block !important; }
     </style>
 </head>
 <body>
 
-    <!-- TOP AD -->
     <div class="ad-section">
         <div class="ad-box">MONETAG AD TOP</div>
     </div>
 
     <div class="main-container">
         
-        <!-- VIEW 1: HOME/TOOL (Shown if no token) -->
+        <!-- TOOL VIEW -->
         <div id="home-view" class="card hidden">
-            <h2>Link Protector</h2>
-            <p style="font-size: 0.9rem; margin-bottom: 20px;">Enter any URL to protect and shorten it.</p>
-            <input type="text" id="tool-input" placeholder="Paste your link here...">
-            <button class="btn btn-active" onclick="generateToolLink()">Generate Link</button>
-            <div id="tool-result" class="hidden" style="margin-top:20px;">
-                <p style="font-size: 0.8rem;">Your Protected URL:</p>
+            <h3 style="color:var(--primary); margin:0 0 10px 0;">Link Protector</h3>
+            <input type="text" id="tool-input" placeholder="Paste link here...">
+            <button class="btn btn-active" onclick="generateToolLink()">Generate</button>
+            <div id="tool-result" class="hidden" style="margin-top:15px;">
                 <input type="text" id="tool-output" readonly onclick="this.select()">
             </div>
         </div>
 
-        <!-- VIEW 2: GATEWAY/TIMER (Shown if token exists) -->
+        <!-- GATEWAY VIEW -->
         <div id="gateway-view" class="card hidden">
+            
+            <!-- Small Timer at Top -->
+            <div id="timer-display" class="hidden">Initializing...</div>
+            <div id="p-bar-container" class="progress-bar hidden">
+                <div id="progress-fill"></div>
+            </div>
+
             <!-- Step 1: Captcha -->
             <div id="captcha-step">
-                <h2>Security Check</h2>
+                <h3 style="margin-top:0; font-size:1.1rem;">Security Check</h3>
                 <div class="captcha-box">
-                    <input type="checkbox" id="verify-check" style="width:20px; height:20px;" onclick="startTimerSequence()">
-                    <span style="font-size:0.9rem;">I am not a robot</span>
+                    <input type="checkbox" id="verify-check" style="width:18px; height:18px; cursor:pointer;" onclick="startTimerSequence()">
+                    <span style="font-size:0.85rem;">I am not a robot</span>
                 </div>
-                <p style="font-size: 0.8rem; color: var(--text-dim);">Verify you are human to access the destination link.</p>
             </div>
 
-            <!-- Step 2: Timer -->
-            <div id="timer-step" class="hidden">
-                <div id="timer-text">Preparing Link...</div>
-                <div class="progress-bar">
-                    <div id="progress-fill"></div>
-                </div>
-                <button class="btn btn-disabled" disabled>Please Wait</button>
+            <!-- Step 2: Mid Message -->
+            <div id="wait-msg" class="hidden" style="margin: 15px 0;">
+                <p style="font-size: 0.9rem; color: var(--text-dim);">Processing your request, please stay on this page.</p>
             </div>
 
-            <!-- Step 3: Final Button -->
-            <div id="final-step" class="hidden">
-                <h2 style="font-size:1.2rem;">Link Ready!</h2>
-                <button id="action-btn" class="btn btn-active">Open Destination</button>
+            <!-- Step 3: Bottom Button -->
+            <div id="final-step" style="margin-top: 10px;">
+                <button id="action-btn" class="btn btn-disabled" disabled>Please Wait</button>
             </div>
         </div>
 
-        <!-- SEO Content for Monetag Approval -->
         <div class="info-section" id="seo-content">
-            <h3>About VidPlays Link Tool</h3>
-            <p>VidPlays is a free security utility designed to protect URLs from automated bots and scrapers. Our advanced human verification system ensures that only real users can access the shared destination content.</p>
-            <h3>Why use a Link Protector?</h3>
-            <p>Protecting your links helps in maintaining the integrity of your traffic. Whether you are sharing files on Telegram or redirecting users to private communities, VidPlays provides a robust layer of protection.</p>
+            <h4 style="color:var(--primary); margin:0;">Secure Gateway</h4>
+            <p>VidPlays is a utility to protect links from bots. We ensure a safe redirection for our users through human verification.</p>
         </div>
 
     </div>
 
-    <!-- BOTTOM AD -->
     <div class="ad-section">
         <div class="ad-box">MONETAG AD BOTTOM</div>
     </div>
 
     <footer>
-        &copy; 2024 VidPlays.in | Privacy Policy | Terms of Service | Contact
+        &copy; 2024 VidPlays.in | Privacy | Terms
     </footer>
 
     <script>
         const BOT_USERNAME = 'JSTAR_P4N3L_bot'; 
-        const WAIT_TIME = 15;
+        const WAIT_TIME = 20; // 20 Seconds Timer
         const params = new URLSearchParams(window.location.search);
         const token = params.get('token');
 
-        // ROUTING
         if (token) {
             document.getElementById('gateway-view').classList.remove('hidden');
-            document.getElementById('seo-content').classList.add('hidden'); // Hide text on gateway
+            document.getElementById('seo-content').classList.add('hidden');
         } else {
             document.getElementById('home-view').classList.remove('hidden');
         }
 
-        // TOOL LOGIC
         function generateToolLink() {
             const input = document.getElementById('tool-input').value;
-            if(!input) return alert("Please paste a link");
-            
-            // Just for show/utility, encoding the url into a token-like format
+            if(!input) return alert("Paste a link!");
             const mockToken = btoa(input).substring(0, 10); 
             const final = window.location.origin + window.location.pathname + "?token=" + mockToken;
-            
             document.getElementById('tool-output').value = final;
             document.getElementById('tool-result').classList.remove('hidden');
         }
 
-        // GATEWAY LOGIC
         function startTimerSequence() {
+            // UI Changes
             document.getElementById('captcha-step').classList.add('hidden');
-            document.getElementById('timer-step').classList.remove('hidden');
+            document.getElementById('timer-display').classList.remove('hidden');
+            document.getElementById('p-bar-container').classList.remove('hidden');
+            document.getElementById('wait-msg').classList.remove('hidden');
             
             let timeLeft = WAIT_TIME;
             const fill = document.getElementById('progress-fill');
-            const txt = document.getElementById('timer-text');
+            const timerTxt = document.getElementById('timer-display');
+            const actionBtn = document.getElementById('action-btn');
             
             const countdown = setInterval(() => {
                 timeLeft--;
-                txt.innerText = `Preparing Link: ${timeLeft}s`;
-                fill.style.width = (timeLeft / WAIT_TIME) * 100 + "%";
+                timerTxt.innerText = `Link Preparing: ${timeLeft}s`;
+                fill.style.width = ((WAIT_TIME - timeLeft) / WAIT_TIME * 100) + "%";
 
                 if (timeLeft <= 0) {
                     clearInterval(countdown);
-                    showFinalButton();
+                    // Timer Ends
+                    timerTxt.innerText = "Link is Ready!";
+                    document.getElementById('wait-msg').innerHTML = "<p style='color:var(--primary); font-size:0.85rem;'>Scroll down, your link is ready below.</p>";
+                    
+                    // Enable Bottom Button
+                    actionBtn.disabled = false;
+                    actionBtn.classList.remove('btn-disabled');
+                    actionBtn.classList.add('btn-active');
+                    actionBtn.innerText = "Get Destination";
+                    actionBtn.onclick = () => {
+                        window.location.href = `https://t.me/${BOT_USERNAME}?start=${token}`;
+                    };
                 }
             }, 1000);
-        }
-
-        function showFinalButton() {
-            document.getElementById('timer-step').classList.add('hidden');
-            document.getElementById('final-step').classList.remove('hidden');
-            
-            const btn = document.getElementById('action-btn');
-            btn.onclick = () => {
-                window.location.href = `https://t.me/${BOT_USERNAME}?start=${token}`;
-            };
         }
     </script>
 </body>
