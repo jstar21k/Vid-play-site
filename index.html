@@ -126,20 +126,15 @@
         .nav-dot { width: 6px; height: 6px; border-radius: 50%; background: #34d399; animation: progress-pulse 2s infinite; }
 
         /* ── Container ── */
-        .container { max-width: 680px; margin: auto; padding: 20px 16px 80px; }
+        .container { max-width: 100%; margin: auto; padding: 16px 12px 100px; }
+
+        @media (min-width: 420px) {
+            .container { max-width: 680px; padding: 20px 16px 80px; }
+        }
 
         /* ── Ad Slots ── */
-        .ad-slot { margin: 20px 0; min-height: 90px; }
-        .ad-placeholder {
-            background: rgba(15,23,41,0.5);
-            border: 1px solid rgba(56,189,248,0.06);
-            border-radius: 12px;
-            padding: 12px;
-            text-align: center;
-            min-height: 100px;
-            display: flex; align-items: center; justify-content: center;
-        }
-        .ad-placeholder span { font-size: 10px; color: #334155; letter-spacing: 1px; text-transform: uppercase; }
+        .ad-slot { margin: 16px 0; min-height: 50px; overflow: hidden; }
+        .ad-slot iframe { max-width: 100%; }
 
         /* ── Verify Section ── */
         .verify-box { padding: 20px; text-align: center; }
@@ -149,13 +144,14 @@
         .verify-sub { font-size: 11px; color: #475569; margin-bottom: 16px; }
 
         .captcha-btn {
-            width: 100%; padding: 14px;
+            width: 100%; padding: 16px;
             background: rgba(15,23,41,0.6);
             border: 1px solid rgba(71,85,105,0.4);
             border-radius: 12px;
             display: flex; align-items: center; justify-content: center; gap: 12px;
             cursor: pointer; transition: all 0.2s;
             -webkit-tap-highlight-color: transparent;
+            min-height: 52px;
         }
         .captcha-btn:hover { border-color: rgba(34,211,238,0.3); background: rgba(15,23,41,0.8); }
         .captcha-btn:active { transform: scale(0.98); }
@@ -209,7 +205,11 @@
         .blog-header h2 { font-size: 18px; font-weight: 800; }
         .blog-header span { font-size: 10px; color: #334155; }
 
-        .post-card { padding: 20px; margin-bottom: 16px; border-radius: 14px; overflow: hidden; transition: border-color 0.3s; }
+        .post-card { padding: 16px; margin-bottom: 14px; border-radius: 14px; overflow: hidden; transition: border-color 0.3s; }
+
+        @media (min-width: 420px) {
+            .post-card { padding: 20px; margin-bottom: 16px; }
+        }
         .post-card:hover { border-color: rgba(34,211,238,0.15); }
 
         .post-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
@@ -247,11 +247,12 @@
         /* ── Get File Button ── */
         .get-file-wrap { margin-top: 28px; margin-bottom: 16px; text-align: center; }
         .get-file-btn {
-            width: 100%; padding: 16px; border-radius: 14px;
-            font-size: 16px; font-weight: 800; text-transform: uppercase;
+            width: 100%; padding: 18px; border-radius: 14px;
+            font-size: 17px; font-weight: 800; text-transform: uppercase;
             letter-spacing: 1px; border: none; cursor: pointer;
             transition: all 0.3s; -webkit-tap-highlight-color: transparent;
             display: flex; align-items: center; justify-content: center; gap: 8px;
+            min-height: 56px;
         }
         .get-file-btn:active { transform: scale(0.97); }
         .get-file-btn.active {
@@ -386,11 +387,9 @@
     <!-- Main Content -->
     <main class="container">
 
-        <!-- AD SLOT 1: Top Banner -->
+        <!-- AD SLOT 1: Social Bar (floats to bottom automatically) -->
         <div class="ad-slot" id="ad-top-banner">
-            <!-- &#8593; PASTE YOUR ADSTERRA AD CODE HERE &#8593; -->
-            <div class="ad-placeholder"><span>Advertisement</span></div>
-            <!-- &#8593; END ADSTERRA AD CODE &#8593; -->
+            <script src="https://pl29177700.profitablecpmratenetwork.com/7f/0d/45/7f0d45422613d17e5f1633d86a191b1b.js"></script>
         </div>
 
         <!-- GATEWAY VIEW (when ?token= is present) -->
@@ -465,11 +464,10 @@
             </div>
         </div>
 
-        <!-- AD SLOT 2: After Verify -->
+        <!-- AD SLOT 2: Native Banner -->
         <div class="ad-slot" id="ad-after-verify">
-            <!-- &#8593; PASTE YOUR ADSTERRA AD CODE HERE &#8593; -->
-            <div class="ad-placeholder"><span>Advertisement</span></div>
-            <!-- &#8593; END ADSTERRA AD CODE &#8593; -->
+            <script async="async" data-cfasync="false" src="https://pl29177701.profitablecpmratenetwork.com/e71dc82ac58350d7c6ffca5c82c9f22c/invoke.js"></script>
+            <div id="container-e71dc82ac58350d7c6ffca5c82c9f22c"></div>
         </div>
 
         <!-- Blog Header -->
@@ -478,11 +476,18 @@
             <span>VidPlays Blog</span>
         </div>
 
-        <!-- AD SLOT 3: Before Posts -->
+        <!-- AD SLOT 3: Banner 300x250 -->
         <div class="ad-slot" id="ad-pre-posts">
-            <!-- &#8593; PASTE YOUR ADSTERRA AD CODE HERE &#8593; -->
-            <div class="ad-placeholder"><span>Advertisement</span></div>
-            <!-- &#8593; END ADSTERRA AD CODE &#8593; -->
+            <script>
+              atOptions = {
+                'key' : '349308e9afbdb2ab3a8d9a8423362ae8',
+                'format' : 'iframe',
+                'height' : 250,
+                'width' : 300,
+                'params' : {}
+              };
+            </script>
+            <script src="https://www.highperformanceformat.com/349308e9afbdb2ab3a8d9a8423362ae8/invoke.js"></script>
         </div>
 
         <!-- POST 1 -->
@@ -513,11 +518,10 @@
             </div>
         </article>
 
-        <!-- AD SLOT 4: Mid Content 1 -->
+        <!-- AD SLOT 4: Native Banner (mid) -->
         <div class="ad-slot" id="ad-mid-1">
-            <!-- &#8593; PASTE YOUR ADSTERRA AD CODE HERE &#8593; -->
-            <div class="ad-placeholder"><span>Advertisement</span></div>
-            <!-- &#8593; END ADSTERRA AD CODE &#8593; -->
+            <script async="async" data-cfasync="false" src="https://pl29177701.profitablecpmratenetwork.com/e71dc82ac58350d7c6ffca5c82c9f22c/invoke.js"></script>
+            <div id="container-e71dc82ac58350d7c6ffca5c82c9f22c"></div>
         </div>
 
         <!-- POST 3 -->
@@ -548,11 +552,18 @@
             </div>
         </article>
 
-        <!-- AD SLOT 5: Mid Content 2 -->
+        <!-- AD SLOT 5: Banner 300x250 (mid) -->
         <div class="ad-slot" id="ad-mid-2">
-            <!-- &#8593; PASTE YOUR ADSTERRA AD CODE HERE &#8593; -->
-            <div class="ad-placeholder"><span>Advertisement</span></div>
-            <!-- &#8593; END ADSTERRA AD CODE &#8593; -->
+            <script>
+              atOptions = {
+                'key' : '349308e9afbdb2ab3a8d9a8423362ae8',
+                'format' : 'iframe',
+                'height' : 250,
+                'width' : 300,
+                'params' : {}
+              };
+            </script>
+            <script src="https://www.highperformanceformat.com/349308e9afbdb2ab3a8d9a8423362ae8/invoke.js"></script>
         </div>
 
         <!-- POST 5 -->
@@ -583,11 +594,10 @@
             </div>
         </article>
 
-        <!-- AD SLOT 6: Before CTA -->
+        <!-- AD SLOT 6: Native Banner (bottom) -->
         <div class="ad-slot" id="ad-pre-cta">
-            <!-- &#8593; PASTE YOUR ADSTERRA AD CODE HERE &#8593; -->
-            <div class="ad-placeholder"><span>Advertisement</span></div>
-            <!-- &#8593; END ADSTERRA AD CODE &#8593; -->
+            <script async="async" data-cfasync="false" src="https://pl29177701.profitablecpmratenetwork.com/e71dc82ac58350d7c6ffca5c82c9f22c/invoke.js"></script>
+            <div id="container-e71dc82ac58350d7c6ffca5c82c9f22c"></div>
         </div>
 
         <!-- Features Section -->
@@ -616,11 +626,18 @@
             </div>
         </div>
 
-        <!-- AD SLOT 7: Final -->
+        <!-- AD SLOT 7: Banner 300x250 (final) -->
         <div class="ad-slot" id="ad-final">
-            <!-- &#8593; PASTE YOUR ADSTERRA AD CODE HERE &#8593; -->
-            <div class="ad-placeholder"><span>Advertisement</span></div>
-            <!-- &#8593; END ADSTERRA AD CODE &#8593; -->
+            <script>
+              atOptions = {
+                'key' : '349308e9afbdb2ab3a8d9a8423362ae8',
+                'format' : 'iframe',
+                'height' : 250,
+                'width' : 300,
+                'params' : {}
+              };
+            </script>
+            <script src="https://www.highperformanceformat.com/349308e9afbdb2ab3a8d9a8423362ae8/invoke.js"></script>
         </div>
 
         <!-- Stats Bar -->
