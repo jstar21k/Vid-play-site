@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - VidPlays</title>
+    <meta name="description" content="Get in touch with the VidPlays team for questions, suggestions, or partnership inquiries.">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="header-inner">
+            <a href="/" class="logo">Vid<span>Plays</span></a>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <div class="legal-content">
+        <h1>Contact Us</h1>
+        <p class="updated">We typically respond within 24-48 hours.</p>
+
+        <h2>Get In Touch</h2>
+        <p>Whether you have a question about our content, found an error, or want to suggest a topic, we'd love to hear from you.</p>
+
+        <form class="contact-form" onsubmit="handleSubmit(event)">
+            <label>Your Name</label>
+            <input type="text" id="name" required placeholder="John Doe">
+
+            <label>Email Address</label>
+            <input type="email" id="email" required placeholder="john@example.com">
+
+            <label>Subject</label>
+            <input type="text" id="subject" required placeholder="Article suggestion">
+
+            <label>Message</label>
+            <textarea id="message" required placeholder="Your message..."></textarea>
+
+            <button type="submit">Send Message</button>
+            <p class="form-msg" id="formMsg">Thank you! Your message has been received.</p>
+        </form>
+
+        <h2 style="margin-top:40px;">Email</h2>
+        <p>For direct inquiries: contact@vidplays.in</p>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-bottom">
+            © 2024 VidPlays. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        function handleSubmit(e) {
+            e.preventDefault();
+            // In production, connect to a form service like Formspree
+            // For now, show success message
+            document.getElementById('formMsg').style.display = 'block';
+            e.target.reset();
+        }
+    </script>
+</body>
+</html>
