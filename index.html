@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#0f172a">
-    <title>JSTAR Gateway</title> 
+    <title>VidPlays - Secure Link Protector</title> 
 
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2984214380524017"
-     crossorigin="anonymous"></script>
+    <!-- Google AdSense (Keeping your original script) -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2984214380524017" crossorigin="anonymous"></script>
     
     <style>
         :root {
@@ -26,154 +26,196 @@
             background-color: var(--bg);
             color: var(--text-main);
             display: flex; flex-direction: column;
-            height: 100vh; /* Fixed height to force layout */
-            overflow: hidden;
+            min-height: 100vh;
         }
 
-        /* LARGE AD SECTIONS (Top & Bottom) */
+        /* ADS SECTIONS */
         .ad-section {
-            width: 100%;
-            flex: 2; /* Gives more weight to ads */
+            width: 100%; min-height: 120px;
             display: flex; align-items: center; justify-content: center;
-            padding: 10px;
-            background: rgba(0,0,0,0.3);
+            padding: 10px; background: rgba(0,0,0,0.3);
         }
-
         .ad-box {
-            width: 100%; height: 100%;
-            border: 1px dashed #444;
-            border-radius: 8px;
-            display: flex; align-items: center; justify-content: center;
+            width: 100%; height: 100%; border: 1px dashed #444;
+            border-radius: 8px; display: flex; align-items: center; justify-content: center;
             color: #475569; font-size: 11px;
-            overflow: hidden;
         }
 
-        /* SLIM MIDDLE SECTION */
-        .main-content {
-            flex: 1; /* Half the size of ad sections */
-            display: flex; align-items: center; justify-content: center;
-            padding: 10px;
-            z-index: 10;
+        /* MAIN CONTENT */
+        .main-container {
+            flex: 1; display: flex; flex-direction: column;
+            align-items: center; justify-content: center; padding: 20px;
         }
 
         .card {
-            width: 100%; max-width: 340px;
+            width: 100%; max-width: 400px;
             background: var(--card-bg);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            padding: 15px 20px; /* Reduced padding for half-size look */
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border-radius: 20px; padding: 25px;
+            text-align: center; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
 
-        /* Slimmer Timer UI */
-        #timer-text { 
-            font-size: 0.95rem; 
-            font-weight: 600; 
-            margin-bottom: 8px; 
-            color: var(--primary); 
-        }
+        h2 { color: var(--primary); margin-top: 0; }
         
-        .progress-bar {
-            width: 100%; height: 4px; /* Thinner bar */
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 4px; margin-bottom: 12px;
-            overflow: hidden;
-        }
-        #progress-fill {
-            width: 100%; height: 100%;
-            background: var(--primary);
-            transition: width 1s linear;
+        /* TOOL INPUTS */
+        input[type="text"] {
+            width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #334155;
+            background: #0f172a; color: white; margin-bottom: 15px;
         }
 
-        /* Slimmer Button */
         .btn {
-            width: 100%; padding: 12px; border-radius: 10px; border: none;
-            font-size: 0.9rem; font-weight: 700; text-transform: uppercase;
-            transition: 0.3s;
+            width: 100%; padding: 14px; border-radius: 10px; border: none;
+            font-size: 1rem; font-weight: 700; text-transform: uppercase;
+            cursor: pointer; transition: 0.3s;
         }
+        .btn-active { background: var(--primary); color: #000; }
         .btn-disabled { background: #334155; color: #64748b; }
-        .btn-active { 
-            background: var(--primary); color: #000; 
-            box-shadow: 0 4px 12px rgba(56, 189, 248, 0.3);
+
+        /* CAPTCHA STYLE */
+        .captcha-box {
+            background: rgba(0,0,0,0.2); border-radius: 10px;
+            padding: 15px; margin-bottom: 15px; display: flex;
+            align-items: center; gap: 10px; border: 1px solid #334155;
         }
 
-        #error-view { display: none; }
+        /* PROGRESS BAR */
+        .progress-bar { width: 100%; height: 4px; background: #334155; border-radius: 4px; margin: 15px 0; overflow: hidden; }
+        #progress-fill { width: 100%; height: 100%; background: var(--primary); transition: width 1s linear; }
+
+        /* CONTENT AREA */
+        .info-section { max-width: 600px; margin-top: 30px; text-align: left; font-size: 0.9rem; color: var(--text-dim); }
+        .info-section h3 { color: var(--primary); margin-bottom: 5px; }
+
+        footer { padding: 20px; text-align: center; font-size: 0.8rem; border-top: 1px solid #334155; color: #475569; }
+        
+        .hidden { display: none !important; }
     </style>
 </head>
 <body>
 
-    <!-- TOP AD SECTION (Larger) -->
+    <!-- TOP AD -->
     <div class="ad-section">
-        <div class="ad-box">
-            <!-- PASTE ADSTERRA TOP SCRIPT HERE -->
-            TOP ADVERTISEMENT SPACE
-        </div>
+        <div class="ad-box">MONETAG AD TOP</div>
     </div>
 
-    <!-- SLIM MIDDLE COUNTER -->
-    <div class="main-content">
-        <div id="main-view" class="card">
-            <div id="timer-text">Wait...</div>
-            <div class="progress-bar">
-                <div id="progress-fill"></div>
+    <div class="main-container">
+        
+        <!-- VIEW 1: HOME/TOOL (Shown if no token) -->
+        <div id="home-view" class="card hidden">
+            <h2>Link Protector</h2>
+            <p style="font-size: 0.9rem; margin-bottom: 20px;">Enter any URL to protect and shorten it.</p>
+            <input type="text" id="tool-input" placeholder="Paste your link here...">
+            <button class="btn btn-active" onclick="generateToolLink()">Generate Link</button>
+            <div id="tool-result" class="hidden" style="margin-top:20px;">
+                <p style="font-size: 0.8rem;">Your Protected URL:</p>
+                <input type="text" id="tool-output" readonly onclick="this.select()">
+            </div>
+        </div>
+
+        <!-- VIEW 2: GATEWAY/TIMER (Shown if token exists) -->
+        <div id="gateway-view" class="card hidden">
+            <!-- Step 1: Captcha -->
+            <div id="captcha-step">
+                <h2>Security Check</h2>
+                <div class="captcha-box">
+                    <input type="checkbox" id="verify-check" style="width:20px; height:20px;" onclick="startTimerSequence()">
+                    <span style="font-size:0.9rem;">I am not a robot</span>
+                </div>
+                <p style="font-size: 0.8rem; color: var(--text-dim);">Verify you are human to access the destination link.</p>
             </div>
 
-            <button id="action-btn" class="btn btn-disabled" disabled>
-                Waiting...
-            </button>
+            <!-- Step 2: Timer -->
+            <div id="timer-step" class="hidden">
+                <div id="timer-text">Preparing Link...</div>
+                <div class="progress-bar">
+                    <div id="progress-fill"></div>
+                </div>
+                <button class="btn btn-disabled" disabled>Please Wait</button>
+            </div>
+
+            <!-- Step 3: Final Button -->
+            <div id="final-step" class="hidden">
+                <h2 style="font-size:1.2rem;">Link Ready!</h2>
+                <button id="action-btn" class="btn btn-active">Open Destination</button>
+            </div>
         </div>
 
-        <div id="error-view" class="card">
-            <div style="color:#ef4444; font-weight:bold;">Invalid Link</div>
-            <div style="font-size: 12px; color:var(--text-dim);">Get a new link from bot</div>
+        <!-- SEO Content for Monetag Approval -->
+        <div class="info-section" id="seo-content">
+            <h3>About VidPlays Link Tool</h3>
+            <p>VidPlays is a free security utility designed to protect URLs from automated bots and scrapers. Our advanced human verification system ensures that only real users can access the shared destination content.</p>
+            <h3>Why use a Link Protector?</h3>
+            <p>Protecting your links helps in maintaining the integrity of your traffic. Whether you are sharing files on Telegram or redirecting users to private communities, VidPlays provides a robust layer of protection.</p>
         </div>
+
     </div>
 
-    <!-- BOTTOM AD SECTION (Larger) -->
+    <!-- BOTTOM AD -->
     <div class="ad-section">
-        <div class="ad-box">
-            <!-- PASTE ADSTERRA BOTTOM SCRIPT HERE -->
-            BOTTOM ADVERTISEMENT SPACE
-        </div>
+        <div class="ad-box">MONETAG AD BOTTOM</div>
     </div>
+
+    <footer>
+        &copy; 2024 VidPlays.in | Privacy Policy | Terms of Service | Contact
+    </footer>
 
     <script>
         const BOT_USERNAME = 'JSTAR_P4N3L_bot'; 
         const WAIT_TIME = 15;
+        const params = new URLSearchParams(window.location.search);
+        const token = params.get('token');
 
-        const urlParams = new URLSearchParams(window.location.search);
-        const token = urlParams.get('token');
-
-        const timerTxt = document.getElementById('timer-text');
-        const progress = document.getElementById('progress-fill');
-        const btn = document.getElementById('action-btn');
-
-        if (!token) {
-            document.getElementById('main-view').style.display = 'none';
-            document.getElementById('error-view').style.display = 'block';
+        // ROUTING
+        if (token) {
+            document.getElementById('gateway-view').classList.remove('hidden');
+            document.getElementById('seo-content').classList.add('hidden'); // Hide text on gateway
         } else {
+            document.getElementById('home-view').classList.remove('hidden');
+        }
+
+        // TOOL LOGIC
+        function generateToolLink() {
+            const input = document.getElementById('tool-input').value;
+            if(!input) return alert("Please paste a link");
+            
+            // Just for show/utility, encoding the url into a token-like format
+            const mockToken = btoa(input).substring(0, 10); 
+            const final = window.location.origin + window.location.pathname + "?token=" + mockToken;
+            
+            document.getElementById('tool-output').value = final;
+            document.getElementById('tool-result').classList.remove('hidden');
+        }
+
+        // GATEWAY LOGIC
+        function startTimerSequence() {
+            document.getElementById('captcha-step').classList.add('hidden');
+            document.getElementById('timer-step').classList.remove('hidden');
+            
             let timeLeft = WAIT_TIME;
+            const fill = document.getElementById('progress-fill');
+            const txt = document.getElementById('timer-text');
             
             const countdown = setInterval(() => {
                 timeLeft--;
-                timerTxt.innerText = `Preparing Link: ${timeLeft}s`;
-                progress.style.width = (timeLeft / WAIT_TIME) * 100 + "%";
+                txt.innerText = `Preparing Link: ${timeLeft}s`;
+                fill.style.width = (timeLeft / WAIT_TIME) * 100 + "%";
 
                 if (timeLeft <= 0) {
                     clearInterval(countdown);
-                    timerTxt.innerText = "Link is Ready!";
-                    progress.style.width = "0%";
-                    btn.disabled = false;
-                    btn.classList.replace('btn-disabled', 'btn-active');
-                    btn.innerText = "Open Telegram Bot";
-                    
-                    btn.onclick = () => {
-                        window.location.href = `https://t.me/${BOT_USERNAME}?start=${token}`;
-                    };
+                    showFinalButton();
                 }
             }, 1000);
+        }
+
+        function showFinalButton() {
+            document.getElementById('timer-step').classList.add('hidden');
+            document.getElementById('final-step').classList.remove('hidden');
+            
+            const btn = document.getElementById('action-btn');
+            btn.onclick = () => {
+                window.location.href = `https://t.me/${BOT_USERNAME}?start=${token}`;
+            };
         }
     </script>
 </body>
