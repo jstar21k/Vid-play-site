@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Check - VidPlays</title>
+    <style>
+        :root { --bg: #0f172a; --card: #1e293b; --primary: #38bdf8; --text: #f8fafc; }
+        body { margin: 0; font-family: sans-serif; background: var(--bg); color: var(--text); display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
+        .ad-spot { width: 100%; min-height: 100px; background: rgba(255,255,255,0.05); margin: 15px 0; border: 1px dashed #444; display: flex; align-items: center; justify-content: center; color: #666; font-size: 12px; }
+        .card { background: var(--card); padding: 30px; border-radius: 15px; border: 1px solid #334155; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.5); width: 90%; max-width: 400px; margin-top: 50px; }
+        .captcha-box { background: rgba(0,0,0,0.3); border: 1px solid var(--primary); padding: 20px; border-radius: 10px; display: flex; align-items: center; justify-content: center; gap: 15px; cursor: pointer; transition: 0.3s; }
+        .captcha-box:hover { background: rgba(56, 189, 248, 0.1); }
+        input[type="checkbox"] { width: 25px; height: 25px; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+    <div class="ad-spot">ADSTERRA BANNER 1</div>
+
+    <div class="card">
+        <h2 style="margin-top:0;">Verify You Are Human</h2>
+        <p style="color:#94a3b8; font-size: 0.9rem;">Click the box below to protect the destination link from bots.</p>
+        
+        <div class="captcha-box" onclick="document.getElementById('cbox').click()">
+            <input type="checkbox" id="cbox" onclick="handleVerify(event)">
+            <span style="font-weight:bold;">I am not a robot</span>
+        </div>
+    </div>
+
+    <div class="ad-spot" style="min-height: 250px;">ADSTERRA BANNER 2 (Large)</div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const token = urlParams.get('token');
+
+        function handleVerify(e) {
+            e.stopPropagation();
+            if (!token) return alert("Invalid Link Access");
+            
+            // Redirect to Step 2 after a tiny delay
+            setTimeout(() => {
+                window.location.href = `post.html?token=${token}`;
+            }, 500);
+        }
+    </script>
+</body>
+</html>

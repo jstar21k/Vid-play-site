@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Media Gateway - VidPlays</title>
+    <style>
+        :root { --bg: #0f172a; --card: #1e293b; --primary: #38bdf8; --text: #f8fafc; }
+        body { margin: 0; font-family: 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+        
+        /* Sticky Timer Bar */
+        .timer-bar { position: fixed; top: 0; width: 100%; background: #000; padding: 10px; border-bottom: 2px solid var(--primary); z-index: 1000; text-align: center; font-weight: bold; }
+        
+        .container { max-width: 700px; margin: 60px auto; padding: 20px; }
+        .ad-slot { width: 100%; min-height: 250px; background: rgba(0,0,0,0.5); margin: 30px 0; border: 1px solid #334155; display: flex; align-items: center; justify-content: center; color: #444; }
+        
+        /* Article Styling */
+        .article-title { color: var(--primary); font-size: 1.8rem; margin-bottom: 20px; }
+        .article-content p { color: #94a3b8; margin-bottom: 20px; }
+
+        /* Final Button */
+        #final-btn-container { display: none; text-align: center; margin-top: 50px; padding-bottom: 50px; }
+        .btn-go { background: var(--primary); color: #000; padding: 20px 50px; border: none; border-radius: 50px; font-weight: 800; font-size: 1.2rem; cursor: pointer; text-transform: uppercase; box-shadow: 0 0 20px rgba(56, 189, 248, 0.5); }
+        
+        .scroll-note { color: var(--primary); font-size: 0.8rem; animation: blink 1s infinite; }
+        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+    </style>
+</head>
+<body>
+
+    <div class="timer-bar">
+        <span id="timer-txt">Generating link: 20s</span>
+        <div id="scroll-prompt" class="scroll-note" style="display:none;">↓ SCROLL DOWN TO BOTTOM ↓</div>
+    </div>
+
+    <div class="container">
+        <h1 class="article-title">The Evolution of Digital Media Content in 2024</h1>
+        
+        <div class="ad-slot">ADSTERRA BANNER 3</div>
+
+        <div class="article-content">
+            <p>Digital media has undergone a massive transformation over the past decade. With the rise of high-speed internet and the proliferation of smartphones, users are consuming content faster than ever before. This shift has forced creators and distributors to find new ways to protect their assets while ensuring a smooth user experience.</p>
+            
+            <p>Security is now at the forefront of the digital conversation. From end-to-end encryption in messaging apps like Telegram to secure gateways used by media platforms, the goal is always to verify the human behind the screen.</p>
+            
+            <div class="ad-slot">ADSTERRA BANNER 4</div>
+
+            <p>Why do we use timers? Timers serve a dual purpose. First, they allow the underlying server to verify the request and generate a unique session token. Second, they prevent automated scrapers and bots from overwhelming the system, ensuring that real users get the bandwidth they deserve.</p>
+
+            <p>When you access content through VidPlays, you are participating in a secure ecosystem designed for safety. We never store personal data, and our only goal is to provide a clean path to your destination.</p>
+
+            <div class="ad-slot">ADSTERRA BANNER 5</div>
+
+            <p>As we move into the future, we expect to see even more advanced methods of content delivery. For now, human verification remains the most reliable way to maintain a high-quality community. Thank you for your patience during the generation process.</p>
+        </div>
+
+        <div class="ad-slot">ADSTERRA BANNER 6</div>
+
+        <div id="final-btn-container">
+            <h2 style="color:white;">Your Link is Ready!</h2>
+            <button class="btn-go" onclick="redirectToBot()">Get File Now</button>
+        </div>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const token = urlParams.get('token');
+        const BOT_USERNAME = "Filebot69_bot"; // Your sharing bot
+
+        let timeLeft = 20;
+        const timer = setInterval(() => {
+            timeLeft--;
+            document.getElementById('timer-txt').innerText = `Generating link: ${timeLeft}s`;
+
+            if (timeLeft <= 0) {
+                clearInterval(timer);
+                document.getElementById('timer-txt').innerText = "Link Generated!";
+                document.getElementById('scroll-prompt').style.display = "block";
+                document.getElementById('final-btn-container').style.display = "block";
+            }
+        }, 1000);
+
+        function redirectToBot() {
+            window.location.href = `https://t.me/${BOT_USERNAME}?start=${token}`;
+        }
+    </script>
+</body>
+</html>
