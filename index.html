@@ -25,7 +25,8 @@
 
         /* Fake Content Section for Monetag Approval */
         .blog-section { margin-top: 40px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-        .post { background: #0f172a; border: 1px solid #334155; border-radius: 10px; padding: 15px; }
+        .post { background: #0f172a; border: 1px solid #334155; border-radius: 10px; padding: 15px; cursor: pointer; transition: 0.3s; }
+        .post:hover { border-color: var(--primary); }
         .post h3 { color: var(--primary); margin-top: 0; font-size: 1rem; }
         .post p { font-size: 0.85rem; color: var(--dim); line-height: 1.5; }
 
@@ -39,6 +40,8 @@
         .captcha-box { background: rgba(0,0,0,0.2); padding: 10px; border-radius: 8px; margin-bottom: 10px; display: flex; align-items: center; justify-content: center; gap: 10px; border: 1px solid #334155; }
 
         footer { text-align: center; padding: 30px; border-top: 1px solid #334155; margin-top: 50px; font-size: 0.8rem; color: var(--dim); }
+        footer a { color: var(--dim); text-decoration: none; margin: 0 5px; }
+        footer a:hover { color: var(--primary); }
         .hidden { display: none !important; }
     </style>
 </head>
@@ -78,17 +81,17 @@
         </div>
     </div>
 
-    <!-- BLOG SECTION (Crucial for Monetag Approval) -->
+    <!-- BLOG SECTION -->
     <div class="blog-section">
-        <div class="post">
+        <div class="post" onclick="alert('Full article coming soon!')">
             <h3>Top 5 Streaming Trends 2024</h3>
             <p>Discover how cloud technology is changing the way we consume entertainment. From 4K streaming to low-latency media delivery...</p>
         </div>
-        <div class="post">
+        <div class="post" onclick="alert('Full article coming soon!')">
             <h3>Digital Rights Management Basics</h3>
             <p>Understanding how to protect your digital assets and media links using modern encryption and gateway tools like VidPlays.</p>
         </div>
-        <div class="post">
+        <div class="post" onclick="alert('Full article coming soon!')">
             <h3>Future of Social Media Sharing</h3>
             <p>Why private communities on platforms like Telegram are becoming the preferred choice for niche entertainment enthusiasts.</p>
         </div>
@@ -96,9 +99,15 @@
 
 </div>
 
+<!-- UPDATED CLICKABLE FOOTER -->
 <footer>
     <p>&copy; 2024 VidPlays.in | Entertainment Media Group</p>
-    <p>Privacy Policy | Terms of Service | DMCA | Contact Us</p>
+    <p>
+        <a href="legal/privacy.html">Privacy Policy</a> | 
+        <a href="#">Terms of Service</a> | 
+        <a href="legal/dmca.html">DMCA</a> | 
+        <a href="https://t.me/JSTAR_P4N3L_bot">Contact Us</a>
+    </p>
 </footer>
 
 <script>
