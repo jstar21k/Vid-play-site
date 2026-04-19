@@ -11,10 +11,10 @@
     <meta property="og:description" content="Discover the latest in entertainment technology, streaming trends, and digital media insights.">
     <meta property="og:site_name" content="VidPlays.in">
     <meta property="og:type" content="website">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="VidPlays - Entertainment & Media Tech Blog">
-    <meta name="twitter:description" content="Discover the latest in entertainment technology, streaming trends, and digital media insights.">
     <link rel="icon" href="https://vidplays.in/favicon.ico">
+
+    <!-- Popunder Ad (Adsterra) -->
+    <script src="https://pl29189130.profitablecpmratenetwork.com/71/7d/eb/717deb8dc669c2cdf7234d42d48b608d.js"></script>
 
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -30,7 +30,7 @@
             --muted: #334155;
             --glass: rgba(15, 23, 41, 0.8);
         }
-   
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: var(--bg);
@@ -42,13 +42,11 @@
 
         html { scroll-behavior: smooth; }
 
-        /* Scrollbar */
         ::-webkit-scrollbar { width: 5px; }
         ::-webkit-scrollbar-track { background: var(--bg); }
         ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 3px; }
         ::-webkit-scrollbar-thumb:hover { background: #334155; }
 
-        /* ── Animations ── */
         @keyframes pulse-glow {
             0%, 100% { box-shadow: 0 0 15px rgba(34,211,238,0.3), 0 0 30px rgba(34,211,238,0.1); }
             50% { box-shadow: 0 0 25px rgba(34,211,238,0.5), 0 0 50px rgba(34,211,238,0.2); }
@@ -74,15 +72,9 @@
             0%, 100% { opacity: 1; }
             50% { opacity: 0.7; }
         }
-        @keyframes shimmer {
-            0% { background-position: -200% 0; }
-            100% { background-position: 200% 0; }
-        }
 
         .anim-float { animation: float-up 0.5s ease-out forwards; opacity: 0; }
-        .anim-glow { animation: pulse-glow 2s ease-in-out infinite; }
         .anim-bounce { animation: bounce-subtle 2s ease-in-out infinite; }
-        .anim-spin { animation: spin-slow 2s linear infinite; }
 
         .gradient-text {
             background: linear-gradient(135deg, #22d3ee, #34d399, #22d3ee);
@@ -93,7 +85,6 @@
             animation: gradient-shift 4s ease infinite;
         }
 
-        /* ── Glass Card ── */
         .glass {
             background: var(--glass);
             backdrop-filter: blur(12px);
@@ -122,26 +113,24 @@
             font-weight: 800; font-size: 11px; color: #080c18;
         }
         .logo-text { font-weight: 700; font-size: 14px; color: #e2e8f0; }
-        .nav-tag { font-size: 10px; color: #475569; }
         .nav-dot { width: 6px; height: 6px; border-radius: 50%; background: #34d399; animation: progress-pulse 2s infinite; }
 
         /* ── Container ── */
         .container { max-width: 100%; margin: auto; padding: 16px 12px 100px; }
-
         @media (min-width: 420px) {
             .container { max-width: 680px; padding: 20px 16px 80px; }
         }
 
         /* ── Ad Slots ── */
-        .ad-slot { margin: 16px 0; min-height: 50px; overflow: hidden; }
+        .ad-slot { margin: 16px auto; min-height: 50px; overflow: hidden; text-align: center; }
         .ad-slot iframe { max-width: 100%; }
 
         /* ── Verify Section ── */
-        .verify-box { padding: 20px; text-align: center; }
+        .verify-box { padding: 24px 20px; text-align: center; }
         .verify-title { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 4px; }
         .verify-title svg { width: 20px; height: 20px; color: var(--primary); }
         .verify-title h3 { font-size: 14px; font-weight: 700; color: #e2e8f0; }
-        .verify-sub { font-size: 11px; color: #475569; margin-bottom: 16px; }
+        .verify-sub { font-size: 11px; color: #475569; margin-bottom: 20px; }
 
         .captcha-btn {
             width: 100%; padding: 16px;
@@ -155,12 +144,13 @@
         }
         .captcha-btn:hover { border-color: rgba(34,211,238,0.3); background: rgba(15,23,41,0.8); }
         .captcha-btn:active { transform: scale(0.98); }
+        .captcha-btn.disabled { pointer-events: none; opacity: 0.6; }
 
         .captcha-check {
             width: 22px; height: 22px; border-radius: 4px;
             border: 2px solid #475569;
             display: flex; align-items: center; justify-content: center;
-            flex-shrink: 0;
+            flex-shrink: 0; transition: all 0.3s;
         }
         .captcha-check.checked { border-color: #22d3ee; background: #22d3ee; }
         .captcha-check.checked::after {
@@ -170,24 +160,35 @@
         }
         .captcha-label { font-size: 14px; color: #94a3b8; font-weight: 500; }
         .captcha-icon { margin-left: auto; opacity: 0.4; width: 28px; height: 28px; }
-        .captcha-footer { font-size: 10px; color: #334155; margin-top: 8px; }
+        .captcha-footer { font-size: 10px; color: #334155; margin-top: 10px; }
 
-        /* Progress */
-        .progress-status { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 12px; }
+        /* ── Timer Section ── */
+        .timer-box { padding: 20px; text-align: center; }
+        .timer-status { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 12px; }
+        .timer-status-text { font-size: 12px; font-weight: 600; color: #22d3ee; }
+
+        /* ── Ad Click Prompt ── */
+        .ad-prompt {
+            text-align: center; padding: 16px; margin-bottom: 12px;
+            border-radius: 12px;
+            background: linear-gradient(90deg, rgba(34,211,238,0.06), rgba(52,211,153,0.06));
+            border: 1px dashed rgba(34,211,238,0.2);
+        }
+        .ad-prompt-icon { font-size: 22px; margin-bottom: 6px; }
+        .ad-prompt-text { font-size: 13px; font-weight: 700; color: #22d3ee; margin-bottom: 4px; }
+        .ad-prompt-sub { font-size: 11px; color: #475569; }
+        .ad-prompt-wait { color: #f59e0b; }
         .progress-bar-wrap { width: 100%; height: 5px; background: #0f172a; border-radius: 999px; overflow: hidden; margin-bottom: 8px; }
         .progress-bar-fill {
             height: 100%; border-radius: 999px;
             background: linear-gradient(90deg, #22d3ee, #34d399);
             transition: width 1s linear;
         }
-        .progress-time { font-size: 10px; color: #475569; }
 
         /* Done State */
         .done-icon svg { width: 20px; height: 20px; color: #34d399; }
         .done-text { font-size: 14px; font-weight: 700; color: #34d399; }
         .done-sub { font-size: 11px; color: #475569; margin-top: 4px; }
-        .done-arrow { margin-top: 12px; }
-        .done-arrow svg { width: 20px; height: 20px; color: rgba(34,211,238,0.5); margin: auto; }
 
         /* ── Social Proof ── */
         .social-proof {
@@ -206,10 +207,6 @@
         .blog-header span { font-size: 10px; color: #334155; }
 
         .post-card { padding: 16px; margin-bottom: 14px; border-radius: 14px; overflow: hidden; transition: border-color 0.3s; }
-
-        @media (min-width: 420px) {
-            .post-card { padding: 20px; margin-bottom: 16px; }
-        }
         .post-card:hover { border-color: rgba(34,211,238,0.15); }
 
         .post-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
@@ -218,61 +215,75 @@
             border: 1px solid; font-weight: 600;
         }
         .cat-ai { background: rgba(168,85,247,0.15); color: #c084fc; border-color: rgba(168,85,247,0.25); }
-        .cat-game { background: rgba(52,211,153,0.15); color: #6ee7b7; border-color: rgba(52,211,153,0.25); }
         .cat-cyber { background: rgba(244,63,94,0.15); color: #fb7185; border-color: rgba(244,63,94,0.25); }
-        .cat-5g { background: rgba(251,146,60,0.15); color: #fdba74; border-color: rgba(251,146,60,0.25); }
         .cat-social { background: rgba(56,189,248,0.15); color: #7dd3fc; border-color: rgba(56,189,248,0.25); }
-        .cat-trend { background: rgba(244,114,182,0.15); color: #f9a8d4; border-color: rgba(244,114,182,0.25); }
 
         .post-read { font-size: 10px; color: #334155; }
         .post-title { font-size: 15px; font-weight: 700; color: #e2e8f0; margin-bottom: 10px; line-height: 1.4; }
         .post-body p { font-size: 12.5px; color: #64748b; line-height: 1.65; margin-bottom: 8px; }
         .post-body p:last-child { margin-bottom: 0; }
 
-        /* ── Features Section ── */
-        .features-box { padding: 20px; margin-bottom: 20px; }
-        .features-box h3 { font-size: 14px; font-weight: 700; color: #e2e8f0; margin-bottom: 14px; }
-        .feature-item { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 14px; }
-        .feature-item:last-child { margin-bottom: 0; }
-        .feature-icon { font-size: 18px; margin-top: 2px; flex-shrink: 0; }
-        .feature-title { font-size: 12px; font-weight: 600; color: #22d3ee; margin-bottom: 2px; }
-        .feature-desc { font-size: 11px; color: #475569; line-height: 1.5; }
+        /* ── Get File Button (in-page) ── */
+        .get-file-wrap { margin: 28px 0 16px; text-align: center; }
 
-        /* ── Stats Bar ── */
-        .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 20px; }
-        .stat-card { text-align: center; padding: 14px 8px; }
-        .stat-value { font-size: 15px; font-weight: 700; color: #22d3ee; }
-        .stat-label { font-size: 10px; color: #334155; margin-top: 2px; }
-
-        /* ── Get File Button ── */
-        .get-file-wrap { margin-top: 28px; margin-bottom: 16px; text-align: center; }
         .get-file-btn {
             width: 100%; padding: 18px; border-radius: 14px;
-            font-size: 17px; font-weight: 800; text-transform: uppercase;
+            font-size: 16px; font-weight: 800; text-transform: uppercase;
             letter-spacing: 1px; border: none; cursor: pointer;
             transition: all 0.3s; -webkit-tap-highlight-color: transparent;
             display: flex; align-items: center; justify-content: center; gap: 8px;
             min-height: 56px;
         }
         .get-file-btn:active { transform: scale(0.97); }
+
         .get-file-btn.active {
             background: linear-gradient(135deg, #22d3ee, #34d399);
             color: #080c18;
             animation: pulse-glow 2s ease-in-out infinite;
         }
         .get-file-btn.active svg { width: 22px; height: 22px; }
-        .get-file-btn.inactive {
+
+        .get-file-btn.waiting {
+            background: #0f172a; color: #475569;
+            border: 1px solid rgba(34,211,238,0.15);
+            font-size: 13px; text-transform: none; letter-spacing: 0;
+            cursor: default;
+        }
+        .get-file-btn.waiting .countdown-num {
+            color: #22d3ee; font-weight: 800;
+            display: inline-block; min-width: 20px;
+        }
+
+        .get-file-btn.locked {
             background: #0f172a; color: #334155;
             border: 1px dashed #1e293b;
             font-size: 12px; text-transform: none; letter-spacing: 0;
             cursor: default;
-            padding: 14px 16px;
+            padding: 16px;
         }
+
         .get-file-btn.redirecting {
             background: #1e293b; color: #475569;
             font-size: 13px; cursor: wait;
         }
-        .get-file-hint { font-size: 10px; color: #334155; margin-top: 8px; }
+
+        .get-file-hint {
+            text-align: center; font-size: 10px; color: #334155;
+            margin-top: 8px;
+        }
+
+        /* ── Scroll Hint (mobile) ── */
+        .scroll-hint {
+            position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%);
+            z-index: 50; padding: 10px 20px; border-radius: 999px;
+            background: rgba(15,23,41,0.95); border: 1px solid rgba(34,211,238,0.15);
+            backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+            display: flex; align-items: center; gap: 8px;
+            font-size: 13px; font-weight: 600; color: #22d3ee;
+            animation: float-up 0.4s ease-out forwards, bounce-subtle 2s ease-in-out infinite;
+            white-space: nowrap;
+        }
+        .scroll-hint .arrow { font-size: 16px; }
 
         /* ── URL Protector (Home View) ── */
         .tool-box { padding: 20px; text-align: center; }
@@ -304,18 +315,6 @@
             color: #22d3ee; font-size: 11px; font-family: monospace;
         }
 
-        /* ── Scroll Hint ── */
-        .scroll-hint {
-            position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%);
-            z-index: 50; padding: 8px 18px; border-radius: 999px;
-            background: rgba(15,23,41,0.95); border: 1px solid rgba(34,211,238,0.15);
-            backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
-            display: flex; align-items: center; gap: 8px;
-            font-size: 12px; font-weight: 500; color: #22d3ee;
-            animation: float-up 0.4s ease-out forwards;
-        }
-        .scroll-hint .arrow { display: inline-block; animation: bounce-subtle 2s ease-in-out infinite; }
-
         /* ── Adblock Banner ── */
         .adblock-banner {
             position: fixed; top: 0; left: 0; right: 0; z-index: 100;
@@ -326,13 +325,8 @@
         }
 
         /* ── Footer ── */
-        .footer {
-            border-top: 1px solid rgba(56,189,248,0.06);
-            margin-top: auto;
-        }
-        .footer-inner {
-            max-width: 680px; margin: auto; padding: 24px 16px; text-align: center;
-        }
+        .footer { border-top: 1px solid rgba(56,189,248,0.06); }
+        .footer-inner { max-width: 680px; margin: auto; padding: 24px 16px; text-align: center; }
         .footer-logo { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 10px; }
         .footer-logo-icon {
             width: 20px; height: 20px; border-radius: 6px;
@@ -346,10 +340,8 @@
         .footer-links a { font-size: 10px; color: #334155; text-decoration: none; transition: color 0.2s; }
         .footer-links a:hover { color: #22d3ee; }
 
-        /* ── Hidden ── */
         .hidden { display: none !important; }
 
-        /* ── Spinner ── */
         .spinner {
             width: 20px; height: 20px; border: 2.5px solid rgba(34,211,238,0.25);
             border-top-color: #22d3ee; border-radius: 50%;
@@ -365,8 +357,8 @@
     <!-- Adblock Banner -->
     <div id="adblock-banner" class="adblock-banner hidden">&#9888;&#65039; Ad blocker detected! Please disable it to support free content.</div>
 
-    <!-- Scroll Hint -->
-    <div id="scroll-hint" class="scroll-hint hidden">
+    <!-- Scroll Hint (mobile) -->
+    <div id="scroll-hint" class="scroll-hint" style="display:none;">
         <span class="arrow">&#8595;</span> Scroll down to get your file
     </div>
 
@@ -377,76 +369,75 @@
                 <div class="logo-box">VP</div>
                 <span class="logo-text">VidPlays</span>
             </div>
-            <div style="display:flex;align-items:center;gap:10px;">
-                <span class="nav-tag" style="display:none;" id="nav-tag-desktop">Entertainment &#8226; Tech &#8226; Media</span>
-                <div class="nav-dot"></div>
-            </div>
+            <div class="nav-dot"></div>
         </div>
     </nav>
 
     <!-- Main Content -->
     <main class="container">
 
-        <!-- AD SLOT 1: Banner 320x50 (mobile-friendly) -->
-        <div class="ad-slot" id="ad-top-banner">
-            <script>
-              atOptions = {
-                'key' : '4d2f9c76c1e324b2daf675db39cf5013',
-                'format' : 'iframe',
-                'height' : 50,
-                'width' : 320,
-                'params' : {}
-              };
-            </script>
-            <script src="https://www.highperformanceformat.com/4d2f9c76c1e324b2daf675db39cf5013/invoke.js"></script>
+        <!-- ══════════════════════════════════════ -->
+        <!-- PAGE 1: CAPTCHA ONLY — NO BANNERS     -->
+        <!-- ══════════════════════════════════════ -->
+        <div id="captcha-page" class="hidden">
+            <div class="glass verify-box anim-float">
+                <div class="verify-title">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
+                    <h3>Security Verification</h3>
+                </div>
+                <p class="verify-sub">Please verify you are not a robot to access content</p>
+                <div class="captcha-btn" id="captcha-btn" onclick="handleCaptchaClick()">
+                    <div class="captcha-check" id="captcha-check"></div>
+                    <span class="captcha-label">I'm not a robot</span>
+                    <svg class="captcha-icon" viewBox="0 0 32 32" fill="none">
+                        <path d="M16 4C9.37 4 4 9.37 4 16s5.37 12 12 12 12-5.37 12-12S22.63 4 16 4z" stroke="#64748b" stroke-width="2"/>
+                        <circle cx="12" cy="13" r="2" fill="#64748b"/>
+                        <circle cx="20" cy="13" r="2" fill="#64748b"/>
+                        <path d="M11 20c1.5 1.5 4.5 1.5 6 0" stroke="#64748b" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <p class="captcha-footer">Protected by VidPlays Security</p>
+            </div>
         </div>
 
-        <!-- GATEWAY VIEW (when ?token= is present) -->
-        <div id="gateway-view" class="hidden">
-            <div class="glass verify-box anim-float">
-                <!-- Captcha Step -->
-                <div id="captcha-step">
-                    <div class="verify-title">
-                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
-                        <h3>Security Verification</h3>
-                    </div>
-                    <p class="verify-sub">Please verify you are not a robot to access content</p>
-                    <div class="captcha-btn" id="captcha-btn" onclick="startVerify()">
-                        <div class="captcha-check" id="captcha-check"></div>
-                        <span class="captcha-label">I'm not a robot</span>
-                        <svg class="captcha-icon" viewBox="0 0 32 32" fill="none">
-                            <path d="M16 4C9.37 4 4 9.37 4 16s5.37 12 12 12 12-5.37 12-12S22.63 4 16 4z" stroke="#64748b" stroke-width="2"/>
-                            <circle cx="12" cy="13" r="2" fill="#64748b"/>
-                            <circle cx="20" cy="13" r="2" fill="#64748b"/>
-                            <path d="M11 20c1.5 1.5 4.5 1.5 6 0" stroke="#64748b" stroke-width="1.5" stroke-linecap="round"/>
-                        </svg>
-                    </div>
-                    <p class="captcha-footer">Protected by VidPlays Security</p>
-                </div>
+        <!-- ══════════════════════════════════════ -->
+        <!-- PAGE 2: TIMER + ADS + CONTENT         -->
+        <!-- ══════════════════════════════════════ -->
+        <div id="timer-page" class="hidden">
 
-                <!-- Verifying Step -->
-                <div id="verify-step" class="hidden">
-                    <div class="progress-status">
-                        <div class="spinner"></div>
-                        <span id="verify-text" style="font-size:12px;font-weight:600;color:#22d3ee;">Establishing secure connection...</span>
-                    </div>
-                    <div class="progress-bar-wrap">
-                        <div class="progress-bar-fill" id="progress-fill" style="width:0%"></div>
-                    </div>
-                    <p class="progress-time">Estimated time remaining: <span id="time-remaining">20</span>s</p>
+            <!-- Ad Click Prompt (shown first, before timer) -->
+            <div class="glass anim-float" id="ad-click-box" style="padding:20px;text-align:center;">
+                <div class="ad-prompt" id="ad-prompt-box">
+                    <div class="ad-prompt-icon">&#128071;</div>
+                    <p class="ad-prompt-text">Click the ad below to start verification</p>
+                    <p class="ad-prompt-sub">Click the ad, then come back &mdash; the countdown will begin automatically</p>
                 </div>
+            </div>
 
-                <!-- Done Step -->
-                <div id="done-step" class="hidden anim-float">
-                    <div class="verify-title done-icon">
-                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                        <span class="done-text">Verification Complete!</span>
-                    </div>
-                    <p class="done-sub">Your file is ready. Scroll down to get your link.</p>
-                    <div class="done-arrow anim-bounce">
-                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5L12 21m0 0l-7.5-7.5M12 21V3"/></svg>
-                    </div>
+            <!-- Timer (hidden until ad clicked) -->
+            <div class="glass timer-box hidden" id="timer-box">
+                <div class="timer-status">
+                    <div class="spinner"></div>
+                    <span class="timer-status-text" id="timer-text">Establishing secure connection...</span>
                 </div>
+                <div class="progress-bar-wrap">
+                    <div class="progress-bar-fill" id="progress-fill" style="width:0%"></div>
+                </div>
+            </div>
+
+            <!-- Done state (hidden until timer ends) -->
+            <div class="glass verify-box anim-float hidden" id="done-box">
+                <div class="verify-title done-icon">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    <span class="done-text">Verification Complete!</span>
+                </div>
+                <p class="done-sub">Your file is ready. Click the button below.</p>
+            </div>
+
+            <!-- Native Banner (under prompt/timer — user clicks this to start timer) -->
+            <div class="ad-slot" id="ad-timer-native" style="max-width:100%;">
+                <script async="async" data-cfasync="false" src="https://pl29177701.profitablecpmratenetwork.com/e71dc82ac58350d7c6ffca5c82c9f22c/invoke.js"></script>
+                <div id="container-e71dc82ac58350d7c6ffca5c82c9f22c"></div>
             </div>
 
             <!-- Social Proof -->
@@ -454,9 +445,66 @@
                 <span class="fire">&#128293;</span>
                 <span class="text"><span class="count" id="visitor-count">2,847</span> people accessed this file today</span>
             </div>
+
+            <!-- Blog Header -->
+            <div class="blog-header">
+                <h2 class="gradient-text">Latest Tech Insights</h2>
+                <span>VidPlays Blog</span>
+            </div>
+
+            <!-- POST 1 -->
+            <article class="glass post-card anim-float" style="animation-delay:0.1s">
+                <div class="post-meta">
+                    <span class="post-cat cat-ai">Artificial Intelligence</span>
+                    <span class="post-read">3 min read</span>
+                </div>
+                <h3 class="post-title">How AI is Revolutionizing Video Streaming Quality</h3>
+                <div class="post-body">
+                    <p>Artificial intelligence has fundamentally transformed the way we experience video content online. Modern AI-powered upscaling technologies can take a standard 480p video stream and enhance it to near-4K quality in real-time, using deep learning models trained on millions of high-resolution frames. Companies like NVIDIA and Intel are investing heavily in this technology, recognizing that bandwidth limitations remain a significant barrier to delivering pristine video quality to every device.</p>
+                    <p>Content-aware compression represents another breakthrough. Traditional video codecs treat every frame the same way, but intelligent algorithms can now identify which parts of a scene matter most to human perception and allocate more data to those areas. This means higher quality at lower bitrates, which directly translates to better viewing experiences on mobile devices and slower connections.</p>
+                </div>
+            </article>
+
+            <!-- POST 2 -->
+            <article class="glass post-card anim-float" style="animation-delay:0.2s">
+                <div class="post-meta">
+                    <span class="post-cat cat-cyber">Cybersecurity</span>
+                    <span class="post-read">3 min read</span>
+                </div>
+                <h3 class="post-title">Cybersecurity Threats in Digital Media Distribution</h3>
+                <div class="post-body">
+                    <p>The digital media distribution industry faces an ever-growing array of cybersecurity threats costing content creators billions of dollars annually. Piracy remains the most visible challenge, but the threat landscape has expanded to include sophisticated attacks on content delivery networks, DNS poisoning attempts, and ransomware attacks targeting media production studios before content is officially released.</p>
+                    <p>Modern DRM systems employ multi-layered protection including forensic watermarking, which embeds invisible identifiers into each stream so leaked content can be traced back to its source. Advanced encryption protocols ensure content is protected from the moment it leaves the production studio to the moment it appears on a viewer's screen.</p>
+                </div>
+            </article>
+
+            <!-- POST 3 -->
+            <article class="glass post-card anim-float" style="animation-delay:0.3s">
+                <div class="post-meta">
+                    <span class="post-cat cat-social">Social Media</span>
+                    <span class="post-read">3 min read</span>
+                </div>
+                <h3 class="post-title">Why Telegram Communities Are the Future of Content Sharing</h3>
+                <div class="post-body">
+                    <p>Telegram has quietly become one of the most important platforms for content distribution, particularly in markets where traditional social media platforms face restrictions. With over 900 million active users and features like unlimited channel subscribers, Telegram offers content creators a direct line to their audience without algorithmic interference.</p>
+                    <p>The platform's emphasis on privacy and encryption has made it the preferred choice for communities sharing premium content. Private channels create a sense of exclusivity that drives engagement, and content creators report significantly higher interaction rates compared to other social platforms.</p>
+                </div>
+            </article>
+
+            <!-- Get File Button (scroll down to unlock) -->
+            <div id="get-file-section" class="get-file-wrap">
+                <button id="get-file-btn" class="get-file-btn locked">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"/></svg>
+                    Scroll down & complete verification
+                </button>
+                <p id="get-file-hint" class="get-file-hint hidden">Click above to access your file via Telegram bot</p>
+            </div>
+
         </div>
 
-        <!-- HOME VIEW (no token) -->
+        <!-- ══════════════════════════════════════ -->
+        <!-- HOME VIEW (no token = URL protector)  -->
+        <!-- ══════════════════════════════════════ -->
         <div id="home-view" class="hidden">
             <div class="glass tool-box anim-float">
                 <div class="tool-title">
@@ -471,190 +519,6 @@
                     <input type="text" id="tool-output" class="tool-result-input" readonly onclick="this.select()">
                 </div>
             </div>
-        </div>
-
-        <!-- AD SLOT 2: Native Banner -->
-        <div class="ad-slot" id="ad-after-verify">
-            <script async="async" data-cfasync="false" src="https://pl29177701.profitablecpmratenetwork.com/e71dc82ac58350d7c6ffca5c82c9f22c/invoke.js"></script>
-            <div id="container-e71dc82ac58350d7c6ffca5c82c9f22c"></div>
-        </div>
-
-        <!-- Blog Header -->
-        <div class="blog-header">
-            <h2 class="gradient-text">Latest Tech Insights</h2>
-            <span>VidPlays Blog</span>
-        </div>
-
-        <!-- AD SLOT 3: Banner 300x250 -->
-        <div class="ad-slot" id="ad-pre-posts">
-            <script>
-              atOptions = {
-                'key' : '349308e9afbdb2ab3a8d9a8423362ae8',
-                'format' : 'iframe',
-                'height' : 250,
-                'width' : 300,
-                'params' : {}
-              };
-            </script>
-            <script src="https://www.highperformanceformat.com/349308e9afbdb2ab3a8d9a8423362ae8/invoke.js"></script>
-        </div>
-
-        <!-- POST 1 -->
-        <article class="glass post-card anim-float" style="animation-delay:0.1s">
-            <div class="post-meta">
-                <span class="post-cat cat-ai">Artificial Intelligence</span>
-                <span class="post-read">5 min read</span>
-            </div>
-            <h3 class="post-title">How AI is Revolutionizing Video Streaming Quality in 2025</h3>
-            <div class="post-body">
-                <p>Artificial intelligence has fundamentally transformed the way we experience video content online. Modern AI-powered upscaling technologies can take a standard 480p video stream and enhance it to near-4K quality in real-time, using deep learning models trained on millions of high-resolution frames. Companies like NVIDIA, Intel, and even streaming platforms themselves are investing heavily in this technology, recognizing that bandwidth limitations remain a significant barrier to delivering pristine video quality to every device, everywhere in the world.</p>
-                <p>Content-aware compression represents another breakthrough area where AI is making massive strides. Traditional video codecs treat every frame the same way, but intelligent algorithms can now identify which parts of a scene matter most to human perception and allocate more data to those areas. A fast-moving action sequence might receive different treatment than a slow dialogue scene, all handled automatically by neural networks that understand visual importance weighting. This means higher quality at lower bitrates, which directly translates to better viewing experiences on mobile devices and slower connections.</p>
-                <p>Real-time video enhancement powered by machine learning is also becoming accessible to smaller content creators. Cloud-based AI services can process uploaded videos and apply color correction, noise reduction, and even frame interpolation to create smoother playback. This democratization of professional-grade video processing means that independent creators on platforms like Telegram channels can deliver content that rivals major studio productions in visual quality, leveling the playing field in ways that were unimaginable just a few years ago.</p>
-            </div>
-        </article>
-
-        <!-- POST 2 -->
-        <article class="glass post-card anim-float" style="animation-delay:0.2s">
-            <div class="post-meta">
-                <span class="post-cat cat-game">Gaming Technology</span>
-                <span class="post-read">6 min read</span>
-            </div>
-            <h3 class="post-title">The Future of Cloud Gaming: What to Expect This Year</h3>
-            <div class="post-body">
-                <p>Cloud gaming has evolved from a niche experiment into a mainstream entertainment option that is reshaping how millions of people access and play video games. Services like Xbox Cloud Gaming, NVIDIA GeForce Now, and emerging platforms have solved many of the early latency problems that plagued the technology. With data centers now strategically placed closer to population centers, and with the rollout of 5G networks providing the necessary bandwidth, cloud gaming is finally delivering on its promise of playing AAA titles on any device without expensive hardware.</p>
-                <p>The economic model behind cloud gaming is particularly disruptive. Instead of spending hundreds or thousands of dollars on gaming consoles or PCs, players can subscribe to services that give them instant access to vast libraries of games. This subscription-based approach mirrors what happened with music streaming and video streaming, and early adoption data suggests it is working. Industry analysts project that the cloud gaming market will exceed $12 billion by 2026, driven primarily by mobile-first gamers in regions where traditional gaming hardware remains prohibitively expensive.</p>
-                <p>Edge computing is playing a critical role in making cloud gaming viable for competitive and fast-paced titles. By processing game logic closer to the player, edge servers reduce round-trip latency to levels that were previously impossible. Combined with predictive rendering techniques that anticipate player inputs based on gameplay patterns, the gap between local and cloud gaming performance continues to narrow. For many game genres, especially turn-based RPGs, strategy games, and story-driven adventures, the experience is already indistinguishable from running the game locally on dedicated hardware.</p>
-            </div>
-        </article>
-
-        <!-- AD SLOT 4: Banner 160x600 -->
-        <div class="ad-slot" id="ad-mid-1">
-            <script>
-              atOptions = {
-                'key' : 'ddcea002533340ce3e4e39aa4fef547e',
-                'format' : 'iframe',
-                'height' : 600,
-                'width' : 160,
-                'params' : {}
-              };
-            </script>
-            <script src="https://www.highperformanceformat.com/ddcea002533340ce3e4e39aa4fef547e/invoke.js"></script>
-        </div>
-
-        <!-- POST 3 -->
-        <article class="glass post-card anim-float" style="animation-delay:0.3s">
-            <div class="post-meta">
-                <span class="post-cat cat-cyber">Cybersecurity</span>
-                <span class="post-read">7 min read</span>
-            </div>
-            <h3 class="post-title">Cybersecurity Threats in Digital Media Distribution</h3>
-            <div class="post-body">
-                <p>The digital media distribution industry faces an ever-growing array of cybersecurity threats that cost content creators and distributors billions of dollars annually. Piracy remains the most visible challenge, with illegal streaming sites and torrent networks siphoning revenue from legitimate platforms. However, the threat landscape has expanded far beyond simple copyright infringement to include sophisticated attacks on content delivery networks, DNS poisoning attempts that redirect users to malicious mirrors, and even ransomware attacks targeting media production studios before content is officially released.</p>
-                <p>Digital Rights Management technology has evolved significantly in response to these threats. Modern DRM systems employ multi-layered protection that includes forensic watermarking, which embeds invisible identifiers into each stream so that leaked content can be traced back to its source. Advanced encryption protocols ensure that content is protected from the moment it leaves the production studio to the moment it appears on a viewer's screen. These systems are now intelligent enough to detect unusual playback patterns that might indicate screen recording or capture attempts, automatically degrading quality or terminating the stream in suspicious scenarios.</p>
-                <p>The human element remains both the strongest defense and the weakest link in media security. Social engineering attacks targeting employees at media companies have resulted in some of the highest-profile content leaks in recent years. Phishing campaigns disguised as distribution partner communications have successfully tricked employees into revealing access credentials. Forward-thinking companies are now implementing zero-trust security architectures that require continuous verification of every user and device, regardless of whether they are inside or outside the corporate network, fundamentally changing how media organizations approach cybersecurity.</p>
-            </div>
-        </article>
-
-        <!-- POST 4 -->
-        <article class="glass post-card anim-float" style="animation-delay:0.4s">
-            <div class="post-meta">
-                <span class="post-cat cat-5g">Network Technology</span>
-                <span class="post-read">5 min read</span>
-            </div>
-            <h3 class="post-title">Why 5G Networks Are Transforming Mobile Entertainment</h3>
-            <div class="post-body">
-                <p>The global rollout of 5G networks represents the most significant infrastructure upgrade for mobile entertainment since the transition from 3G to 4G a decade ago. With theoretical download speeds reaching 20 gigabits per second and real-world speeds consistently exceeding 1 gigabit per second in urban areas, 5G is removing the bandwidth bottleneck that has constrained mobile content delivery for years. This means 4K video streaming on phones becomes practical, augmented reality applications can overlay rich visual content on the real world in real-time, and cloud gaming on mobile devices finally delivers console-quality experiences without Wi-Fi dependency.</p>
-                <p>Network slicing, a key innovation in 5G architecture, allows telecom operators to create dedicated virtual networks optimized for specific use cases. Entertainment companies can negotiate priority network slices that guarantee minimum bandwidth and latency for their content delivery, ensuring that live streaming events, virtual concerts, and interactive experiences are never disrupted by general network congestion. This guaranteed quality of service transforms mobile entertainment from a best-effort experience into a reliably premium one, opening the door for new types of content that simply were not possible on previous generation networks.</p>
-                <p>The latency improvements of 5G, with typical round-trip times under 10 milliseconds compared to 30-50 milliseconds on 4G, are enabling entirely new categories of interactive entertainment. Real-time multiplayer games that require split-second reactions now work seamlessly on mobile networks. Live interactive streaming, where viewers can influence content in real-time through voting, polls, and even direct participation, becomes technically feasible at scale. The entertainment industry is only beginning to explore what becomes possible when you combine high bandwidth, low latency, and ubiquitous mobile connectivity.</p>
-            </div>
-        </article>
-
-
-
-        <!-- POST 5 -->
-        <article class="glass post-card anim-float" style="animation-delay:0.5s">
-            <div class="post-meta">
-                <span class="post-cat cat-social">Social Media</span>
-                <span class="post-read">4 min read</span>
-            </div>
-            <h3 class="post-title">Why Telegram Communities Are the Future of Content Sharing</h3>
-            <div class="post-body">
-                <p>Telegram has quietly become one of the most important platforms for content distribution, particularly in markets where traditional social media platforms face restrictions or limitations. With over 900 million active users and features like unlimited channel subscribers, Telegram offers content creators a direct line to their audience without algorithmic interference. Unlike platforms where organic reach has declined to single-digit percentages, Telegram channels deliver content directly to every subscriber, making it an incredibly efficient distribution channel for creators who have built loyal audiences.</p>
-                <p>The platform's emphasis on privacy and encryption has made it the preferred choice for communities sharing premium content, exclusive media, and specialized information. Private channels and groups create a sense of exclusivity that drives engagement and willingness to participate. Content creators on Telegram report significantly higher interaction rates compared to other social platforms, with engaged communities that actively discuss, share, and act on the content they receive. This combination of direct distribution, privacy features, and engaged audiences makes Telegram uniquely positioned as a content-sharing ecosystem.</p>
-                <p>The bot ecosystem on Telegram adds another dimension to its content-sharing capabilities. Automated bots can handle file distribution, subscription management, payment processing, and content delivery without requiring creators to maintain separate websites or platforms. This all-in-one ecosystem means that a content creator can manage their entire operation from within Telegram, from building an audience through a public channel, to delivering premium content through private channels, to processing payments through integrated bots. The efficiency of this model is attracting an increasing number of creators who are tired of managing multiple platforms and tools.</p>
-            </div>
-        </article>
-
-        <!-- POST 6 -->
-        <article class="glass post-card anim-float" style="animation-delay:0.6s">
-            <div class="post-meta">
-                <span class="post-cat cat-trend">Technology Trends</span>
-                <span class="post-read">8 min read</span>
-            </div>
-            <h3 class="post-title">Top 10 Emerging Technologies Shaping Digital Entertainment</h3>
-            <div class="post-body">
-                <p>The digital entertainment landscape is being reshaped by a wave of emerging technologies that promise to fundamentally change how we create, distribute, and consume content. Spatial computing, led by devices like the Apple Vision Pro and Meta Quest, is creating entirely new categories of immersive entertainment that blend digital and physical realities. Meanwhile, generative AI is democratizing content creation, allowing anyone to produce high-quality images, videos, music, and written content with simple text prompts, dramatically lowering the barriers to entry for aspiring creators.</p>
-                <p>Blockchain technology, despite market volatility, continues to find practical applications in entertainment through verifiable ownership, transparent royalty distribution, and decentralized content platforms. Smart contracts can automatically distribute payments to all contributors of a creative work the moment it generates revenue, eliminating the delays and opacity of traditional royalty systems. Non-fungible tokens have evolved beyond digital art speculation into functional tools for access, authentication, and community membership, with entertainment companies exploring their use for exclusive content access and fan engagement programs.</p>
-                <p>Edge AI, which runs machine learning models directly on user devices rather than in the cloud, is enabling new forms of personalized entertainment that work without constant internet connectivity. Recommendation algorithms that understand your preferences, real-time translation of content into dozens of languages, and on-device video enhancement are all becoming possible without sending user data to remote servers. This combination of intelligence and privacy aligns perfectly with growing consumer expectations for both personalization and data protection, making edge AI one of the most significant technology trends to watch in the entertainment space.</p>
-            </div>
-        </article>
-
-
-
-        <!-- Features Section -->
-        <div class="glass features-box">
-            <h3>Why Choose VidPlays for Digital Content?</h3>
-            <div class="feature-item">
-                <span class="feature-icon">&#128274;</span>
-                <div>
-                    <p class="feature-title">Secure File Delivery</p>
-                    <p class="feature-desc">Every file link is encrypted and verified through our multi-step security gateway, ensuring only authorized users can access shared content.</p>
-                </div>
-            </div>
-            <div class="feature-item">
-                <span class="feature-icon">&#9889;</span>
-                <div>
-                    <p class="feature-title">Lightning Fast Access</p>
-                    <p class="feature-desc">Our globally distributed servers ensure minimal latency. Files are delivered through optimized CDN networks with edge caching for instant access.</p>
-                </div>
-            </div>
-            <div class="feature-item">
-                <span class="feature-icon">&#128737;&#65039;</span>
-                <div>
-                    <p class="feature-title">Advanced Protection</p>
-                    <p class="feature-desc">Protect your digital content with enterprise-grade security including link expiration, access limits, and real-time threat monitoring.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- AD SLOT 5: Social Bar (floats to bottom automatically) -->
-        <div class="ad-slot" id="ad-final">
-            <script src="https://pl29177700.profitablecpmratenetwork.com/7f/0d/45/7f0d45422613d17e5f1633d86a191b1b.js"></script>
-        </div>
-
-        <!-- Stats Bar -->
-        <div class="stats">
-            <div class="glass stat-card">
-                <p class="stat-value">50K+</p>
-                <p class="stat-label">Active Users</p>
-            </div>
-            <div class="glass stat-card">
-                <p class="stat-value">1M+</p>
-                <p class="stat-label">Files Shared</p>
-            </div>
-            <div class="glass stat-card">
-                <p class="stat-value">99.9%</p>
-                <p class="stat-label">Uptime</p>
-            </div>
-        </div>
-
-        <!-- Get File Button -->
-        <div id="get-file-section" class="get-file-wrap hidden">
-            <button id="get-file-btn" class="get-file-btn inactive">
-                <div class="spinner" style="width:16px;height:16px;border-width:2px"></div>
-                Complete verification and scroll here
-            </button>
-            <p id="get-file-hint" class="get-file-hint hidden">Click above to access your file via Telegram bot</p>
         </div>
 
     </main>
@@ -679,13 +543,13 @@
     <script>
         // ── Config ──
         const BOT_USERNAME = 'JSTAR_P4N3L_bot';
-        const TOTAL_TIME = 20;
-        const FAKE_STEPS = [
-            { text: 'Establishing secure connection...', end: 4 },
-            { text: 'Verifying file integrity...', end: 8 },
-            { text: 'Checking server availability...', end: 12 },
-            { text: 'Retrieving file metadata...', end: 16 },
-            { text: 'Preparing download link...', end: 20 },
+        const TOTAL_TIME = 10; // 10 seconds
+        const TIMER_STEPS = [
+            { text: 'Establishing secure connection...', end: 2 },
+            { text: 'Verifying file integrity...', end: 4 },
+            { text: 'Checking server availability...', end: 6 },
+            { text: 'Retrieving file metadata...', end: 8 },
+            { text: 'Preparing download link...', end: 10 },
         ];
 
         // ── State ──
@@ -693,6 +557,9 @@
         let verified = false;
         let scrollReached = false;
         let timerInterval = null;
+        let timerStarted = false;
+        let adClicked = false;
+        let pageHiddenTime = 0;
 
         // ── Init ──
         (function init() {
@@ -700,23 +567,22 @@
             token = params.get('token');
 
             if (token) {
-                document.getElementById('gateway-view').classList.remove('hidden');
-                document.getElementById('get-file-section').classList.remove('hidden');
+                // Gateway flow: start at Page 1 (Captcha only)
+                document.getElementById('captcha-page').classList.remove('hidden');
             } else {
                 document.getElementById('home-view').classList.remove('hidden');
             }
 
-            // Show nav tag on wider screens
-            if (window.innerWidth >= 640) {
-                document.getElementById('nav-tag-desktop').style.display = 'block';
-            }
-
             // Social proof randomizer
             const count = Math.floor(Math.random() * 3500) + 1200;
-            document.getElementById('visitor-count').textContent = count.toLocaleString();
+            const countEl = document.getElementById('visitor-count');
+            if (countEl) countEl.textContent = count.toLocaleString();
 
             // Anti-adblock detection
             detectAdblock();
+
+            // Listen for user leaving/coming back (ad click detection)
+            document.addEventListener('visibilitychange', handleVisibilityChange);
 
             // Scroll observer for Get File button
             if (token) {
@@ -737,83 +603,189 @@
             }, 300);
         }
 
-        // ── Verify Flow ──
-        function startVerify() {
-            // Check the checkbox
-            document.getElementById('captcha-check').classList.add('checked');
+        // ── Page 1: Captcha Click ──
+        function handleCaptchaClick() {
+            const btn = document.getElementById('captcha-btn');
+            const check = document.getElementById('captcha-check');
 
-            // Switch to verifying step after brief delay
+            // Prevent double clicks
+            btn.classList.add('disabled');
+            check.classList.add('checked');
+
+            // Brief pause then go to Page 2
             setTimeout(() => {
-                document.getElementById('captcha-step').classList.add('hidden');
-                document.getElementById('verify-step').classList.remove('hidden');
+                document.getElementById('captcha-page').classList.add('hidden');
+                document.getElementById('timer-page').classList.remove('hidden');
 
-                let elapsed = 0;
-                const fill = document.getElementById('progress-fill');
-                const text = document.getElementById('verify-text');
-                const remaining = document.getElementById('time-remaining');
-
-                timerInterval = setInterval(() => {
-                    elapsed++;
-                    const pct = Math.min((elapsed / TOTAL_TIME) * 100, 100);
-                    fill.style.width = pct + '%';
-                    remaining.textContent = TOTAL_TIME - elapsed;
-
-                    const step = FAKE_STEPS.find(s => elapsed < s.end);
-                    if (step) text.textContent = step.text;
-
-                    if (elapsed >= TOTAL_TIME) {
-                        clearInterval(timerInterval);
-                        verified = true;
-                        document.getElementById('verify-step').classList.add('hidden');
-                        document.getElementById('done-step').classList.remove('hidden');
-
-                        // Show scroll hint
-                        document.getElementById('scroll-hint').classList.remove('hidden');
-                        setTimeout(() => {
-                            document.getElementById('scroll-hint').classList.add('hidden');
-                        }, 8000);
-
-                        updateGetFileButton();
-                    }
-                }, 1000);
+                // Popunder fires automatically (Adsterra script in <head>)
+                // Timer does NOT auto-start — user must click ad first
+                // handleVisibilityChange() will start the timer when they come back
             }, 600);
+        }
+
+        // ── Ad Click Detection ──
+        // When user clicks the native ad and leaves the page,
+        // we detect it. When they come back, the timer starts.
+        function handleVisibilityChange() {
+            if (!token || timerStarted || verified) return;
+
+            if (document.visibilityState === 'hidden') {
+                // User left the page (clicked the ad)
+                pageHiddenTime = Date.now();
+                adClicked = true;
+
+                // Update prompt to show waiting state
+                const promptBox = document.getElementById('ad-prompt-box');
+                if (promptBox) {
+                    promptBox.querySelector('.ad-prompt-text').textContent = 'Waiting for you to come back...';
+                    promptBox.querySelector('.ad-prompt-text').classList.add('ad-prompt-wait');
+                    promptBox.querySelector('.ad-prompt-icon').textContent = '\u23F3';
+                    promptBox.querySelector('.ad-prompt-sub').textContent = 'The countdown will start when you return';
+                }
+            }
+
+            if (document.visibilityState === 'visible' && adClicked && !timerStarted) {
+                // User came back after clicking ad
+                const timeAway = Date.now() - pageHiddenTime;
+                // Must have been away at least 1 second
+                if (timeAway >= 1000) {
+                    startTimer();
+                } else {
+                    // Too quick, probably just a tab switch
+                    adClicked = false;
+                    const promptBox = document.getElementById('ad-prompt-box');
+                    if (promptBox) {
+                        promptBox.querySelector('.ad-prompt-text').textContent = 'Click the ad below to start verification';
+                        promptBox.querySelector('.ad-prompt-text').classList.remove('ad-prompt-wait');
+                        promptBox.querySelector('.ad-prompt-icon').innerHTML = '&#128071;';
+                        promptBox.querySelector('.ad-prompt-sub').textContent = 'Click the ad, then come back \u2014 the countdown will begin automatically';
+                    }
+                }
+            }
+        }
+
+        // ── Page 2: Timer (starts after ad click) ──
+        function startTimer() {
+            timerStarted = true;
+
+            // Hide ad-click prompt, show timer
+            document.getElementById('ad-click-box').classList.add('hidden');
+            document.getElementById('timer-box').classList.remove('hidden');
+
+            let elapsed = 0;
+            const fill = document.getElementById('progress-fill');
+            const text = document.getElementById('timer-text');
+            const btn = document.getElementById('get-file-btn');
+
+            // Show countdown on button
+            btn.className = 'get-file-btn waiting';
+            btn.innerHTML = 'Please wait <span class="countdown-num" id="countdown-num">' + TOTAL_TIME + '</span>s';
+
+            timerInterval = setInterval(() => {
+                elapsed++;
+                const pct = Math.min((elapsed / TOTAL_TIME) * 100, 100);
+                fill.style.width = pct + '%';
+
+                // Update step text
+                const step = TIMER_STEPS.find(s => elapsed < s.end);
+                if (step) text.textContent = step.text;
+
+                // Update countdown on button
+                const numEl = document.getElementById('countdown-num');
+                const remaining = TOTAL_TIME - elapsed;
+                if (numEl && remaining > 0) {
+                    numEl.textContent = remaining;
+                }
+
+                if (elapsed >= TOTAL_TIME) {
+                    clearInterval(timerInterval);
+                    verified = true;
+
+                    // Swap timer → done box
+                    document.getElementById('timer-box').classList.add('hidden');
+                    document.getElementById('done-box').classList.remove('hidden');
+
+                    // Show scroll hint
+                    document.getElementById('scroll-hint').style.display = 'flex';
+                    setTimeout(() => {
+                        document.getElementById('scroll-hint').style.display = 'none';
+                    }, 8000);
+
+                    // Update button state
+                    updateGetFileButton();
+                }
+            }, 1000);
         }
 
         // ── Scroll Observer ──
         function setupScrollObserver() {
             const target = document.getElementById('get-file-section');
+
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
-                    if (entry.isIntersecting && verified) {
+                    if (entry.isIntersecting) {
                         scrollReached = true;
                         updateGetFileButton();
-                        observer.unobserve(target);
                     }
                 });
             }, { threshold: 0.5 });
+
             observer.observe(target);
+
+            // Also listen for scroll events as backup
+            window.addEventListener('scroll', function() {
+                checkScrollReady();
+            }, { passive: true });
+        }
+
+        function checkScrollReady() {
+            const target = document.getElementById('get-file-section');
+            if (!target) return;
+            const rect = target.getBoundingClientRect();
+            const inView = rect.top < window.innerHeight && rect.bottom > 0;
+            if (inView) {
+                scrollReached = true;
+            }
+            updateGetFileButton();
         }
 
         // ── Update Get File Button ──
         function updateGetFileButton() {
             const btn = document.getElementById('get-file-btn');
             const hint = document.getElementById('get-file-hint');
+            if (!btn) return;
 
             if (verified && scrollReached) {
+                // Both conditions met — unlock!
                 btn.className = 'get-file-btn active';
                 btn.innerHTML = '<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg> Get File';
-                btn.onclick = redirectToBot;
+                btn.onclick = handleGetFile;
                 hint.classList.remove('hidden');
+                // Hide scroll hint
+                document.getElementById('scroll-hint').style.display = 'none';
+            } else if (verified && !scrollReached) {
+                // Timer done but user hasn't scrolled
+                btn.className = 'get-file-btn locked';
+                btn.innerHTML = '<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5L12 21m0 0l-7.5-7.5M12 21V3"/></svg> Scroll down to unlock your file';
+                btn.onclick = null;
+                hint.classList.add('hidden');
+            } else {
+                // Timer still running
+                btn.className = 'get-file-btn locked';
+                btn.innerHTML = '<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"/></svg> Complete verification first';
+                btn.onclick = null;
+                hint.classList.add('hidden');
             }
         }
 
-        // ── Redirect ──
-        function redirectToBot() {
+        // ── Get File: Redirect ──
+        function handleGetFile() {
             const btn = document.getElementById('get-file-btn');
             btn.className = 'get-file-btn redirecting';
             btn.innerHTML = '<div class="spinner" style="width:16px;height:16px;border-width:2px"></div> Redirecting...';
             btn.onclick = null;
 
+            // Redirect to Telegram bot
             setTimeout(() => {
                 if (token.startsWith('web_')) {
                     window.location.href = atob(token.replace('web_', ''));
@@ -823,7 +795,7 @@
             }, 800);
         }
 
-        // ── URL Protector ──
+        // ── URL Protector (Home View) ──
         function generateLink() {
             const input = document.getElementById('tool-input').value;
             if (!input.trim()) return;
@@ -834,5 +806,7 @@
             document.getElementById('tool-result').classList.remove('hidden');
         }
     </script>
+    <!-- Social Bar (Adsterra) -->
+    <script src="https://pl29177700.profitablecpmratenetwork.com/7f/0d/45/7f0d45422613d17e5f1633d86a191b1b.js"></script>
 </body>
 </html>
