@@ -1,812 +1,1138 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>VidPlays - Entertainment & Media Tech Blog</title>
-    <meta name="description" content="Discover the latest in entertainment technology, streaming trends, digital media, and cybersecurity. VidPlays brings you cutting-edge tech insights and media industry news.">
-    <meta name="keywords" content="VidPlays, entertainment, tech blog, streaming, media, digital content, video streaming, AI technology, cybersecurity, cloud computing">
-    <meta name="theme-color" content="#080c18">
-    <meta property="og:title" content="VidPlays - Entertainment & Media Tech Blog">
-    <meta property="og:description" content="Discover the latest in entertainment technology, streaming trends, and digital media insights.">
-    <meta property="og:site_name" content="VidPlays.in">
-    <meta property="og:type" content="website">
-    <link rel="icon" href="https://vidplays.in/favicon.ico">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>VidPlays - Secure File Gateway</title>
+  <meta name="description" content="VidPlays secure Telegram media gateway. Verify access and open your requested file through Telegram.">
+  <meta name="keywords" content="VidPlays, Telegram bot, file gateway, media access, secure link">
+  <meta name="theme-color" content="#070707">
+  <meta property="og:title" content="VidPlays - Secure File Gateway">
+  <meta property="og:description" content="Verify and open your requested file through VidPlays.">
+  <meta property="og:site_name" content="VidPlays.in">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="https://vidplays.in/favicon.ico">
 
-    <!-- Popunder Ad (Adsterra) -->
-    <script src="https://pl29189130.profitablecpmratenetwork.com/71/7d/eb/717deb8dc669c2cdf7234d42d48b608d.js"></script>
+  <!-- Popunder Ad (Adsterra) -->
+  <script src="https://pl29189130.profitablecpmratenetwork.com/71/7d/eb/717deb8dc669c2cdf7234d42d48b608d.js"></script>
 
-    <style>
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        :root {
-            --bg: #080c18;
-            --card: #0f1729;
-            --card-border: rgba(56, 189, 248, 0.08);
-            --primary: #22d3ee;
-            --secondary: #34d399;
-            --text: #e2e8f0;
-            --dim: #64748b;
-            --muted: #334155;
-            --glass: rgba(15, 23, 41, 0.8);
-        }
+    :root {
+      --bg: #070707;
+      --panel: #151515;
+      --panel-2: #1e1e1f;
+      --panel-3: #252527;
+      --line: rgba(255,255,255,0.09);
+      --line-2: rgba(255,255,255,0.15);
+      --text: #f4f4f5;
+      --muted: #9a9a9f;
+      --dim: #64646b;
+      --red: #f20d21;
+      --red-soft: rgba(242,13,33,0.13);
+      --green: #37dc7d;
+      --amber: #e6a93d;
+      --shadow: 0 22px 60px rgba(0,0,0,0.46);
+      --radius: 18px;
+    }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-        }
+    html { scroll-behavior: smooth; }
 
-        html { scroll-behavior: smooth; }
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 50% -14rem, rgba(242,13,33,0.15), transparent 31rem),
+        linear-gradient(180deg, #090909 0%, #050505 100%);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
 
-        ::-webkit-scrollbar { width: 5px; }
-        ::-webkit-scrollbar-track { background: var(--bg); }
-        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 3px; }
-        ::-webkit-scrollbar-thumb:hover { background: #334155; }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.022) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.016) 1px, transparent 1px);
+      background-size: 46px 46px;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.7), transparent 72%);
+    }
 
-        @keyframes pulse-glow {
-            0%, 100% { box-shadow: 0 0 15px rgba(34,211,238,0.3), 0 0 30px rgba(34,211,238,0.1); }
-            50% { box-shadow: 0 0 25px rgba(34,211,238,0.5), 0 0 50px rgba(34,211,238,0.2); }
-        }
-        @keyframes float-up {
-            0% { opacity: 0; transform: translateY(20px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes spin-slow {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        @keyframes bounce-subtle {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-4px); }
-        }
-        @keyframes gradient-shift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        @keyframes progress-pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
-        }
+    button, input { font: inherit; }
+    button { -webkit-tap-highlight-color: transparent; }
+    .hidden { display: none !important; }
 
-        .anim-float { animation: float-up 0.5s ease-out forwards; opacity: 0; }
-        .anim-bounce { animation: bounce-subtle 2s ease-in-out infinite; }
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid var(--line);
+      background: rgba(7,7,7,0.86);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
 
-        .gradient-text {
-            background: linear-gradient(135deg, #22d3ee, #34d399, #22d3ee);
-            background-size: 200% 200%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: gradient-shift 4s ease infinite;
-        }
+    .topbar-inner {
+      width: min(1120px, 100%);
+      margin: 0 auto;
+      min-height: 72px;
+      padding: 0 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
 
-        .glass {
-            background: var(--glass);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--card-border);
-            border-radius: 16px;
-        }
+    .logo {
+      font-size: 26px;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      line-height: 1;
+    }
 
-        /* ── Navbar ── */
-        .navbar {
-            position: sticky; top: 0; z-index: 50;
-            background: rgba(8,12,24,0.88);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border-bottom: 1px solid rgba(56,189,248,0.06);
-        }
-        .navbar-inner {
-            max-width: 680px; margin: auto;
-            padding: 12px 16px;
-            display: flex; align-items: center; justify-content: space-between;
-        }
-        .logo-box {
-            width: 28px; height: 28px; border-radius: 8px;
-            background: linear-gradient(135deg, #22d3ee, #34d399);
-            display: flex; align-items: center; justify-content: center;
-            font-weight: 800; font-size: 11px; color: #080c18;
-        }
-        .logo-text { font-weight: 700; font-size: 14px; color: #e2e8f0; }
-        .nav-dot { width: 6px; height: 6px; border-radius: 50%; background: #34d399; animation: progress-pulse 2s infinite; }
+    .logo span:first-child { color: var(--red); }
+    .logo span:last-child { color: #fff; }
 
-        /* ── Container ── */
-        .container { max-width: 100%; margin: auto; padding: 16px 12px 100px; }
-        @media (min-width: 420px) {
-            .container { max-width: 680px; padding: 20px 16px 80px; }
-        }
+    .live {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--muted);
+      font-size: 14px;
+      white-space: nowrap;
+    }
 
-        /* ── Ad Slots ── */
-        .ad-slot { margin: 16px auto; min-height: 50px; overflow: hidden; text-align: center; }
-        .ad-slot iframe { max-width: 100%; }
+    .live-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 99px;
+      background: var(--green);
+      box-shadow: 0 0 18px rgba(55,220,125,0.7);
+    }
 
-        /* ── Verify Section ── */
-        .verify-box { padding: 24px 20px; text-align: center; }
-        .verify-title { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 4px; }
-        .verify-title svg { width: 20px; height: 20px; color: var(--primary); }
-        .verify-title h3 { font-size: 14px; font-weight: 700; color: #e2e8f0; }
-        .verify-sub { font-size: 11px; color: #475569; margin-bottom: 20px; }
+    .page {
+      position: relative;
+      z-index: 1;
+      width: min(1120px, 100%);
+      min-height: calc(100vh - 72px);
+      margin: 0 auto;
+      padding: 44px 22px 110px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 640px minmax(0, 1fr);
+      gap: 24px;
+    }
 
-        .captcha-btn {
-            width: 100%; padding: 16px;
-            background: rgba(15,23,41,0.6);
-            border: 1px solid rgba(71,85,105,0.4);
-            border-radius: 12px;
-            display: flex; align-items: center; justify-content: center; gap: 12px;
-            cursor: pointer; transition: all 0.2s;
-            -webkit-tap-highlight-color: transparent;
-            min-height: 52px;
-        }
-        .captcha-btn:hover { border-color: rgba(34,211,238,0.3); background: rgba(15,23,41,0.8); }
-        .captcha-btn:active { transform: scale(0.98); }
-        .captcha-btn.disabled { pointer-events: none; opacity: 0.6; }
+    .main {
+      grid-column: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
 
-        .captcha-check {
-            width: 22px; height: 22px; border-radius: 4px;
-            border: 2px solid #475569;
-            display: flex; align-items: center; justify-content: center;
-            flex-shrink: 0; transition: all 0.3s;
-        }
-        .captcha-check.checked { border-color: #22d3ee; background: #22d3ee; }
-        .captcha-check.checked::after {
-            content: ''; display: block; width: 6px; height: 10px;
-            border: solid #080c18; border-width: 0 2px 2px 0;
-            transform: rotate(45deg); margin-top: -2px;
-        }
-        .captcha-label { font-size: 14px; color: #94a3b8; font-weight: 500; }
-        .captcha-icon { margin-left: auto; opacity: 0.4; width: 28px; height: 28px; }
-        .captcha-footer { font-size: 10px; color: #334155; margin-top: 10px; }
+    .card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(21,21,21,0.88);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
 
-        /* ── Timer Section ── */
-        .timer-box { padding: 20px; text-align: center; }
-        .timer-status { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 12px; }
-        .timer-status-text { font-size: 12px; font-weight: 600; color: #22d3ee; }
+    .file-card {
+      padding: 22px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
 
-        /* ── Ad Click Prompt ── */
-        .ad-prompt {
-            text-align: center; padding: 16px; margin-bottom: 12px;
-            border-radius: 12px;
-            background: linear-gradient(90deg, rgba(34,211,238,0.06), rgba(52,211,153,0.06));
-            border: 1px dashed rgba(34,211,238,0.2);
-        }
-        .ad-prompt-icon { font-size: 22px; margin-bottom: 6px; }
-        .ad-prompt-text { font-size: 13px; font-weight: 700; color: #22d3ee; margin-bottom: 4px; }
-        .ad-prompt-sub { font-size: 11px; color: #475569; }
-        .ad-prompt-wait { color: #f59e0b; }
-        .progress-bar-wrap { width: 100%; height: 5px; background: #0f172a; border-radius: 999px; overflow: hidden; margin-bottom: 8px; }
-        .progress-bar-fill {
-            height: 100%; border-radius: 999px;
-            background: linear-gradient(90deg, #22d3ee, #34d399);
-            transition: width 1s linear;
-        }
+    .file-icon {
+      width: 66px;
+      height: 66px;
+      flex: 0 0 auto;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      background:
+        linear-gradient(135deg, rgba(242,13,33,0.36), rgba(242,13,33,0.05)),
+        #1a0d10;
+      border: 1px solid rgba(242,13,33,0.38);
+      font-size: 27px;
+      font-weight: 900;
+    }
 
-        /* Done State */
-        .done-icon svg { width: 20px; height: 20px; color: #34d399; }
-        .done-text { font-size: 14px; font-weight: 700; color: #34d399; }
-        .done-sub { font-size: 11px; color: #475569; margin-top: 4px; }
+    .file-title {
+      font-size: 18px;
+      font-weight: 850;
+      margin-bottom: 7px;
+    }
 
-        /* ── Social Proof ── */
-        .social-proof {
-            display: flex; align-items: center; justify-content: center; gap: 8px;
-            padding: 10px 16px; border-radius: 12px; margin: 20px 0;
-            background: linear-gradient(90deg, rgba(34,211,238,0.04), rgba(52,211,153,0.04), rgba(34,211,238,0.04));
-            border: 1px solid rgba(34,211,238,0.08);
-        }
-        .social-proof .fire { font-size: 16px; }
-        .social-proof .text { font-size: 13px; color: #94a3b8; font-weight: 500; }
-        .social-proof .count { color: #22d3ee; font-weight: 700; }
+    .meta-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
 
-        /* ── Blog Posts ── */
-        .blog-header { display: flex; align-items: center; justify-content: space-between; margin: 24px 0 16px; }
-        .blog-header h2 { font-size: 18px; font-weight: 800; }
-        .blog-header span { font-size: 10px; color: #334155; }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      padding: 3px 10px;
+      border: 1px solid rgba(242,13,33,0.42);
+      border-radius: 7px;
+      background: rgba(242,13,33,0.13);
+      color: #ff5262;
+      font-size: 11px;
+      font-weight: 850;
+      letter-spacing: 0.5px;
+    }
 
-        .post-card { padding: 16px; margin-bottom: 14px; border-radius: 14px; overflow: hidden; transition: border-color 0.3s; }
-        .post-card:hover { border-color: rgba(34,211,238,0.15); }
+    .muted { color: var(--muted); }
 
-        .post-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
-        .post-cat {
-            font-size: 9px; padding: 3px 8px; border-radius: 999px;
-            border: 1px solid; font-weight: 600;
-        }
-        .cat-ai { background: rgba(168,85,247,0.15); color: #c084fc; border-color: rgba(168,85,247,0.25); }
-        .cat-cyber { background: rgba(244,63,94,0.15); color: #fb7185; border-color: rgba(244,63,94,0.25); }
-        .cat-social { background: rgba(56,189,248,0.15); color: #7dd3fc; border-color: rgba(56,189,248,0.25); }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
 
-        .post-read { font-size: 10px; color: #334155; }
-        .post-title { font-size: 15px; font-weight: 700; color: #e2e8f0; margin-bottom: 10px; line-height: 1.4; }
-        .post-body p { font-size: 12.5px; color: #64748b; line-height: 1.65; margin-bottom: 8px; }
-        .post-body p:last-child { margin-bottom: 0; }
+    .stat {
+      padding: 18px 12px;
+      text-align: center;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(21,21,21,0.82);
+    }
 
-        /* ── Get File Button (in-page) ── */
-        .get-file-wrap { margin: 28px 0 16px; text-align: center; }
+    .stat strong {
+      display: block;
+      font-size: 26px;
+      line-height: 1;
+      letter-spacing: -0.3px;
+    }
 
-        .get-file-btn {
-            width: 100%; padding: 18px; border-radius: 14px;
-            font-size: 16px; font-weight: 800; text-transform: uppercase;
-            letter-spacing: 1px; border: none; cursor: pointer;
-            transition: all 0.3s; -webkit-tap-highlight-color: transparent;
-            display: flex; align-items: center; justify-content: center; gap: 8px;
-            min-height: 56px;
-        }
-        .get-file-btn:active { transform: scale(0.97); }
+    .stat:first-child strong { color: var(--green); }
 
-        .get-file-btn.active {
-            background: linear-gradient(135deg, #22d3ee, #34d399);
-            color: #080c18;
-            animation: pulse-glow 2s ease-in-out infinite;
-        }
-        .get-file-btn.active svg { width: 22px; height: 22px; }
+    .stat span {
+      display: block;
+      margin-top: 7px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 750;
+      letter-spacing: 0.4px;
+    }
 
-        .get-file-btn.waiting {
-            background: #0f172a; color: #475569;
-            border: 1px solid rgba(34,211,238,0.15);
-            font-size: 13px; text-transform: none; letter-spacing: 0;
-            cursor: default;
-        }
-        .get-file-btn.waiting .countdown-num {
-            color: #22d3ee; font-weight: 800;
-            display: inline-block; min-width: 20px;
-        }
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      align-items: start;
+      padding: 10px 18px 8px;
+    }
 
-        .get-file-btn.locked {
-            background: #0f172a; color: #334155;
-            border: 1px dashed #1e293b;
-            font-size: 12px; text-transform: none; letter-spacing: 0;
-            cursor: default;
-            padding: 16px;
-        }
+    .step {
+      position: relative;
+      display: grid;
+      justify-items: center;
+      gap: 8px;
+      color: var(--dim);
+      font-size: 12px;
+      font-weight: 750;
+    }
 
-        .get-file-btn.redirecting {
-            background: #1e293b; color: #475569;
-            font-size: 13px; cursor: wait;
-        }
+    .step::before {
+      content: "";
+      position: absolute;
+      top: 16px;
+      left: -50%;
+      width: 100%;
+      height: 1px;
+      background: var(--line);
+      z-index: -1;
+    }
 
-        .get-file-hint {
-            text-align: center; font-size: 10px; color: #334155;
-            margin-top: 8px;
-        }
+    .step:first-child::before { display: none; }
 
-        /* ── Scroll Hint (mobile) ── */
-        .scroll-hint {
-            position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%);
-            z-index: 50; padding: 10px 20px; border-radius: 999px;
-            background: rgba(15,23,41,0.95); border: 1px solid rgba(34,211,238,0.15);
-            backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
-            display: flex; align-items: center; gap: 8px;
-            font-size: 13px; font-weight: 600; color: #22d3ee;
-            animation: float-up 0.4s ease-out forwards, bounce-subtle 2s ease-in-out infinite;
-            white-space: nowrap;
-        }
-        .scroll-hint .arrow { font-size: 16px; }
+    .step-dot {
+      width: 33px;
+      height: 33px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--line-2);
+      background: #222;
+      color: var(--muted);
+      font-weight: 900;
+    }
 
-        /* ── URL Protector (Home View) ── */
-        .tool-box { padding: 20px; text-align: center; }
-        .tool-title { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 4px; }
-        .tool-title svg { width: 20px; height: 20px; color: var(--primary); }
-        .tool-title h3 { font-size: 14px; font-weight: 700; color: #e2e8f0; }
-        .tool-sub { font-size: 11px; color: #475569; margin-bottom: 14px; }
-        .tool-input {
-            width: 100%; padding: 11px 14px; border-radius: 10px;
-            background: #080c18; border: 1px solid rgba(71,85,105,0.35);
-            color: #cbd5e1; font-size: 13px; outline: none;
-            margin-bottom: 12px; transition: border-color 0.2s;
-        }
-        .tool-input:focus { border-color: rgba(34,211,238,0.4); }
-        .tool-input::placeholder { color: #334155; }
-        .tool-btn {
-            width: 100%; padding: 11px; border-radius: 10px;
-            background: linear-gradient(135deg, #22d3ee, #34d399);
-            color: #080c18; font-size: 13px; font-weight: 700;
-            text-transform: uppercase; letter-spacing: 0.5px;
-            border: none; cursor: pointer; transition: all 0.2s;
-        }
-        .tool-btn:active { transform: scale(0.98); }
-        .tool-result { margin-top: 14px; }
-        .tool-result-label { font-size: 10px; color: #334155; margin-bottom: 4px; }
-        .tool-result-input {
-            width: 100%; padding: 9px 12px; border-radius: 8px;
-            background: #080c18; border: 1px solid rgba(34,211,238,0.15);
-            color: #22d3ee; font-size: 11px; font-family: monospace;
-        }
+    .step.active { color: #fff; }
+    .step.active .step-dot {
+      border-color: var(--red);
+      background: rgba(242,13,33,0.08);
+      color: #fff;
+      box-shadow: 0 0 0 4px rgba(242,13,33,0.08);
+    }
 
-        /* ── Adblock Banner ── */
-        .adblock-banner {
-            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-            background: linear-gradient(90deg, #e11d48, #f43f5e);
-            color: white; padding: 8px 16px; text-align: center;
-            font-size: 12px; font-weight: 600;
-            animation: float-up 0.3s ease-out;
-        }
+    .step.done { color: var(--green); }
+    .step.done .step-dot {
+      border-color: rgba(55,220,125,0.55);
+      background: rgba(55,220,125,0.10);
+      color: var(--green);
+    }
 
-        /* ── Footer ── */
-        .footer { border-top: 1px solid rgba(56,189,248,0.06); }
-        .footer-inner { max-width: 680px; margin: auto; padding: 24px 16px; text-align: center; }
-        .footer-logo { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 10px; }
-        .footer-logo-icon {
-            width: 20px; height: 20px; border-radius: 6px;
-            background: linear-gradient(135deg, #22d3ee, #34d399);
-            display: flex; align-items: center; justify-content: center;
-            font-weight: 800; font-size: 8px; color: #080c18;
-        }
-        .footer-logo-text { font-size: 12px; font-weight: 600; color: #475569; }
-        .footer-copy { font-size: 10px; color: #1e293b; margin-bottom: 8px; }
-        .footer-links { display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; }
-        .footer-links a { font-size: 10px; color: #334155; text-decoration: none; transition: color 0.2s; }
-        .footer-links a:hover { color: #22d3ee; }
+    .section-head {
+      padding: 20px 24px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      border-bottom: 1px solid var(--line);
+    }
 
-        .hidden { display: none !important; }
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
 
-        .spinner {
-            width: 20px; height: 20px; border: 2.5px solid rgba(34,211,238,0.25);
-            border-top-color: #22d3ee; border-radius: 50%;
-            animation: spin-slow 0.8s linear infinite;
-        }
-    </style>
+    .tiny-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 11px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(242,13,33,0.24);
+      background: rgba(242,13,33,0.12);
+      color: #ff5968;
+      font-weight: 900;
+    }
+
+    .section-title h2 {
+      font-size: 17px;
+      line-height: 1.2;
+      font-weight: 850;
+    }
+
+    .section-title p {
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .chip {
+      padding: 5px 10px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255,255,255,0.04);
+      color: var(--muted);
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .section-body { padding: 24px; }
+
+    .captcha-btn {
+      width: 100%;
+      min-height: 76px;
+      border: 1px solid var(--line-2);
+      border-radius: 14px;
+      background: var(--panel-2);
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px;
+      cursor: pointer;
+      text-align: left;
+      transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+    }
+
+    .captcha-btn:hover { border-color: rgba(242,13,33,0.45); }
+    .captcha-btn:active { transform: scale(0.986); }
+    .captcha-btn.disabled { pointer-events: none; opacity: 0.72; }
+
+    .captcha-check {
+      width: 28px;
+      height: 28px;
+      border: 2px solid #85858c;
+      border-radius: 7px;
+      flex: 0 0 auto;
+      display: grid;
+      place-items: center;
+      color: #070707;
+      font-size: 17px;
+      font-weight: 900;
+    }
+
+    .captcha-check.checked {
+      border-color: var(--green);
+      background: var(--green);
+    }
+
+    .captcha-check.checked::after { content: "\2713"; }
+
+    .captcha-copy { flex: 1; min-width: 0; }
+    .captcha-label { display: block; color: var(--text); font-size: 17px; font-weight: 850; }
+    .captcha-sub { display: block; color: var(--muted); font-size: 13px; margin-top: 1px; }
+
+    .bot-face {
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      background: #29292c;
+      border: 1px solid var(--line);
+      color: #fff;
+      font-weight: 900;
+      font-size: 12px;
+    }
+
+    .micro {
+      margin-top: 14px;
+      color: var(--dim);
+      text-align: center;
+      font-size: 12px;
+    }
+
+    .support-note {
+      display: flex;
+      gap: 12px;
+      padding: 18px 20px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .support-note strong { color: var(--text); }
+
+    .info-dot {
+      width: 24px;
+      height: 24px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .ad-shell {
+      border: 1px dashed rgba(255,255,255,0.16);
+      border-radius: 16px;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.045), rgba(255,255,255,0.012)),
+        rgba(21,21,21,0.72);
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .native-ad { min-height: 96px; padding: 10px; }
+    .native-ad iframe { max-width: 100%; }
+    .rectangle-ad { min-height: 250px; display: none; }
+    .mobile-sticky-ad { display: none; }
+
+    .ad-empty {
+      min-height: inherit;
+      display: grid;
+      place-items: center;
+      padding: 16px;
+      color: var(--muted);
+    }
+
+    .ad-empty strong { display: block; color: var(--text); font-size: 14px; }
+    .ad-empty span { display: block; margin-top: 4px; color: var(--dim); font-size: 12px; }
+
+    .ad-prompt {
+      display: grid;
+      gap: 6px;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    .ad-prompt-text {
+      color: var(--text);
+      font-size: 15px;
+      font-weight: 850;
+    }
+
+    .ad-prompt-sub {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .ad-prompt-wait { color: var(--amber); }
+
+    .timer-card .section-body { display: grid; gap: 16px; }
+
+    .progress-bar-wrap {
+      height: 9px;
+      border-radius: 99px;
+      background: #262629;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      width: 0%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--red), #ff6b6b, var(--amber));
+      transition: width 0.7s linear;
+    }
+
+    .timer-status {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .timer-status-text { color: var(--muted); }
+    .timer-count {
+      color: #fff;
+      font-size: 26px;
+      line-height: 1;
+      font-weight: 900;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .spinner {
+      width: 18px;
+      height: 18px;
+      border: 2px solid rgba(255,255,255,0.17);
+      border-top-color: var(--red);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .done-box {
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .ready-dot {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      background: rgba(55,220,125,0.12);
+      border: 1px solid rgba(55,220,125,0.32);
+      color: var(--green);
+      font-weight: 900;
+    }
+
+    .done-text { display: block; font-size: 17px; font-weight: 850; }
+    .done-sub { color: var(--muted); font-size: 13px; }
+
+    .get-file-wrap { display: grid; gap: 10px; }
+
+    .get-file-btn {
+      width: 100%;
+      min-height: 58px;
+      border: 0;
+      border-radius: 14px;
+      background: #262629;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: 900;
+      letter-spacing: 0.2px;
+      transition: transform 0.18s ease, filter 0.18s ease, opacity 0.18s ease;
+    }
+
+    .get-file-btn:active { transform: scale(0.985); }
+
+    .get-file-btn.active {
+      background: linear-gradient(135deg, #f20d21, #ff3347);
+      color: #fff;
+      box-shadow: 0 16px 32px rgba(242,13,33,0.22);
+    }
+
+    .get-file-btn.waiting {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.04);
+      color: var(--muted);
+      cursor: default;
+    }
+
+    .get-file-btn.locked {
+      border: 1px dashed var(--line-2);
+      background: rgba(255,255,255,0.04);
+      color: var(--dim);
+      cursor: default;
+    }
+
+    .get-file-btn.redirecting {
+      background: var(--panel-3);
+      color: var(--muted);
+      cursor: wait;
+    }
+
+    .countdown-num { color: #fff; font-variant-numeric: tabular-nums; }
+    .get-file-hint { color: var(--muted); text-align: center; font-size: 12px; }
+
+    .tool-box { padding: 22px; text-align: center; }
+    .tool-box h1 { font-size: 24px; margin-bottom: 7px; }
+    .tool-box p { color: var(--muted); font-size: 14px; }
+
+    .tool-input {
+      width: 100%;
+      margin-top: 18px;
+      padding: 14px 15px;
+      border-radius: 13px;
+      border: 1px solid var(--line-2);
+      background: var(--panel-2);
+      color: var(--text);
+      outline: none;
+    }
+
+    .tool-btn {
+      width: 100%;
+      min-height: 52px;
+      margin-top: 12px;
+      border: 0;
+      border-radius: 13px;
+      background: linear-gradient(135deg, #f20d21, #ff3347);
+      color: #fff;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .tool-result { margin-top: 15px; }
+    .tool-result-label { color: var(--muted); font-size: 12px; margin-bottom: 6px; }
+    .tool-result-input {
+      width: 100%;
+      padding: 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(242,13,33,0.28);
+      background: #090909;
+      color: #fff;
+      font-size: 12px;
+    }
+
+    .adblock-banner {
+      position: fixed;
+      left: 12px;
+      right: 12px;
+      top: 78px;
+      z-index: 100;
+      padding: 11px 14px;
+      border: 1px solid rgba(242,13,33,0.36);
+      border-radius: 12px;
+      background: rgba(36,10,14,0.96);
+      color: #fff;
+      text-align: center;
+      font-size: 12px;
+      font-weight: 800;
+      box-shadow: var(--shadow);
+    }
+
+    .scroll-hint {
+      position: fixed;
+      left: 50%;
+      bottom: 74px;
+      z-index: 50;
+      transform: translateX(-50%);
+      padding: 10px 15px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(21,21,21,0.94);
+      color: var(--text);
+      box-shadow: var(--shadow);
+      font-size: 12px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .footer {
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid var(--line);
+      padding: 24px 16px 90px;
+      text-align: center;
+      color: var(--dim);
+      font-size: 12px;
+    }
+
+    @media (min-width: 760px) {
+      .rectangle-ad {
+        display: block;
+      }
+    }
+
+    @media (max-width: 1040px) {
+      .page {
+        grid-template-columns: 1fr;
+        width: min(680px, 100%);
+      }
+      .main { grid-column: 1; }
+    }
+
+    @media (max-width: 720px) {
+      .topbar-inner {
+        min-height: 62px;
+        padding: 0 14px;
+      }
+
+      .logo { font-size: 22px; }
+      .live { font-size: 12px; }
+
+      .page {
+        padding: 22px 12px 112px;
+        gap: 14px;
+      }
+
+      .main { gap: 14px; }
+
+      .file-card { padding: 16px; }
+      .file-icon { width: 54px; height: 54px; border-radius: 14px; font-size: 22px; }
+      .file-title { font-size: 16px; }
+      .meta-row { font-size: 12px; }
+
+      .stats { gap: 8px; }
+      .stat { padding: 15px 7px; border-radius: 13px; }
+      .stat strong { font-size: 22px; }
+      .stat span { font-size: 9px; }
+
+      .steps { padding: 8px 8px 6px; }
+      .step { font-size: 11px; }
+      .step-dot { width: 31px; height: 31px; }
+
+      .section-head { padding: 16px; }
+      .section-body { padding: 16px; }
+      .section-title h2 { font-size: 16px; }
+      .section-title p { font-size: 12px; }
+      .chip { font-size: 11px; padding: 4px 8px; }
+
+      .captcha-btn { min-height: 72px; padding: 14px; }
+      .captcha-label { font-size: 15px; }
+      .captcha-sub { font-size: 12px; }
+
+      .support-note { padding: 15px 16px; font-size: 13px; }
+      .native-ad { min-height: 86px; }
+
+      .rectangle-ad {
+        display: block;
+        min-height: 250px;
+      }
+
+      .mobile-sticky-ad {
+        position: fixed;
+        left: 50%;
+        bottom: 10px;
+        z-index: 40;
+        transform: translateX(-50%);
+        display: block;
+        width: min(320px, calc(100vw - 22px));
+        min-height: 50px;
+        border-radius: 12px;
+        box-shadow: 0 18px 40px rgba(0,0,0,0.55);
+      }
+    }
+
+    @media (max-width: 390px) {
+      .live span { display: none; }
+      .file-card { align-items: flex-start; }
+      .stat strong { font-size: 19px; }
+      .section-head { align-items: flex-start; }
+    }
+  </style>
 </head>
 <body>
+  <div class="ad-banner-bait ad ads adsbox ad-placement carbon-ads" style="position:absolute!important;left:-9999px!important;top:-9999px!important;width:1px!important;height:1px;" aria-hidden="true">&nbsp;</div>
+  <div id="adblock-banner" class="adblock-banner hidden">Ad blocker detected. Please allow ads to keep VidPlays free.</div>
+  <div id="scroll-hint" class="scroll-hint" style="display:none;">Scroll down to unlock your file</div>
 
-    <!-- Anti-adblock bait -->
-    <div class="ad-banner-bait ad ads adsbox ad-placement carbon-ads" style="position:absolute!important;left:-9999px!important;top:-9999px!important;width:1px!important;height:1px!important;" aria-hidden="true">&nbsp;</div>
-
-    <!-- Adblock Banner -->
-    <div id="adblock-banner" class="adblock-banner hidden">&#9888;&#65039; Ad blocker detected! Please disable it to support free content.</div>
-
-    <!-- Scroll Hint (mobile) -->
-    <div id="scroll-hint" class="scroll-hint" style="display:none;">
-        <span class="arrow">&#8595;</span> Scroll down to get your file
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="logo" aria-label="VidPlays"><span>VID</span><span>PLAYS</span></div>
+      <div class="live"><i class="live-dot"></i><span><span id="visitor-count">2,847</span> files accessed today</span></div>
     </div>
+  </header>
 
-    <!-- Navbar -->
-    <nav class="navbar">
-        <div class="navbar-inner">
-            <div style="display:flex;align-items:center;gap:8px;">
-                <div class="logo-box">VP</div>
-                <span class="logo-text">VidPlays</span>
-            </div>
-            <div class="nav-dot"></div>
+  <main class="page">
+    <section class="main" aria-label="VidPlays gateway">
+      <article class="card file-card">
+        <div class="file-icon">VP</div>
+        <div>
+          <h1 class="file-title">Your Requested File</h1>
+          <div class="meta-row">
+            <span class="badge">EXCLUSIVE</span>
+            <span class="muted">Via Telegram Bot</span>
+          </div>
         </div>
-    </nav>
+      </article>
 
-    <!-- Main Content -->
-    <main class="container">
+      <div class="stats" aria-label="stats">
+        <div class="stat"><strong>2.8K</strong><span>TODAY'S USERS</span></div>
+        <div class="stat"><strong>50K+</strong><span>MEMBERS</span></div>
+        <div class="stat"><strong>10S</strong><span>WAIT TIME</span></div>
+      </div>
 
-        <!-- ══════════════════════════════════════ -->
-        <!-- PAGE 1: CAPTCHA ONLY — NO BANNERS     -->
-        <!-- ══════════════════════════════════════ -->
-        <div id="captcha-page" class="hidden">
-            <div class="glass verify-box anim-float">
-                <div class="verify-title">
-                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
-                    <h3>Security Verification</h3>
-                </div>
-                <p class="verify-sub">Please verify you are not a robot to access content</p>
-                <div class="captcha-btn" id="captcha-btn" onclick="handleCaptchaClick()">
-                    <div class="captcha-check" id="captcha-check"></div>
-                    <span class="captcha-label">I'm not a robot</span>
-                    <svg class="captcha-icon" viewBox="0 0 32 32" fill="none">
-                        <path d="M16 4C9.37 4 4 9.37 4 16s5.37 12 12 12 12-5.37 12-12S22.63 4 16 4z" stroke="#64748b" stroke-width="2"/>
-                        <circle cx="12" cy="13" r="2" fill="#64748b"/>
-                        <circle cx="20" cy="13" r="2" fill="#64748b"/>
-                        <path d="M11 20c1.5 1.5 4.5 1.5 6 0" stroke="#64748b" stroke-width="1.5" stroke-linecap="round"/>
-                    </svg>
-                </div>
-                <p class="captcha-footer">Protected by VidPlays Security</p>
+      <nav class="steps" aria-label="unlock steps">
+        <div class="step active" id="step-verify"><span class="step-dot">1</span><span>Verify</span></div>
+        <div class="step" id="step-ad"><span class="step-dot">2</span><span>View Ad</span></div>
+        <div class="step" id="step-file"><span class="step-dot">3</span><span>Get File</span></div>
+      </nav>
+
+      <div id="captcha-page" class="hidden">
+        <section class="card">
+          <div class="section-head">
+            <div class="section-title">
+              <div class="tiny-icon">L</div>
+              <div>
+                <h2>Security Verification</h2>
+                <p>Complete the short steps to access your file</p>
+              </div>
             </div>
+            <span class="chip">Step 1 of 3</span>
+          </div>
+          <div class="section-body">
+            <button class="captcha-btn" id="captcha-btn" type="button" onclick="handleCaptchaClick()">
+              <span class="captcha-check" id="captcha-check"></span>
+              <span class="captcha-copy">
+                <span class="captcha-label">I'm not a robot</span>
+                <span class="captcha-sub">Tap to verify your identity</span>
+              </span>
+              <span class="bot-face">AI</span>
+            </button>
+            <p class="micro">Protected by VidPlays Security</p>
+          </div>
+        </section>
+      </div>
+
+      <div id="timer-page" class="hidden">
+        <section class="card support-note" id="ad-click-box">
+          <span class="info-dot">i</span>
+          <div class="ad-prompt" id="ad-prompt-box">
+            <p class="ad-prompt-text">View the sponsor area to start verification</p>
+            <p class="ad-prompt-sub">Open the sponsor, then return here. Your countdown will begin automatically.</p>
+          </div>
+        </section>
+
+        <section class="ad-shell native-ad" id="ad-timer-native">
+          <script async="async" data-cfasync="false" src="https://pl29177701.profitablecpmratenetwork.com/e71dc82ac58350d7c6ffca5c82c9f22c/invoke.js"></script>
+          <div id="container-e71dc82ac58350d7c6ffca5c82c9f22c"></div>
+        </section>
+
+        <section class="card timer-card hidden" id="timer-box">
+          <div class="section-head">
+            <div class="section-title">
+              <div class="tiny-icon">10</div>
+              <div>
+                <h2>Preparing Link</h2>
+                <p>Keep this page open while the link unlocks</p>
+              </div>
+            </div>
+            <span class="chip" id="timer-chip">10s</span>
+          </div>
+          <div class="section-body">
+            <div class="timer-status">
+              <span style="display:flex;align-items:center;gap:10px;"><span class="spinner"></span><span class="timer-status-text" id="timer-text">Establishing secure connection...</span></span>
+              <strong class="timer-count" id="timer-count">10</strong>
+            </div>
+            <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progress-fill" style="width:0%"></div></div>
+          </div>
+        </section>
+
+        <section class="card done-box hidden" id="done-box">
+          <span class="ready-dot">&#10003;</span>
+          <div>
+            <span class="done-text">Verification Complete</span>
+            <span class="done-sub">Your file is ready. Open it through Telegram below.</span>
+          </div>
+        </section>
+
+        <section class="ad-shell rectangle-ad" id="rectangle-ad">
+          <script>
+            atOptions = {
+              'key' : '349308e9afbdb2ab3a8d9a8423362ae8',
+              'format' : 'iframe',
+              'height' : 250,
+              'width' : 300,
+              'params' : {}
+            };
+          </script>
+          <script src="https://www.highperformanceformat.com/349308e9afbdb2ab3a8d9a8423362ae8/invoke.js"></script>
+        </section>
+
+        <div id="get-file-section" class="get-file-wrap">
+          <button id="get-file-btn" class="get-file-btn locked">Complete verification first</button>
+          <p id="get-file-hint" class="get-file-hint hidden">Tap above to access your file via Telegram bot</p>
         </div>
+      </div>
 
-        <!-- ══════════════════════════════════════ -->
-        <!-- PAGE 2: TIMER + ADS + CONTENT         -->
-        <!-- ══════════════════════════════════════ -->
-        <div id="timer-page" class="hidden">
+      <div id="home-view" class="hidden">
+        <section class="card tool-box">
+          <h1>URL Media Protector</h1>
+          <p>Generate a protected VidPlays link for a bot token or direct media URL.</p>
+          <input type="text" id="tool-input" class="tool-input" placeholder="Paste your link or bot start parameter...">
+          <button class="tool-btn" onclick="generateLink()">Protect URL</button>
+          <div id="tool-result" class="tool-result hidden">
+            <p class="tool-result-label">Your protected link:</p>
+            <input type="text" id="tool-output" class="tool-result-input" readonly onclick="this.select()">
+          </div>
+        </section>
+      </div>
+    </section>
+  </main>
 
-            <!-- Ad Click Prompt (shown first, before timer) -->
-            <div class="glass anim-float" id="ad-click-box" style="padding:20px;text-align:center;">
-                <div class="ad-prompt" id="ad-prompt-box">
-                    <div class="ad-prompt-icon">&#128071;</div>
-                    <p class="ad-prompt-text">Click the ad below to start verification</p>
-                    <p class="ad-prompt-sub">Click the ad, then come back &mdash; the countdown will begin automatically</p>
-                </div>
-            </div>
-
-            <!-- Timer (hidden until ad clicked) -->
-            <div class="glass timer-box hidden" id="timer-box">
-                <div class="timer-status">
-                    <div class="spinner"></div>
-                    <span class="timer-status-text" id="timer-text">Establishing secure connection...</span>
-                </div>
-                <div class="progress-bar-wrap">
-                    <div class="progress-bar-fill" id="progress-fill" style="width:0%"></div>
-                </div>
-            </div>
-
-            <!-- Done state (hidden until timer ends) -->
-            <div class="glass verify-box anim-float hidden" id="done-box">
-                <div class="verify-title done-icon">
-                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                    <span class="done-text">Verification Complete!</span>
-                </div>
-                <p class="done-sub">Your file is ready. Click the button below.</p>
-            </div>
-
-            <!-- Native Banner (under prompt/timer — user clicks this to start timer) -->
-            <div class="ad-slot" id="ad-timer-native" style="max-width:100%;">
-                <script async="async" data-cfasync="false" src="https://pl29177701.profitablecpmratenetwork.com/e71dc82ac58350d7c6ffca5c82c9f22c/invoke.js"></script>
-                <div id="container-e71dc82ac58350d7c6ffca5c82c9f22c"></div>
-            </div>
-
-            <!-- Social Proof -->
-            <div class="social-proof">
-                <span class="fire">&#128293;</span>
-                <span class="text"><span class="count" id="visitor-count">2,847</span> people accessed this file today</span>
-            </div>
-
-            <!-- Blog Header -->
-            <div class="blog-header">
-                <h2 class="gradient-text">Latest Tech Insights</h2>
-                <span>VidPlays Blog</span>
-            </div>
-
-            <!-- POST 1 -->
-            <article class="glass post-card anim-float" style="animation-delay:0.1s">
-                <div class="post-meta">
-                    <span class="post-cat cat-ai">Artificial Intelligence</span>
-                    <span class="post-read">3 min read</span>
-                </div>
-                <h3 class="post-title">How AI is Revolutionizing Video Streaming Quality</h3>
-                <div class="post-body">
-                    <p>Artificial intelligence has fundamentally transformed the way we experience video content online. Modern AI-powered upscaling technologies can take a standard 480p video stream and enhance it to near-4K quality in real-time, using deep learning models trained on millions of high-resolution frames. Companies like NVIDIA and Intel are investing heavily in this technology, recognizing that bandwidth limitations remain a significant barrier to delivering pristine video quality to every device.</p>
-                    <p>Content-aware compression represents another breakthrough. Traditional video codecs treat every frame the same way, but intelligent algorithms can now identify which parts of a scene matter most to human perception and allocate more data to those areas. This means higher quality at lower bitrates, which directly translates to better viewing experiences on mobile devices and slower connections.</p>
-                </div>
-            </article>
-
-            <!-- POST 2 -->
-            <article class="glass post-card anim-float" style="animation-delay:0.2s">
-                <div class="post-meta">
-                    <span class="post-cat cat-cyber">Cybersecurity</span>
-                    <span class="post-read">3 min read</span>
-                </div>
-                <h3 class="post-title">Cybersecurity Threats in Digital Media Distribution</h3>
-                <div class="post-body">
-                    <p>The digital media distribution industry faces an ever-growing array of cybersecurity threats costing content creators billions of dollars annually. Piracy remains the most visible challenge, but the threat landscape has expanded to include sophisticated attacks on content delivery networks, DNS poisoning attempts, and ransomware attacks targeting media production studios before content is officially released.</p>
-                    <p>Modern DRM systems employ multi-layered protection including forensic watermarking, which embeds invisible identifiers into each stream so leaked content can be traced back to its source. Advanced encryption protocols ensure content is protected from the moment it leaves the production studio to the moment it appears on a viewer's screen.</p>
-                </div>
-            </article>
-
-            <!-- POST 3 -->
-            <article class="glass post-card anim-float" style="animation-delay:0.3s">
-                <div class="post-meta">
-                    <span class="post-cat cat-social">Social Media</span>
-                    <span class="post-read">3 min read</span>
-                </div>
-                <h3 class="post-title">Why Telegram Communities Are the Future of Content Sharing</h3>
-                <div class="post-body">
-                    <p>Telegram has quietly become one of the most important platforms for content distribution, particularly in markets where traditional social media platforms face restrictions. With over 900 million active users and features like unlimited channel subscribers, Telegram offers content creators a direct line to their audience without algorithmic interference.</p>
-                    <p>The platform's emphasis on privacy and encryption has made it the preferred choice for communities sharing premium content. Private channels create a sense of exclusivity that drives engagement, and content creators report significantly higher interaction rates compared to other social platforms.</p>
-                </div>
-            </article>
-
-            <!-- Get File Button (scroll down to unlock) -->
-            <div id="get-file-section" class="get-file-wrap">
-                <button id="get-file-btn" class="get-file-btn locked">
-                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"/></svg>
-                    Scroll down & complete verification
-                </button>
-                <p id="get-file-hint" class="get-file-hint hidden">Click above to access your file via Telegram bot</p>
-            </div>
-
-        </div>
-
-        <!-- ══════════════════════════════════════ -->
-        <!-- HOME VIEW (no token = URL protector)  -->
-        <!-- ══════════════════════════════════════ -->
-        <div id="home-view" class="hidden">
-            <div class="glass tool-box anim-float">
-                <div class="tool-title">
-                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5V6.75a4.5 4.5 0 119 0v3.75M3.75 21.75h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H3.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"/></svg>
-                    <h3>URL Media Protector</h3>
-                </div>
-                <p class="tool-sub">Generate a protected link for your media files</p>
-                <input type="text" id="tool-input" class="tool-input" placeholder="Paste your link or bot start parameter...">
-                <button class="tool-btn" onclick="generateLink()">Protect URL</button>
-                <div id="tool-result" class="tool-result hidden">
-                    <p class="tool-result-label">Your protected link:</p>
-                    <input type="text" id="tool-output" class="tool-result-input" readonly onclick="this.select()">
-                </div>
-            </div>
-        </div>
-
-    </main>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-inner">
-            <div class="footer-logo">
-                <div class="footer-logo-icon">VP</div>
-                <span class="footer-logo-text">VidPlays.in</span>
-            </div>
-            <p class="footer-copy">&copy; 2025 VidPlays Media Group. All rights reserved.</p>
-            <div class="footer-links">
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms of Service</a>
-                <a href="#">DMCA</a>
-                <a href="#">Contact Us</a>
-            </div>
-        </div>
-    </footer>
-
+  <aside class="ad-shell mobile-sticky-ad" aria-label="mobile ad slot">
     <script>
-        // ── Config ──
-        const BOT_USERNAME = 'JSTAR_P4N3L_bot';
-        const TOTAL_TIME = 10; // 10 seconds
-        const TIMER_STEPS = [
-            { text: 'Establishing secure connection...', end: 2 },
-            { text: 'Verifying file integrity...', end: 4 },
-            { text: 'Checking server availability...', end: 6 },
-            { text: 'Retrieving file metadata...', end: 8 },
-            { text: 'Preparing download link...', end: 10 },
-        ];
-
-        // ── State ──
-        let token = null;
-        let verified = false;
-        let scrollReached = false;
-        let timerInterval = null;
-        let timerStarted = false;
-        let adClicked = false;
-        let pageHiddenTime = 0;
-
-        // ── Init ──
-        (function init() {
-            const params = new URLSearchParams(window.location.search);
-            token = params.get('token');
-
-            if (token) {
-                // Gateway flow: start at Page 1 (Captcha only)
-                document.getElementById('captcha-page').classList.remove('hidden');
-            } else {
-                document.getElementById('home-view').classList.remove('hidden');
-            }
-
-            // Social proof randomizer
-            const count = Math.floor(Math.random() * 3500) + 1200;
-            const countEl = document.getElementById('visitor-count');
-            if (countEl) countEl.textContent = count.toLocaleString();
-
-            // Anti-adblock detection
-            detectAdblock();
-
-            // Listen for user leaving/coming back (ad click detection)
-            document.addEventListener('visibilitychange', handleVisibilityChange);
-
-            // Scroll observer for Get File button
-            if (token) {
-                setupScrollObserver();
-            }
-        })();
-
-        // ── Anti-Adblock ──
-        function detectAdblock() {
-            const bait = document.querySelector('.ad-banner-bait');
-            if (!bait) return;
-            setTimeout(() => {
-                const blocked = bait.offsetHeight === 0 || bait.offsetParent === null;
-                if (blocked) {
-                    document.getElementById('adblock-banner').classList.remove('hidden');
-                    document.body.style.paddingTop = '36px';
-                }
-            }, 300);
-        }
-
-        // ── Page 1: Captcha Click ──
-        function handleCaptchaClick() {
-            const btn = document.getElementById('captcha-btn');
-            const check = document.getElementById('captcha-check');
-
-            // Prevent double clicks
-            btn.classList.add('disabled');
-            check.classList.add('checked');
-
-            // Brief pause then go to Page 2
-            setTimeout(() => {
-                document.getElementById('captcha-page').classList.add('hidden');
-                document.getElementById('timer-page').classList.remove('hidden');
-
-                // Popunder fires automatically (Adsterra script in <head>)
-                // Timer does NOT auto-start — user must click ad first
-                // handleVisibilityChange() will start the timer when they come back
-            }, 600);
-        }
-
-        // ── Ad Click Detection ──
-        // When user clicks the native ad and leaves the page,
-        // we detect it. When they come back, the timer starts.
-        function handleVisibilityChange() {
-            if (!token || timerStarted || verified) return;
-
-            if (document.visibilityState === 'hidden') {
-                // User left the page (clicked the ad)
-                pageHiddenTime = Date.now();
-                adClicked = true;
-
-                // Update prompt to show waiting state
-                const promptBox = document.getElementById('ad-prompt-box');
-                if (promptBox) {
-                    promptBox.querySelector('.ad-prompt-text').textContent = 'Waiting for you to come back...';
-                    promptBox.querySelector('.ad-prompt-text').classList.add('ad-prompt-wait');
-                    promptBox.querySelector('.ad-prompt-icon').textContent = '\u23F3';
-                    promptBox.querySelector('.ad-prompt-sub').textContent = 'The countdown will start when you return';
-                }
-            }
-
-            if (document.visibilityState === 'visible' && adClicked && !timerStarted) {
-                // User came back after clicking ad
-                const timeAway = Date.now() - pageHiddenTime;
-                // Must have been away at least 1 second
-                if (timeAway >= 1000) {
-                    startTimer();
-                } else {
-                    // Too quick, probably just a tab switch
-                    adClicked = false;
-                    const promptBox = document.getElementById('ad-prompt-box');
-                    if (promptBox) {
-                        promptBox.querySelector('.ad-prompt-text').textContent = 'Click the ad below to start verification';
-                        promptBox.querySelector('.ad-prompt-text').classList.remove('ad-prompt-wait');
-                        promptBox.querySelector('.ad-prompt-icon').innerHTML = '&#128071;';
-                        promptBox.querySelector('.ad-prompt-sub').textContent = 'Click the ad, then come back \u2014 the countdown will begin automatically';
-                    }
-                }
-            }
-        }
-
-        // ── Page 2: Timer (starts after ad click) ──
-        function startTimer() {
-            timerStarted = true;
-
-            // Hide ad-click prompt, show timer
-            document.getElementById('ad-click-box').classList.add('hidden');
-            document.getElementById('timer-box').classList.remove('hidden');
-
-            let elapsed = 0;
-            const fill = document.getElementById('progress-fill');
-            const text = document.getElementById('timer-text');
-            const btn = document.getElementById('get-file-btn');
-
-            // Show countdown on button
-            btn.className = 'get-file-btn waiting';
-            btn.innerHTML = 'Please wait <span class="countdown-num" id="countdown-num">' + TOTAL_TIME + '</span>s';
-
-            timerInterval = setInterval(() => {
-                elapsed++;
-                const pct = Math.min((elapsed / TOTAL_TIME) * 100, 100);
-                fill.style.width = pct + '%';
-
-                // Update step text
-                const step = TIMER_STEPS.find(s => elapsed < s.end);
-                if (step) text.textContent = step.text;
-
-                // Update countdown on button
-                const numEl = document.getElementById('countdown-num');
-                const remaining = TOTAL_TIME - elapsed;
-                if (numEl && remaining > 0) {
-                    numEl.textContent = remaining;
-                }
-
-                if (elapsed >= TOTAL_TIME) {
-                    clearInterval(timerInterval);
-                    verified = true;
-
-                    // Swap timer → done box
-                    document.getElementById('timer-box').classList.add('hidden');
-                    document.getElementById('done-box').classList.remove('hidden');
-
-                    // Show scroll hint
-                    document.getElementById('scroll-hint').style.display = 'flex';
-                    setTimeout(() => {
-                        document.getElementById('scroll-hint').style.display = 'none';
-                    }, 8000);
-
-                    // Update button state
-                    updateGetFileButton();
-                }
-            }, 1000);
-        }
-
-        // ── Scroll Observer ──
-        function setupScrollObserver() {
-            const target = document.getElementById('get-file-section');
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        scrollReached = true;
-                        updateGetFileButton();
-                    }
-                });
-            }, { threshold: 0.5 });
-
-            observer.observe(target);
-
-            // Also listen for scroll events as backup
-            window.addEventListener('scroll', function() {
-                checkScrollReady();
-            }, { passive: true });
-        }
-
-        function checkScrollReady() {
-            const target = document.getElementById('get-file-section');
-            if (!target) return;
-            const rect = target.getBoundingClientRect();
-            const inView = rect.top < window.innerHeight && rect.bottom > 0;
-            if (inView) {
-                scrollReached = true;
-            }
-            updateGetFileButton();
-        }
-
-        // ── Update Get File Button ──
-        function updateGetFileButton() {
-            const btn = document.getElementById('get-file-btn');
-            const hint = document.getElementById('get-file-hint');
-            if (!btn) return;
-
-            if (verified && scrollReached) {
-                // Both conditions met — unlock!
-                btn.className = 'get-file-btn active';
-                btn.innerHTML = '<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg> Get File';
-                btn.onclick = handleGetFile;
-                hint.classList.remove('hidden');
-                // Hide scroll hint
-                document.getElementById('scroll-hint').style.display = 'none';
-            } else if (verified && !scrollReached) {
-                // Timer done but user hasn't scrolled
-                btn.className = 'get-file-btn locked';
-                btn.innerHTML = '<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5L12 21m0 0l-7.5-7.5M12 21V3"/></svg> Scroll down to unlock your file';
-                btn.onclick = null;
-                hint.classList.add('hidden');
-            } else {
-                // Timer still running
-                btn.className = 'get-file-btn locked';
-                btn.innerHTML = '<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"/></svg> Complete verification first';
-                btn.onclick = null;
-                hint.classList.add('hidden');
-            }
-        }
-
-        // ── Get File: Redirect ──
-        function handleGetFile() {
-            const btn = document.getElementById('get-file-btn');
-            btn.className = 'get-file-btn redirecting';
-            btn.innerHTML = '<div class="spinner" style="width:16px;height:16px;border-width:2px"></div> Redirecting...';
-            btn.onclick = null;
-
-            // Redirect to Telegram bot
-            setTimeout(() => {
-                if (token.startsWith('web_')) {
-                    window.location.href = atob(token.replace('web_', ''));
-                } else {
-                    window.location.href = 'https://t.me/' + BOT_USERNAME + '?start=' + token;
-                }
-            }, 800);
-        }
-
-        // ── URL Protector (Home View) ──
-        function generateLink() {
-            const input = document.getElementById('tool-input').value;
-            if (!input.trim()) return;
-            const finalToken = input.includes('start=')
-                ? input.split('start=')[1]
-                : 'web_' + btoa(input);
-            document.getElementById('tool-output').value = window.location.origin + window.location.pathname + '?token=' + finalToken;
-            document.getElementById('tool-result').classList.remove('hidden');
-        }
+      atOptions = {
+        'key' : '4d2f9c76c1e324b2daf675db39cf5013',
+        'format' : 'iframe',
+        'height' : 50,
+        'width' : 320,
+        'params' : {}
+      };
     </script>
-    <!-- Social Bar (Adsterra) -->
-    <script src="https://pl29177700.profitablecpmratenetwork.com/7f/0d/45/7f0d45422613d17e5f1633d86a191b1b.js"></script>
+    <script src="https://www.highperformanceformat.com/4d2f9c76c1e324b2daf675db39cf5013/invoke.js"></script>
+  </aside>
+
+  <footer class="footer">&copy; 2026 VidPlays.in. Secure media gateway.</footer>
+
+  <script>
+    const BOT_USERNAME = 'JSTAR_P4N3L_bot';
+    const TOTAL_TIME = 10;
+    const TIMER_STEPS = [
+      { text: 'Establishing secure connection...', end: 2 },
+      { text: 'Verifying file integrity...', end: 4 },
+      { text: 'Checking server availability...', end: 6 },
+      { text: 'Retrieving file metadata...', end: 8 },
+      { text: 'Preparing download link...', end: 10 },
+    ];
+
+    let token = null;
+    let verified = false;
+    let scrollReached = false;
+    let timerInterval = null;
+    let timerStarted = false;
+    let adClicked = false;
+    let pageHiddenTime = 0;
+
+    function setStep(index) {
+      const steps = [
+        document.getElementById('step-verify'),
+        document.getElementById('step-ad'),
+        document.getElementById('step-file'),
+      ];
+      steps.forEach((step, i) => {
+        step.classList.toggle('done', i < index);
+        step.classList.toggle('active', i === index);
+      });
+    }
+
+    (function init() {
+      const params = new URLSearchParams(window.location.search);
+      token = params.get('token');
+
+      if (token) {
+        document.getElementById('captcha-page').classList.remove('hidden');
+      } else {
+        document.getElementById('home-view').classList.remove('hidden');
+      }
+
+      const count = Math.floor(Math.random() * 3500) + 1200;
+      const countEl = document.getElementById('visitor-count');
+      if (countEl) countEl.textContent = count.toLocaleString();
+
+      detectAdblock();
+      document.addEventListener('visibilitychange', handleVisibilityChange);
+      if (token) setupScrollObserver();
+    })();
+
+    function detectAdblock() {
+      const bait = document.querySelector('.ad-banner-bait');
+      if (!bait) return;
+      setTimeout(() => {
+        const blocked = bait.offsetHeight === 0 || bait.offsetParent === null;
+        if (blocked) {
+          document.getElementById('adblock-banner').classList.remove('hidden');
+        }
+      }, 300);
+    }
+
+    function handleCaptchaClick() {
+      const btn = document.getElementById('captcha-btn');
+      const check = document.getElementById('captcha-check');
+      btn.classList.add('disabled');
+      check.classList.add('checked');
+      setStep(1);
+
+      setTimeout(() => {
+        document.getElementById('captcha-page').classList.add('hidden');
+        document.getElementById('timer-page').classList.remove('hidden');
+        document.getElementById('timer-page').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 600);
+    }
+
+    function handleVisibilityChange() {
+      if (!token || timerStarted || verified) return;
+
+      if (document.visibilityState === 'hidden') {
+        pageHiddenTime = Date.now();
+        adClicked = true;
+
+        const promptBox = document.getElementById('ad-prompt-box');
+        if (promptBox) {
+          promptBox.querySelector('.ad-prompt-text').textContent = 'Waiting for you to come back...';
+          promptBox.querySelector('.ad-prompt-text').classList.add('ad-prompt-wait');
+          promptBox.querySelector('.ad-prompt-sub').textContent = 'The countdown will start when you return.';
+        }
+      }
+
+      if (document.visibilityState === 'visible' && adClicked && !timerStarted) {
+        const timeAway = Date.now() - pageHiddenTime;
+        if (timeAway >= 1000) {
+          startTimer();
+        } else {
+          adClicked = false;
+          const promptBox = document.getElementById('ad-prompt-box');
+          if (promptBox) {
+            promptBox.querySelector('.ad-prompt-text').textContent = 'View the sponsor area to start verification';
+            promptBox.querySelector('.ad-prompt-text').classList.remove('ad-prompt-wait');
+            promptBox.querySelector('.ad-prompt-sub').textContent = 'Open the sponsor, then return here. Your countdown will begin automatically.';
+          }
+        }
+      }
+    }
+
+    function startTimer() {
+      timerStarted = true;
+      document.getElementById('ad-click-box').classList.add('hidden');
+      document.getElementById('timer-box').classList.remove('hidden');
+      document.getElementById('timer-box').scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+      let elapsed = 0;
+      const fill = document.getElementById('progress-fill');
+      const text = document.getElementById('timer-text');
+      const timerCount = document.getElementById('timer-count');
+      const timerChip = document.getElementById('timer-chip');
+      const btn = document.getElementById('get-file-btn');
+
+      btn.className = 'get-file-btn waiting';
+      btn.innerHTML = 'Please wait <span class="countdown-num" id="countdown-num">' + TOTAL_TIME + '</span>s';
+      timerCount.textContent = TOTAL_TIME;
+      timerChip.textContent = TOTAL_TIME + 's';
+
+      timerInterval = setInterval(() => {
+        elapsed++;
+        const pct = Math.min((elapsed / TOTAL_TIME) * 100, 100);
+        fill.style.width = pct + '%';
+
+        const step = TIMER_STEPS.find(s => elapsed < s.end);
+        if (step) text.textContent = step.text;
+
+        const remaining = Math.max(0, TOTAL_TIME - elapsed);
+        const numEl = document.getElementById('countdown-num');
+        if (numEl) numEl.textContent = remaining;
+        timerCount.textContent = remaining;
+        timerChip.textContent = remaining + 's';
+
+        if (elapsed >= TOTAL_TIME) {
+          clearInterval(timerInterval);
+          verified = true;
+          document.getElementById('timer-box').classList.add('hidden');
+          document.getElementById('done-box').classList.remove('hidden');
+          setStep(2);
+          document.getElementById('scroll-hint').style.display = 'block';
+          setTimeout(() => {
+            document.getElementById('scroll-hint').style.display = 'none';
+          }, 6000);
+          updateGetFileButton();
+        }
+      }, 1000);
+    }
+
+    function setupScrollObserver() {
+      const target = document.getElementById('get-file-section');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            scrollReached = true;
+            updateGetFileButton();
+          }
+        });
+      }, { threshold: 0.5 });
+
+      observer.observe(target);
+      window.addEventListener('scroll', checkScrollReady, { passive: true });
+    }
+
+    function checkScrollReady() {
+      const target = document.getElementById('get-file-section');
+      if (!target) return;
+      const rect = target.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        scrollReached = true;
+      }
+      updateGetFileButton();
+    }
+
+    function updateGetFileButton() {
+      const btn = document.getElementById('get-file-btn');
+      const hint = document.getElementById('get-file-hint');
+      if (!btn) return;
+
+      if (verified && scrollReached) {
+        btn.className = 'get-file-btn active';
+        btn.textContent = 'Open in Telegram';
+        btn.onclick = handleGetFile;
+        hint.classList.remove('hidden');
+        document.getElementById('scroll-hint').style.display = 'none';
+      } else if (verified && !scrollReached) {
+        btn.className = 'get-file-btn locked';
+        btn.textContent = 'Scroll down to unlock your file';
+        btn.onclick = null;
+        hint.classList.add('hidden');
+      } else {
+        btn.className = 'get-file-btn locked';
+        btn.textContent = 'Complete verification first';
+        btn.onclick = null;
+        hint.classList.add('hidden');
+      }
+    }
+
+    function handleGetFile() {
+      const btn = document.getElementById('get-file-btn');
+      btn.className = 'get-file-btn redirecting';
+      btn.innerHTML = '<span class="spinner" style="display:inline-block;vertical-align:middle;margin-right:8px;"></span> Redirecting...';
+      btn.onclick = null;
+
+      setTimeout(() => {
+        if (token.startsWith('web_')) {
+          window.location.href = atob(token.replace('web_', ''));
+        } else {
+          window.location.href = 'https://t.me/' + BOT_USERNAME + '?start=' + token;
+        }
+      }, 800);
+    }
+
+    function generateLink() {
+      const input = document.getElementById('tool-input').value;
+      if (!input.trim()) return;
+      const finalToken = input.includes('start=')
+        ? input.split('start=')[1]
+        : 'web_' + btoa(input);
+      document.getElementById('tool-output').value = window.location.origin + window.location.pathname + '?token=' + finalToken;
+      document.getElementById('tool-result').classList.remove('hidden');
+    }
+  </script>
+
+  <!-- Social Bar (Adsterra) -->
+  <script src="https://pl29177700.profitablecpmratenetwork.com/7f/0d/45/7f0d45422613d17e5f1633d86a191b1b.js"></script>
 </body>
 </html>
