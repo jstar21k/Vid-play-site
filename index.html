@@ -698,7 +698,6 @@
         </section>
 
         <section class="ad-shell native-ad" id="ad-timer-native">
-          <script async="async" data-cfasync="false" src="https://pl29177701.profitablecpmratenetwork.com/e71dc82ac58350d7c6ffca5c82c9f22c/invoke.js"></script>
           <div id="container-e71dc82ac58350d7c6ffca5c82c9f22c"></div>
         </section>
 
@@ -723,16 +722,6 @@
         </section>
 
         <section class="ad-shell rectangle-ad" id="rectangle-ad">
-          <script>
-            atOptions = {
-              'key' : '349308e9afbdb2ab3a8d9a8423362ae8',
-              'format' : 'iframe',
-              'height' : 250,
-              'width' : 300,
-              'params' : {}
-            };
-          </script>
-          <script src="https://www.highperformanceformat.com/349308e9afbdb2ab3a8d9a8423362ae8/invoke.js"></script>
         </section>
 
         <div id="get-file-section" class="get-file-wrap">
@@ -826,6 +815,22 @@
       if (timerStarted) return;
       timerStarted = true;
       verified = true;
+      const nativeAd = document.getElementById('ad-timer-native');
+      const nativeScript = document.createElement('script');
+      nativeScript.async = true;
+      nativeScript.setAttribute('data-cfasync', 'false');
+      nativeScript.src = 'https://pl29177701.profitablecpmratenetwork.com/e71dc82ac58350d7c6ffca5c82c9f22c/invoke.js';
+      nativeAd.appendChild(nativeScript);
+
+      const rectangleAd = document.getElementById('rectangle-ad');
+      const rectangleOptions = document.createElement('script');
+      rectangleOptions.textContent = "window.atOptions = { key: '349308e9afbdb2ab3a8d9a8423362ae8', format: 'iframe', height: 250, width: 300, params: {} };";
+      rectangleAd.appendChild(rectangleOptions);
+
+      const rectangleScript = document.createElement('script');
+      rectangleScript.src = 'https://www.highperformanceformat.com/349308e9afbdb2ab3a8d9a8423362ae8/invoke.js';
+      rectangleAd.appendChild(rectangleScript);
+
       document.getElementById('timer-box').classList.remove('hidden');
       document.getElementById('scroll-hint').style.display = 'block';
       setTimeout(() => {
