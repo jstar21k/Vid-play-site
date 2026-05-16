@@ -753,7 +753,7 @@
 <body>
   <div class="ad-banner-bait ad ads adsbox ad-placement carbon-ads" style="position:absolute!important;left:-9999px!important;top:-9999px!important;width:1px!important;height:1px;" aria-hidden="true">&nbsp;</div>
   <div id="adblock-banner" class="adblock-banner hidden">Ad blocker detected. Please allow ads to keep VidPlays free.</div>
-  <div id="scroll-hint" class="scroll-hint" style="display:none;">Scroll down to unlock your file</div>
+  <div id="scroll-hint" class="scroll-hint" style="display:none;">Scroll down to get your file</div>
 
   <header class="topbar">
     <div class="topbar-inner">
@@ -814,19 +814,6 @@
       </div>
 
       <div id="timer-page" class="hidden">
-        <section class="card support-note" id="ad-click-box">
-          <span class="info-dot">i</span>
-          <div class="ad-prompt" id="ad-prompt-box">
-            <p class="ad-prompt-text">View the sponsor area to start verification</p>
-            <p class="ad-prompt-sub">Open the sponsor, then return here. Your countdown will begin automatically.</p>
-          </div>
-        </section>
-
-        <section class="ad-shell native-ad" id="ad-timer-native">
-          <script async="async" data-cfasync="false" src="https://pl29177701.profitablecpmratenetwork.com/e71dc82ac58350d7c6ffca5c82c9f22c/invoke.js"></script>
-          <div id="container-e71dc82ac58350d7c6ffca5c82c9f22c"></div>
-        </section>
-
         <section class="card timer-card hidden" id="timer-box">
           <div class="section-head">
             <div class="section-title">
@@ -851,21 +838,13 @@
           <span class="ready-dot">&#10003;</span>
           <div>
             <span class="done-text">Verification Complete</span>
-            <span class="done-sub">Your file is ready. Open it through Telegram below.</span>
+            <span class="done-sub"><strong>Scroll down to get your file.</strong></span>
           </div>
         </section>
 
-        <section class="ad-shell rectangle-ad" id="rectangle-ad">
-          <script>
-            atOptions = {
-              'key' : '349308e9afbdb2ab3a8d9a8423362ae8',
-              'format' : 'iframe',
-              'height' : 250,
-              'width' : 300,
-              'params' : {}
-            };
-          </script>
-          <script src="https://www.highperformanceformat.com/349308e9afbdb2ab3a8d9a8423362ae8/invoke.js"></script>
+        <section class="ad-shell native-ad" id="ad-timer-native">
+          <script async="async" data-cfasync="false" src="https://pl29177701.profitablecpmratenetwork.com/e71dc82ac58350d7c6ffca5c82c9f22c/invoke.js"></script>
+          <div id="container-e71dc82ac58350d7c6ffca5c82c9f22c"></div>
         </section>
 
         <div id="get-file-section" class="get-file-wrap">
@@ -906,6 +885,7 @@
 
   <script>
     const BOT_USERNAME = 'JSTAR_P4N3L_bot';
+    const SMARTLINK_URL = 'https://www.effectivecpmnetwork.com/h49yu7tjyt?key=fc713a57c8d1e3461607a6f1395aec19';
     const TOTAL_TIME = 10;
     const TIMER_STEPS = [
       { text: 'Establishing secure connection...', end: 2 },
@@ -950,7 +930,6 @@
       if (countEl) countEl.textContent = count.toLocaleString();
 
       detectAdblock();
-      document.addEventListener('visibilitychange', handleVisibilityChange);
       if (token) setupScrollObserver();
     })();
 
@@ -976,43 +955,13 @@
         document.getElementById('captcha-page').classList.add('hidden');
         document.getElementById('timer-page').classList.remove('hidden');
         document.getElementById('timer-page').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        startTimer();
       }, 600);
     }
 
-    function handleVisibilityChange() {
-      if (!token || timerStarted || verified) return;
-
-      if (document.visibilityState === 'hidden') {
-        pageHiddenTime = Date.now();
-        adClicked = true;
-
-        const promptBox = document.getElementById('ad-prompt-box');
-        if (promptBox) {
-          promptBox.querySelector('.ad-prompt-text').textContent = 'Waiting for you to come back...';
-          promptBox.querySelector('.ad-prompt-text').classList.add('ad-prompt-wait');
-          promptBox.querySelector('.ad-prompt-sub').textContent = 'The countdown will start when you return.';
-        }
-      }
-
-      if (document.visibilityState === 'visible' && adClicked && !timerStarted) {
-        const timeAway = Date.now() - pageHiddenTime;
-        if (timeAway >= 1000) {
-          startTimer();
-        } else {
-          adClicked = false;
-          const promptBox = document.getElementById('ad-prompt-box');
-          if (promptBox) {
-            promptBox.querySelector('.ad-prompt-text').textContent = 'View the sponsor area to start verification';
-            promptBox.querySelector('.ad-prompt-text').classList.remove('ad-prompt-wait');
-            promptBox.querySelector('.ad-prompt-sub').textContent = 'Open the sponsor, then return here. Your countdown will begin automatically.';
-          }
-        }
-      }
-    }
-
     function startTimer() {
+      if (timerStarted) return;
       timerStarted = true;
-      document.getElementById('ad-click-box').classList.add('hidden');
       document.getElementById('timer-box').classList.remove('hidden');
       document.getElementById('timer-box').scrollIntoView({ behavior: 'smooth', block: 'center' });
 
@@ -1089,13 +1038,13 @@
 
       if (verified && scrollReached) {
         btn.className = 'get-file-btn active';
-        btn.textContent = 'Open in Telegram';
+        btn.textContent = 'Get Your Files';
         btn.onclick = handleGetFile;
         hint.classList.remove('hidden');
         document.getElementById('scroll-hint').style.display = 'none';
       } else if (verified && !scrollReached) {
         btn.className = 'get-file-btn locked';
-        btn.textContent = 'Scroll down to unlock your file';
+        btn.textContent = 'Scroll down to get your file';
         btn.onclick = null;
         hint.classList.add('hidden');
       } else {
@@ -1111,6 +1060,8 @@
       btn.className = 'get-file-btn redirecting';
       btn.innerHTML = '<span class="spinner" style="display:inline-block;vertical-align:middle;margin-right:8px;"></span> Redirecting...';
       btn.onclick = null;
+
+      window.open(SMARTLINK_URL, '_blank', 'noopener');
 
       setTimeout(() => {
         if (token.startsWith('web_')) {
