@@ -638,7 +638,7 @@
 <body>
   <div class="ad-banner-bait ad ads adsbox ad-placement carbon-ads" style="position:absolute!important;left:-9999px!important;top:-9999px!important;width:1px!important;height:1px;" aria-hidden="true">&nbsp;</div>
   <div id="adblock-banner" class="adblock-banner hidden">Ad blocker detected. Please allow ads to keep VidPlays free.</div>
-  <div id="scroll-hint" class="scroll-hint" style="display:none;">Scroll down to unlock your file</div>
+  <div id="scroll-hint" class="scroll-hint" style="display:none;">Scroll down to get your files</div>
 
   <header class="topbar">
     <div class="topbar-inner">
@@ -866,13 +866,13 @@
 
       if (verified && scrollReached) {
         btn.className = 'get-file-btn active';
-        btn.textContent = 'Open in Telegram';
+        btn.textContent = 'Get Your File';
         btn.onclick = handleGetFile;
         hint.classList.remove('hidden');
         document.getElementById('scroll-hint').style.display = 'none';
       } else if (verified && !scrollReached) {
         btn.className = 'get-file-btn locked';
-        btn.textContent = 'Scroll down to unlock your file';
+        btn.textContent = 'Scroll down to get your files';
         btn.onclick = null;
         hint.classList.add('hidden');
       } else {
