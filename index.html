@@ -226,63 +226,6 @@
       letter-spacing: 0.4px;
     }
 
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      align-items: start;
-      padding: 10px 18px 8px;
-    }
-
-    .step {
-      position: relative;
-      display: grid;
-      justify-items: center;
-      gap: 8px;
-      color: var(--dim);
-      font-size: 12px;
-      font-weight: 750;
-    }
-
-    .step::before {
-      content: "";
-      position: absolute;
-      top: 16px;
-      left: -50%;
-      width: 100%;
-      height: 1px;
-      background: var(--line);
-      z-index: -1;
-    }
-
-    .step:first-child::before { display: none; }
-
-    .step-dot {
-      width: 33px;
-      height: 33px;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      border: 1px solid var(--line-2);
-      background: #222;
-      color: var(--muted);
-      font-weight: 900;
-    }
-
-    .step.active { color: #fff; }
-    .step.active .step-dot {
-      border-color: var(--red);
-      background: rgba(242,13,33,0.08);
-      color: #fff;
-      box-shadow: 0 0 0 4px rgba(242,13,33,0.08);
-    }
-
-    .step.done { color: var(--green); }
-    .step.done .step-dot {
-      border-color: rgba(55,220,125,0.55);
-      background: rgba(55,220,125,0.10);
-      color: var(--green);
-    }
-
     .section-head {
       padding: 20px 24px 16px;
       display: flex;
@@ -448,60 +391,7 @@
     .ad-empty strong { display: block; color: var(--text); font-size: 14px; }
     .ad-empty span { display: block; margin-top: 4px; color: var(--dim); font-size: 12px; }
 
-    .ad-prompt {
-      display: grid;
-      gap: 6px;
-      text-align: center;
-      color: var(--muted);
-    }
-
-    .ad-prompt-text {
-      color: var(--text);
-      font-size: 15px;
-      font-weight: 850;
-    }
-
-    .ad-prompt-sub {
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .ad-prompt-wait { color: var(--amber); }
-
-    .timer-card .section-body { display: grid; gap: 16px; }
-
-    .progress-bar-wrap {
-      height: 9px;
-      border-radius: 99px;
-      background: #262629;
-      overflow: hidden;
-    }
-
-    .progress-bar-fill {
-      height: 100%;
-      width: 0%;
-      border-radius: inherit;
-      background: linear-gradient(90deg, var(--red), #ff6b6b, var(--amber));
-      transition: width 0.7s linear;
-    }
-
-    .timer-status {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .timer-status-text { color: var(--muted); }
-    .timer-count {
-      color: #fff;
-      font-size: 26px;
-      line-height: 1;
-      font-weight: 900;
-      font-variant-numeric: tabular-nums;
-    }
+    .timer-card .section-body { display: none; }
 
     .spinner {
       width: 18px;
@@ -580,7 +470,6 @@
       cursor: wait;
     }
 
-    .countdown-num { color: #fff; font-variant-numeric: tabular-nums; }
     .get-file-hint { color: var(--muted); text-align: center; font-size: 12px; }
 
     .tool-box { padding: 22px; text-align: center; }
@@ -706,10 +595,6 @@
       .stat strong { font-size: 22px; }
       .stat span { font-size: 9px; }
 
-      .steps { padding: 8px 8px 6px; }
-      .step { font-size: 11px; }
-      .step-dot { width: 31px; height: 31px; }
-
       .section-head { padding: 16px; }
       .section-body { padding: 16px; }
       .section-title h2 { font-size: 16px; }
@@ -753,7 +638,7 @@
 <body>
   <div class="ad-banner-bait ad ads adsbox ad-placement carbon-ads" style="position:absolute!important;left:-9999px!important;top:-9999px!important;width:1px!important;height:1px;" aria-hidden="true">&nbsp;</div>
   <div id="adblock-banner" class="adblock-banner hidden">Ad blocker detected. Please allow ads to keep VidPlays free.</div>
-  <div id="scroll-hint" class="scroll-hint" style="display:none;">Scroll down to get your file</div>
+  <div id="scroll-hint" class="scroll-hint" style="display:none;">Scroll down to unlock your file</div>
 
   <header class="topbar">
     <div class="topbar-inner">
@@ -778,14 +663,8 @@
       <div class="stats" aria-label="stats">
         <div class="stat"><strong>2.8K</strong><span>TODAY'S USERS</span></div>
         <div class="stat"><strong>50K+</strong><span>MEMBERS</span></div>
-        <div class="stat"><strong>10S</strong><span>WAIT TIME</span></div>
+        <div class="stat"><strong>READY</strong><span>FILE ACCESS</span></div>
       </div>
-
-      <nav class="steps" aria-label="unlock steps">
-        <div class="step active" id="step-verify"><span class="step-dot">1</span><span>Verify</span></div>
-        <div class="step" id="step-ad"><span class="step-dot">2</span><span>View Ad</span></div>
-        <div class="step" id="step-file"><span class="step-dot">3</span><span>Get File</span></div>
-      </nav>
 
       <div id="captcha-page" class="hidden">
         <section class="card">
@@ -794,10 +673,9 @@
               <div class="tiny-icon">L</div>
               <div>
                 <h2>Security Verification</h2>
-                <p>Complete the short steps to access your file</p>
+                <p>Verify your identity to access your file</p>
               </div>
             </div>
-            <span class="chip">Step 1 of 3</span>
           </div>
           <div class="section-body">
             <button class="captcha-btn" id="captcha-btn" type="button" onclick="handleCaptchaClick()">
@@ -814,23 +692,25 @@
       </div>
 
       <div id="timer-page" class="hidden">
+        <section class="card support-note" id="ad-click-box">
+          <span class="info-dot">i</span>
+          <p><strong>Ads keep VidPlays free.</strong> Sponsor content may appear while your file access is prepared.</p>
+        </section>
+
+        <section class="ad-shell native-ad" id="ad-timer-native">
+          <script async="async" data-cfasync="false" src="https://pl29177701.profitablecpmratenetwork.com/e71dc82ac58350d7c6ffca5c82c9f22c/invoke.js"></script>
+          <div id="container-e71dc82ac58350d7c6ffca5c82c9f22c"></div>
+        </section>
+
         <section class="card timer-card hidden" id="timer-box">
           <div class="section-head">
             <div class="section-title">
-              <div class="tiny-icon">10</div>
+              <div class="tiny-icon">&#8595;</div>
               <div>
-                <h2>Preparing Link</h2>
-                <p>Keep this page open while the link unlocks</p>
+                <h2>Scroll Down</h2>
+                <p>Get your files from the button below</p>
               </div>
             </div>
-            <span class="chip" id="timer-chip">10s</span>
-          </div>
-          <div class="section-body">
-            <div class="timer-status">
-              <span style="display:flex;align-items:center;gap:10px;"><span class="spinner"></span><span class="timer-status-text" id="timer-text">Establishing secure connection...</span></span>
-              <strong class="timer-count" id="timer-count">10</strong>
-            </div>
-            <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progress-fill" style="width:0%"></div></div>
           </div>
         </section>
 
@@ -838,13 +718,21 @@
           <span class="ready-dot">&#10003;</span>
           <div>
             <span class="done-text">Verification Complete</span>
-            <span class="done-sub"><strong>Scroll down to get your file.</strong></span>
+            <span class="done-sub">Your file is ready. Open it through Telegram below.</span>
           </div>
         </section>
 
-        <section class="ad-shell native-ad" id="ad-timer-native">
-          <script async="async" data-cfasync="false" src="https://pl29177701.profitablecpmratenetwork.com/e71dc82ac58350d7c6ffca5c82c9f22c/invoke.js"></script>
-          <div id="container-e71dc82ac58350d7c6ffca5c82c9f22c"></div>
+        <section class="ad-shell rectangle-ad" id="rectangle-ad">
+          <script>
+            atOptions = {
+              'key' : '349308e9afbdb2ab3a8d9a8423362ae8',
+              'format' : 'iframe',
+              'height' : 250,
+              'width' : 300,
+              'params' : {}
+            };
+          </script>
+          <script src="https://www.highperformanceformat.com/349308e9afbdb2ab3a8d9a8423362ae8/invoke.js"></script>
         </section>
 
         <div id="get-file-section" class="get-file-wrap">
@@ -885,35 +773,11 @@
 
   <script>
     const BOT_USERNAME = 'JSTAR_P4N3L_bot';
-    const SMARTLINK_URL = 'https://www.effectivecpmnetwork.com/h49yu7tjyt?key=fc713a57c8d1e3461607a6f1395aec19';
-    const TOTAL_TIME = 10;
-    const TIMER_STEPS = [
-      { text: 'Establishing secure connection...', end: 2 },
-      { text: 'Verifying file integrity...', end: 4 },
-      { text: 'Checking server availability...', end: 6 },
-      { text: 'Retrieving file metadata...', end: 8 },
-      { text: 'Preparing download link...', end: 10 },
-    ];
 
     let token = null;
     let verified = false;
     let scrollReached = false;
-    let timerInterval = null;
     let timerStarted = false;
-    let adClicked = false;
-    let pageHiddenTime = 0;
-
-    function setStep(index) {
-      const steps = [
-        document.getElementById('step-verify'),
-        document.getElementById('step-ad'),
-        document.getElementById('step-file'),
-      ];
-      steps.forEach((step, i) => {
-        step.classList.toggle('done', i < index);
-        step.classList.toggle('active', i === index);
-      });
-    }
 
     (function init() {
       const params = new URLSearchParams(window.location.search);
@@ -949,7 +813,6 @@
       const check = document.getElementById('captcha-check');
       btn.classList.add('disabled');
       check.classList.add('checked');
-      setStep(1);
 
       setTimeout(() => {
         document.getElementById('captcha-page').classList.add('hidden');
@@ -962,48 +825,13 @@
     function startTimer() {
       if (timerStarted) return;
       timerStarted = true;
+      verified = true;
       document.getElementById('timer-box').classList.remove('hidden');
-      document.getElementById('timer-box').scrollIntoView({ behavior: 'smooth', block: 'center' });
-
-      let elapsed = 0;
-      const fill = document.getElementById('progress-fill');
-      const text = document.getElementById('timer-text');
-      const timerCount = document.getElementById('timer-count');
-      const timerChip = document.getElementById('timer-chip');
-      const btn = document.getElementById('get-file-btn');
-
-      btn.className = 'get-file-btn waiting';
-      btn.innerHTML = 'Please wait <span class="countdown-num" id="countdown-num">' + TOTAL_TIME + '</span>s';
-      timerCount.textContent = TOTAL_TIME;
-      timerChip.textContent = TOTAL_TIME + 's';
-
-      timerInterval = setInterval(() => {
-        elapsed++;
-        const pct = Math.min((elapsed / TOTAL_TIME) * 100, 100);
-        fill.style.width = pct + '%';
-
-        const step = TIMER_STEPS.find(s => elapsed < s.end);
-        if (step) text.textContent = step.text;
-
-        const remaining = Math.max(0, TOTAL_TIME - elapsed);
-        const numEl = document.getElementById('countdown-num');
-        if (numEl) numEl.textContent = remaining;
-        timerCount.textContent = remaining;
-        timerChip.textContent = remaining + 's';
-
-        if (elapsed >= TOTAL_TIME) {
-          clearInterval(timerInterval);
-          verified = true;
-          document.getElementById('timer-box').classList.add('hidden');
-          document.getElementById('done-box').classList.remove('hidden');
-          setStep(2);
-          document.getElementById('scroll-hint').style.display = 'block';
-          setTimeout(() => {
-            document.getElementById('scroll-hint').style.display = 'none';
-          }, 6000);
-          updateGetFileButton();
-        }
-      }, 1000);
+      document.getElementById('scroll-hint').style.display = 'block';
+      setTimeout(() => {
+        document.getElementById('scroll-hint').style.display = 'none';
+      }, 6000);
+      updateGetFileButton();
     }
 
     function setupScrollObserver() {
@@ -1038,13 +866,13 @@
 
       if (verified && scrollReached) {
         btn.className = 'get-file-btn active';
-        btn.textContent = 'Get Your Files';
+        btn.textContent = 'Open in Telegram';
         btn.onclick = handleGetFile;
         hint.classList.remove('hidden');
         document.getElementById('scroll-hint').style.display = 'none';
       } else if (verified && !scrollReached) {
         btn.className = 'get-file-btn locked';
-        btn.textContent = 'Scroll down to get your file';
+        btn.textContent = 'Scroll down to unlock your file';
         btn.onclick = null;
         hint.classList.add('hidden');
       } else {
@@ -1060,8 +888,6 @@
       btn.className = 'get-file-btn redirecting';
       btn.innerHTML = '<span class="spinner" style="display:inline-block;vertical-align:middle;margin-right:8px;"></span> Redirecting...';
       btn.onclick = null;
-
-      window.open(SMARTLINK_URL, '_blank', 'noopener');
 
       setTimeout(() => {
         if (token.startsWith('web_')) {
