@@ -638,7 +638,7 @@
 <body>
   <div class="ad-banner-bait ad ads adsbox ad-placement carbon-ads" style="position:absolute!important;left:-9999px!important;top:-9999px!important;width:1px!important;height:1px;" aria-hidden="true">&nbsp;</div>
   <div id="adblock-banner" class="adblock-banner hidden">Ad blocker detected. Please allow ads to keep VidPlays free.</div>
-  <div id="scroll-hint" class="scroll-hint" style="display:none;">Scroll down to get your files</div>
+  <div id="scroll-hint" class="scroll-hint" style="display:none;">Scroll down to get your file</div>
 
   <header class="topbar">
     <div class="topbar-inner">
@@ -694,7 +694,7 @@
       <div id="timer-page" class="hidden">
         <section class="card support-note" id="ad-click-box">
           <span class="info-dot">i</span>
-          <p><strong>Ads keep VidPlays free.</strong> Sponsor content may appear while your file access is prepared.</p>
+          <p><strong>Scroll down to get your file.</strong></p>
         </section>
 
         <section class="ad-shell native-ad" id="ad-timer-native">
@@ -872,7 +872,7 @@
         document.getElementById('scroll-hint').style.display = 'none';
       } else if (verified && !scrollReached) {
         btn.className = 'get-file-btn locked';
-        btn.textContent = 'Scroll down to get your files';
+        btn.textContent = 'Scroll down to get your file';
         btn.onclick = null;
         hint.classList.add('hidden');
       } else {
